@@ -1,0 +1,2268 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>搜同网站gtv - 同志影视内容聚合与社区互动</title>
+  <meta name="description" content="搜同网站gtv聚合同志题材影视剧集、短片、纪录片与综艺访谈，提供条目推荐、深度解析、社区评论与每月更新动态，适合关注酷儿影像的观众查找和讨论。">
+  <meta name="keywords" content="搜同网站gtv">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232f2a4a'/%3E%3Cpath d='M18 40 L32 18 L46 40' stroke='%23c9b6ff' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='46' r='4' fill='%23f4b8c1'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --brand: #2f2a4a;
+      --brand-light: #4a4168;
+      --brand-lighter: #6f6090;
+      --accent: #c9b6ff;
+      --accent-soft: #ede7ff;
+      --pink: #f4b8c1;
+      --bg: #f8f6fc;
+      --panel: #ffffff;
+      --text: #1e1b2e;
+      --text-2: #5a5470;
+      --text-3: #8b85a0;
+      --line: #e7e2f0;
+      --line-soft: #f0ecf8;
+      --radius-card: 16px;
+      --radius-tag: 999px;
+      --radius-btn: 10px;
+      --shadow: 0 2px 12px rgba(47, 42, 74, 0.07);
+      --shadow-hover: 0 8px 24px rgba(47, 42, 74, 0.13);
+      --announce-h: 44px;
+      --header-h: 64px;
+      --sticky-offset: calc(var(--announce-h) + var(--header-h) + 12px);
+      --font: system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: var(--sticky-offset); }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ========== 吸顶公告条 ========== */
+    .announcement {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--announce-h);
+      background: linear-gradient(90deg, var(--brand), var(--brand-light) 60%, #5d4e7e);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      overflow: hidden;
+    }
+    .announcement .container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+      white-space: nowrap;
+    }
+    .announcement .container::-webkit-scrollbar { display: none; }
+    .announce-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .announce-brand svg { width: 18px; height: 18px; }
+    .announce-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      color: #e8e2f8;
+    }
+    .announce-item .dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--pink);
+      flex-shrink: 0;
+    }
+    .announce-item .date { color: var(--accent); font-variant-numeric: tabular-nums; }
+
+    /* ========== 吸顶页头 ========== */
+    .site-header {
+      position: sticky;
+      top: var(--announce-h);
+      z-index: 99;
+      height: var(--header-h);
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .site-header .container {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .brand-logo {
+      width: 38px; height: 38px;
+      border-radius: 12px;
+      background: var(--brand);
+      display: grid;
+      place-items: center;
+    }
+    .brand-logo svg { width: 24px; height: 24px; }
+    .brand-text {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      color: var(--brand);
+      white-space: nowrap;
+    }
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex: 1;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .main-nav::-webkit-scrollbar { display: none; }
+    .main-nav a {
+      padding: 7px 12px;
+      border-radius: var(--radius-btn);
+      font-size: 14px;
+      color: var(--text-2);
+      white-space: nowrap;
+      transition: background 0.18s, color 0.18s;
+    }
+    .main-nav a:hover,
+    .main-nav a:focus-visible {
+      background: var(--accent-soft);
+      color: var(--brand);
+      outline: none;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: var(--line-soft);
+      border-radius: var(--radius-btn);
+      padding: 0 4px 0 12px;
+      border: 1px solid transparent;
+      transition: border-color 0.18s, background 0.18s;
+    }
+    .search-box:focus-within {
+      border-color: var(--accent);
+      background: #fff;
+    }
+    .search-box input {
+      border: none;
+      background: transparent;
+      font-family: var(--font);
+      font-size: 13px;
+      padding: 8px 6px 8px 0;
+      width: 130px;
+      color: var(--text);
+      outline: none;
+    }
+    .search-box input::placeholder { color: var(--text-3); }
+    .search-box button {
+      border: none;
+      background: var(--brand);
+      color: #fff;
+      border-radius: 8px;
+      width: 30px; height: 30px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    .search-box button:hover { background: var(--brand-light); }
+    .search-box button svg { width: 15px; height: 15px; }
+    .btn-post {
+      background: var(--pink);
+      color: #5c2a35;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 16px;
+      border-radius: var(--radius-btn);
+      white-space: nowrap;
+      transition: transform 0.15s, box-shadow 0.18s;
+    }
+    .btn-post:hover { transform: translateY(-1px); box-shadow: var(--shadow-hover); }
+
+    .hamburger {
+      display: none;
+      border: none;
+      background: var(--line-soft);
+      border-radius: 9px;
+      width: 38px; height: 38px;
+      place-items: center;
+      cursor: pointer;
+      color: var(--brand);
+    }
+    .hamburger svg { width: 20px; height: 20px; }
+
+    /* ========== 首屏 ========== */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(1000px 420px at 82% -10%, rgba(201, 182, 255, 0.5), transparent 65%),
+        radial-gradient(700px 380px at 6% 108%, rgba(244, 184, 193, 0.4), transparent 62%),
+        linear-gradient(160deg, #f3eefb 0%, #fbf9ff 52%, #f5f1fc 100%);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -70px;
+      width: 380px;
+      height: 380px;
+      border-radius: 46% 54% 60% 40% / 52% 44% 56% 48%;
+      background: linear-gradient(140deg, rgba(201, 182, 255, 0.45), rgba(244, 184, 193, 0.3));
+      filter: blur(6px);
+      animation: float 14s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    @keyframes float {
+      from { transform: translate(0, 0) rotate(0deg); }
+      to { transform: translate(-20px, 22px) rotate(9deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero::before { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      padding: 52px 0 46px;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 40px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--accent);
+      color: var(--brand-light);
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 5px 13px;
+      border-radius: var(--radius-tag);
+      margin-bottom: 18px;
+    }
+    .hero-badge .pulse {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #6fbf8a;
+      box-shadow: 0 0 0 3px rgba(111, 191, 138, 0.22);
+    }
+    .hero h1 {
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      color: var(--brand);
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+    .hero-desc {
+      max-width: 580px;
+      font-size: 15.5px;
+      color: var(--text-2);
+      line-height: 1.85;
+      margin-bottom: 26px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .btn-primary {
+      background: var(--brand);
+      color: #fff;
+      font-weight: 700;
+      font-size: 14.5px;
+      padding: 11px 24px;
+      border-radius: var(--radius-btn);
+      transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
+    }
+    .btn-primary:hover {
+      background: var(--brand-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--line);
+      color: var(--brand-light);
+      font-weight: 600;
+      font-size: 14.5px;
+      padding: 10px 22px;
+      border-radius: var(--radius-btn);
+      transition: border-color 0.18s, background 0.18s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); background: #fff; }
+
+    .hero-stats {
+      display: flex;
+      gap: 28px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    .hero-stat-num {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--brand);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.2;
+    }
+    .hero-stat-label {
+      font-size: 12.5px;
+      color: var(--text-3);
+      margin-top: 2px;
+    }
+
+    .hero-visual {
+      position: relative;
+      justify-self: end;
+      width: 100%;
+      max-width: 320px;
+    }
+    .hero-card-stack {
+      position: relative;
+      height: 300px;
+    }
+    .hero-mini-card {
+      position: absolute;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line-soft);
+      padding: 12px;
+      width: 210px;
+    }
+    .hero-mini-card:nth-child(1) {
+      top: 0; right: 0;
+      transform: rotate(3deg);
+      z-index: 2;
+    }
+    .hero-mini-card:nth-child(2) {
+      bottom: 24px; left: 0;
+      transform: rotate(-4deg);
+      z-index: 1;
+    }
+    .hero-mini-card:nth-child(3) {
+      top: 118px; right: 40px;
+      transform: rotate(-1.5deg);
+      z-index: 3;
+      width: 200px;
+    }
+    .mini-poster {
+      width: 100%;
+      height: 104px;
+      border-radius: 9px;
+      object-fit: cover;
+      display: block;
+      background: var(--line-soft);
+    }
+    .mini-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 9px;
+      line-height: 1.4;
+    }
+    .mini-meta {
+      font-size: 11.5px;
+      color: var(--text-3);
+      margin-top: 3px;
+    }
+    .mini-tag {
+      display: inline-block;
+      font-size: 10.5px;
+      background: var(--accent-soft);
+      color: var(--brand-light);
+      padding: 1px 8px;
+      border-radius: var(--radius-tag);
+      margin-top: 7px;
+    }
+
+    /* ========== 主内容区（三栏） ========== */
+    .layout {
+      display: grid;
+      grid-template-columns: 176px minmax(0, 1fr) 250px;
+      gap: 28px;
+      padding: 36px 0 20px;
+      align-items: start;
+    }
+
+    /* 频道索引 */
+    .channel-nav {
+      position: sticky;
+      top: var(--sticky-offset);
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--line);
+      padding: 16px 12px;
+      box-shadow: var(--shadow);
+    }
+    .channel-nav h2 {
+      font-size: 12px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--text-3);
+      font-weight: 700;
+      padding: 0 8px;
+      margin-bottom: 10px;
+    }
+    .channel-list { list-style: none; }
+    .channel-list li { margin-bottom: 1px; }
+    .channel-list a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      color: var(--text-2);
+      padding: 8px 9px;
+      border-radius: 8px;
+      transition: background 0.16s, color 0.16s;
+      line-height: 1.4;
+    }
+    .channel-list a .ch-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      transition: background 0.16s;
+    }
+    .channel-list a:hover,
+    .channel-list a:focus-visible {
+      background: var(--accent-soft);
+      color: var(--brand);
+      outline: none;
+    }
+    .channel-list a:hover .ch-dot { background: var(--brand); }
+
+    /* 主栏 */
+    .main-col { min-width: 0; }
+
+    .section {
+      margin-bottom: 40px;
+    }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .section-head h2 {
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--brand);
+      letter-spacing: -0.2px;
+    }
+    .section-head .section-sub {
+      font-size: 13px;
+      color: var(--text-3);
+    }
+    .section-link {
+      font-size: 13px;
+      color: var(--brand-lighter);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .section-link:hover { color: var(--brand); text-decoration: underline; }
+
+    /* 领域概览 */
+    .overview-box {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-card);
+      padding: 24px 26px;
+      box-shadow: var(--shadow);
+    }
+    .overview-box p {
+      font-size: 14.5px;
+      color: var(--text-2);
+      line-height: 1.95;
+      margin-bottom: 13px;
+    }
+    .overview-box p:last-child { margin-bottom: 0; }
+    .overview-box strong { color: var(--brand); font-weight: 700; }
+    .overview-terms {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .term-pill {
+      font-size: 12px;
+      background: var(--accent-soft);
+      color: var(--brand-light);
+      padding: 4px 11px;
+      border-radius: var(--radius-tag);
+      font-weight: 500;
+    }
+
+    /* 精选卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .media-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.18s, box-shadow 0.2s, border-color 0.18s;
+    }
+    .media-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent);
+    }
+    .media-card .card-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      background: var(--line-soft);
+    }
+    .media-card .card-body {
+      padding: 13px 15px 15px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.45;
+      margin-bottom: 6px;
+    }
+    .card-title:hover { color: var(--brand-light); }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+    .tag {
+      font-size: 11px;
+      padding: 1.5px 8px;
+      border-radius: var(--radius-tag);
+      background: var(--line-soft);
+      color: var(--text-2);
+      white-space: nowrap;
+    }
+    .tag.genre { background: var(--accent-soft); color: var(--brand-light); }
+    .tag.hot { background: #fdeef1; color: #b04a5c; }
+    .card-blurb {
+      font-size: 12.8px;
+      color: var(--text-2);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .card-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 11px;
+      font-size: 11.5px;
+      color: var(--text-3);
+    }
+    .card-foot .score {
+      font-weight: 700;
+      color: #b04a5c;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* 最新更新列表 */
+    .update-list {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .update-item {
+      display: flex;
+      gap: 14px;
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--line-soft);
+      align-items: flex-start;
+      transition: background 0.15s;
+    }
+    .update-item:last-child { border-bottom: none; }
+    .update-item:hover { background: #fdfcff; }
+    .update-time {
+      font-size: 11.5px;
+      color: var(--text-3);
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+      width: 46px;
+      padding-top: 2px;
+    }
+    .update-content { min-width: 0; }
+    .update-title {
+      font-size: 13.8px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .update-title:hover { color: var(--brand-light); }
+    .update-desc {
+      font-size: 12.5px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* 分类入口 */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .cat-item {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 12px;
+      text-align: center;
+      transition: border-color 0.18s, background 0.18s, transform 0.15s;
+      display: block;
+    }
+    .cat-item:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      transform: translateY(-2px);
+    }
+    .cat-icon {
+      width: 32px; height: 32px;
+      margin: 0 auto 7px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      background: var(--line-soft);
+      color: var(--brand-light);
+    }
+    .cat-icon svg { width: 17px; height: 17px; }
+    .cat-name {
+      font-size: 12.8px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .cat-count {
+      font-size: 11px;
+      color: var(--text-3);
+      margin-top: 2px;
+    }
+
+    /* 深度解析 */
+    .deep-dive {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-card);
+      padding: 28px 30px;
+      box-shadow: var(--shadow);
+    }
+    .deep-dive h3 {
+      font-size: 16.5px;
+      font-weight: 800;
+      color: var(--brand);
+      margin: 22px 0 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--accent);
+      line-height: 1.4;
+    }
+    .deep-dive h3:first-of-type { margin-top: 0; }
+    .deep-dive p {
+      font-size: 14.2px;
+      color: var(--text-2);
+      line-height: 1.9;
+      margin-bottom: 12px;
+    }
+    .deep-dive ul {
+      margin: 6px 0 14px 4px;
+      padding-left: 18px;
+    }
+    .deep-dive li {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.85;
+      margin-bottom: 5px;
+    }
+    .deep-dive strong { color: var(--brand); }
+    .evidence-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 16px;
+      font-size: 13px;
+    }
+    .evidence-table th,
+    .evidence-table td {
+      border: 1px solid var(--line);
+      padding: 8px 11px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .evidence-table th {
+      background: var(--line-soft);
+      color: var(--brand);
+      font-weight: 700;
+      font-size: 12.5px;
+    }
+    .evidence-table td { color: var(--text-2); line-height: 1.65; }
+
+    /* 体验指南 */
+    .guide-steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .guide-step {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-card);
+      padding: 18px 17px;
+      position: relative;
+      transition: box-shadow 0.2s, border-color 0.18s;
+    }
+    .guide-step:hover { box-shadow: var(--shadow-hover); border-color: var(--accent); }
+    .step-num {
+      width: 28px; height: 28px;
+      border-radius: 9px;
+      background: var(--brand);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+      margin-bottom: 11px;
+      font-variant-numeric: tabular-nums;
+    }
+    .guide-step h3 {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 7px;
+      line-height: 1.4;
+    }
+    .guide-step p {
+      font-size: 12.8px;
+      color: var(--text-2);
+      line-height: 1.75;
+    }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 9px; }
+    .faq-item {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.18s;
+    }
+    .faq-item[open] { border-color: var(--accent); }
+    .faq-item summary {
+      cursor: pointer;
+      padding: 14px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+";
+      font-size: 18px;
+      color: var(--brand-lighter);
+      font-weight: 400;
+      line-height: 1;
+      transition: transform 0.2s;
+    }
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-item summary:hover { color: var(--brand-light); }
+    .faq-item summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+    .faq-answer {
+      padding: 0 18px 16px;
+      font-size: 13.5px;
+      color: var(--text-2);
+      line-height: 1.85;
+    }
+    .faq-answer strong { color: var(--brand); }
+
+    /* 评论 */
+    .comment-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 11px;
+    }
+    .comment-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 13px 15px;
+      transition: border-color 0.18s;
+    }
+    .comment-card:hover { border-color: var(--accent); }
+    .comment-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 7px;
+    }
+    .avatar {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--pink));
+      display: grid;
+      place-items: center;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--brand);
+      flex-shrink: 0;
+    }
+    .comment-user {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .comment-date {
+      font-size: 11px;
+      color: var(--text-3);
+      margin-left: auto;
+      font-variant-numeric: tabular-nums;
+    }
+    .comment-text {
+      font-size: 12.8px;
+      color: var(--text-2);
+      line-height: 1.7;
+    }
+
+    /* 相关资讯 */
+    .news-list { display: flex; flex-direction: column; gap: 0; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-card); overflow: hidden; }
+    .news-item {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line-soft);
+      transition: background 0.15s;
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-item:hover { background: #fdfcff; }
+    .news-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+    .news-title:hover { color: var(--brand-light); }
+    .news-meta {
+      font-size: 11.5px;
+      color: var(--text-3);
+      margin-bottom: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    .news-summary {
+      font-size: 12.8px;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    /* 相关推荐 */
+    .rec-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+    .rec-tag {
+      font-size: 12.8px;
+      padding: 6px 14px;
+      border-radius: var(--radius-tag);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      color: var(--text-2);
+      transition: border-color 0.18s, background 0.18s, color 0.18s;
+    }
+    .rec-tag:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--brand);
+    }
+
+    /* 补充板块：榜单 */
+    .rank-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-card);
+      padding: 8px 0;
+      box-shadow: var(--shadow);
+    }
+    .rank-item {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 10px 18px;
+      border-bottom: 1px solid var(--line-soft);
+      transition: background 0.15s;
+    }
+    .rank-item:last-child { border-bottom: none; }
+    .rank-item:hover { background: #fdfcff; }
+    .rank-no {
+      font-size: 14px;
+      font-weight: 800;
+      width: 22px;
+      text-align: center;
+      color: var(--text-3);
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+    .rank-item:nth-child(1) .rank-no { color: #c99a3b; }
+    .rank-item:nth-child(2) .rank-no { color: #8a93a8; }
+    .rank-item:nth-child(3) .rank-no { color: #b07a5a; }
+    .rank-body { min-width: 0; flex: 1; }
+    .rank-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .rank-meta { font-size: 11.5px; color: var(--text-3); }
+    .rank-heat {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #b04a5c;
+      flex-shrink: 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* 辅助栏 */
+    .side-col { position: sticky; top: var(--sticky-offset); }
+    .side-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-card);
+      padding: 18px 16px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow);
+    }
+    .side-panel h2 {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--brand);
+      letter-spacing: 0.4px;
+      margin-bottom: 13px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .side-panel h2::before {
+      content: "";
+      width: 3px; height: 14px;
+      border-radius: 2px;
+      background: var(--pink);
+    }
+    .hot-list { list-style: none; }
+    .hot-list li {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      padding: 7px 0;
+      border-bottom: 1px dashed var(--line-soft);
+    }
+    .hot-list li:last-child { border-bottom: none; }
+    .hot-no {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--text-3);
+      width: 16px;
+      flex-shrink: 0;
+      padding-top: 2px;
+      font-variant-numeric: tabular-nums;
+    }
+    .hot-list li:nth-child(1) .hot-no { color: #d4576a; }
+    .hot-list li:nth-child(2) .hot-no { color: #d4576a; }
+    .hot-list li:nth-child(3) .hot-no { color: #d4576a; }
+    .hot-title {
+      font-size: 12.5px;
+      color: var(--text-2);
+      line-height: 1.5;
+      transition: color 0.15s;
+    }
+    .hot-title:hover { color: var(--brand); }
+    .hot-type {
+      font-size: 10.5px;
+      color: var(--text-3);
+      margin-top: 1px;
+    }
+    .side-cta {
+      background: linear-gradient(150deg, var(--brand), #453d64);
+      border-radius: var(--radius-card);
+      padding: 20px 18px;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+    .side-cta h2 {
+      font-size: 14.5px;
+      color: #fff;
+      margin-bottom: 7px;
+      font-weight: 800;
+    }
+    .side-cta p {
+      font-size: 12.3px;
+      color: #d9d2ee;
+      line-height: 1.7;
+      margin-bottom: 13px;
+    }
+    .side-cta a {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--brand);
+      font-size: 12.5px;
+      font-weight: 800;
+      padding: 7px 15px;
+      border-radius: 8px;
+      transition: background 0.18s;
+    }
+    .side-cta a:hover { background: #fff; }
+    .side-note {
+      font-size: 11.5px;
+      color: var(--text-3);
+      line-height: 1.7;
+      padding: 0 2px;
+    }
+
+    /* ========== 页尾 ========== */
+    .site-footer {
+      background: var(--brand);
+      color: #c9c3dc;
+      margin-top: 30px;
+      padding: 44px 0 26px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 34px;
+      margin-bottom: 34px;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 13px;
+    }
+    .footer-logo {
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      display: grid;
+      place-items: center;
+    }
+    .footer-logo svg { width: 21px; height: 21px; }
+    .footer-brand-text {
+      font-size: 17px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .footer-pos {
+      font-size: 12.8px;
+      line-height: 1.8;
+      color: #b3abcc;
+      max-width: 320px;
+    }
+    .footer-col h3 {
+      font-size: 12.5px;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 12.6px;
+      color: #b3abcc;
+      padding: 4px 0;
+      transition: color 0.15s;
+    }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 11.8px;
+      color: #9189ab;
+    }
+    .footer-bottom .update-note { color: #b3abcc; }
+
+    /* 回到顶部 */
+    .to-top {
+      position: fixed;
+      right: 22px;
+      bottom: 26px;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: var(--brand);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow-hover);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity 0.25s, transform 0.25s, visibility 0.25s, background 0.18s;
+      z-index: 90;
+    }
+    .to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+    .to-top:hover { background: var(--brand-light); }
+    .to-top svg { width: 19px; height: 19px; }
+
+    /* 搜索无结果 */
+    .search-empty {
+      display: none;
+      padding: 22px;
+      text-align: center;
+      font-size: 13.5px;
+      color: var(--text-3);
+      background: var(--panel);
+      border: 1px dashed var(--line);
+      border-radius: var(--radius-card);
+      margin-top: 12px;
+    }
+    .search-empty.visible { display: block; }
+    .card-grid.searching .media-card.hidden,
+    .update-list.searching .update-item.hidden,
+    .news-list.searching .news-item.hidden { display: none; }
+
+    /* 移动端抽屉遮罩 */
+    .drawer-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(30, 27, 46, 0.45);
+      z-index: 105;
+      opacity: 0;
+      transition: opacity 0.22s;
+    }
+    .drawer-overlay.active { display: block; opacity: 1; }
+
+    /* ========== 响应式 ========== */
+    @media (max-width: 1180px) {
+      .layout { grid-template-columns: 164px minmax(0, 1fr); }
+      .side-col { grid-column: 1 / -1; position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+      .side-col .side-panel, .side-col .side-cta { margin-bottom: 0; }
+      .side-note { grid-column: 1 / -1; }
+    }
+    @media (max-width: 1024px) {
+      .layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+      .channel-nav { position: static; padding: 0; background: transparent; border: none; box-shadow: none; }
+      .channel-nav h2 { display: none; }
+      .channel-list {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 6px;
+        scrollbar-width: thin;
+      }
+      .channel-list li { margin-bottom: 0; }
+      .channel-list a {
+        white-space: nowrap;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        padding: 8px 14px;
+        border-radius: var(--radius-tag);
+        font-size: 13px;
+      }
+      .side-col { grid-template-columns: 1fr 1fr; }
+      .main-nav { display: none; }
+      .hamburger { display: grid; }
+    }
+    @media (max-width: 860px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 30px; }
+      .hero-visual { justify-self: start; max-width: 300px; }
+      .hero-card-stack { height: 270px; }
+      .card-grid { grid-template-columns: 1fr; }
+      .cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .guide-steps { grid-template-columns: 1fr; }
+      .comment-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 26px; }
+      .deep-dive { padding: 22px 20px; }
+    }
+    @media (max-width: 740px) {
+      .container { padding: 0 16px; }
+      .hero-inner { padding: 36px 0 32px; }
+      .hero h1 { font-size: 30px; }
+      .hero-desc { font-size: 14.5px; }
+      .hero-stats { gap: 20px; }
+      .hero-stat-num { font-size: 21px; }
+      .side-col { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 22px; }
+      .header-actions { display: none; }
+      .search-box input { width: 100px; }
+      .hero-mini-card { width: 180px; }
+      .mini-poster { height: 88px; }
+      .evidence-table { font-size: 12px; }
+      .evidence-table th, .evidence-table td { padding: 6px 8px; }
+      .update-item { padding: 12px 14px; gap: 10px; }
+      .update-time { width: 42px; }
+      .announcement .container { gap: 12px; }
+      .hero-card-stack { height: 250px; }
+      .to-top { right: 14px; bottom: 18px; width: 38px; height: 38px; }
+    }
+    @media (max-width: 420px) {
+      .search-box { display: none; }
+      .hero-visual { display: none; }
+    }
+  </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+  <!-- 吸顶公告条 -->
+  <div class="announcement" id="announcement">
+    <div class="container">
+      <span class="announce-brand">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 17 L12 5 L19 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="19.5" r="1.6" fill="currentColor"/>
+        </svg>
+        搜同网站gtv
+      </span>
+      <span class="announce-item"><span class="dot"></span><span class="date">11月7日</span>《夏日咖啡馆》第二季第4集上线</span>
+      <span class="announce-item"><span class="dot"></span><span class="date">11月6日</span>「华语酷儿短片月度展映」新增6部</span>
+      <span class="announce-item"><span class="dot"></span><span class="date">11月5日</span>「出柜叙事」专题条目突破120条</span>
+    </div>
+  </div>
+
+  <!-- 吸顶页头 -->
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/#" aria-label="搜同网站gtv首页">
+        <span class="brand-logo">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 17 L12 5 L19 17" stroke="#c9b6ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="19.5" r="1.8" fill="#f4b8c1"/>
+          </svg>
+        </span>
+        <span class="brand-text">搜同网站gtv</span>
+      </a>
+      <nav class="main-nav" aria-label="主题导航">
+        <a href="/#overview">领域概览</a>
+        <a href="/#featured">精选剧集</a>
+        <a href="/#updates">最新更新</a>
+        <a href="/#categories">分类索引</a>
+        <a href="/#deepdive">深度解析</a>
+        <a href="/#faq">常见问答</a>
+        <a href="/#comments">观众评论</a>
+        <a href="/#news">相关资讯</a>
+      </nav>
+      <div class="header-actions">
+        <div class="search-box" role="search">
+          <input type="search" id="globalSearch" placeholder="搜索条目或类型…" aria-label="搜索条目或类型">
+          <button type="button" id="searchBtn" aria-label="执行搜索">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+              <path d="M16.5 16.5 L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+        <a class="btn-post" href="/#community">投稿 / 交流</a>
+      </div>
+      <button class="hamburger" id="hamburgerBtn" aria-label="打开导航菜单" aria-expanded="false" aria-controls="mobileNav">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端抽屉导航 -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <nav class="main-nav" id="mobileNav" aria-label="移动端导航" style="display:none;position:fixed;top:calc(var(--announce-h) + var(--header-h));left:0;right:0;background:#fff;padding:14px 20px 20px;z-index:106;flex-direction:column;align-items:stretch;border-bottom:1px solid var(--line);box-shadow:var(--shadow-hover);max-height:70vh;overflow-y:auto;">
+    <a href="/#overview">领域概览</a>
+    <a href="/#featured">精选剧集</a>
+    <a href="/#updates">最新更新</a>
+    <a href="/#categories">分类索引</a>
+    <a href="/#deepdive">深度解析</a>
+    <a href="/#guide">体验指南</a>
+    <a href="/#faq">常见问答</a>
+    <a href="/#comments">观众评论</a>
+    <a href="/#news">相关资讯</a>
+    <a href="/#rank">热门榜单</a>
+  </nav>
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <span class="hero-badge"><span class="pulse"></span> 2026 年 11 月 · 酷儿影像内容持续收录中</span>
+        <h1>搜同网站gtv</h1>
+        <p class="hero-desc">
+          聚合同志题材的剧集、短片、纪录片与访谈内容。从《夏日咖啡馆》的续订消息，到亚洲酷儿短片月度展映的入选片单，再到出柜叙事、跨性别纪实等专题的条目整理——按类型、地区和年份查找，也看看别人怎么评价。
+        </p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="/#featured">浏览精选条目</a>
+          <a class="btn-ghost" href="/#updates">查看 11 月更新</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">327</div>
+            <div class="hero-stat-label">已收录条目</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">16</div>
+            <div class="hero-stat-label">细分类型</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">11月7日</div>
+            <div class="hero-stat-label">最近更新</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card-stack">
+          <div class="hero-mini-card">
+            <img class="mini-poster" src="https://picsum.photos/seed/gtvsummercafe/400/300" width="400" height="300" alt="《夏日咖啡馆》第二季海报" loading="lazy" style="object-fit:cover;">
+            <div class="mini-title">夏日咖啡馆 第二季</div>
+            <div class="mini-meta">剧集 · 2026 · 8.6分</div>
+            <span class="mini-tag">都市 / 情感</span>
+          </div>
+          <div class="hero-mini-card">
+            <img class="mini-poster" src="https://picsum.photos/seed/gtvshortfilm/400/300" width="400" height="300" alt="酷儿短片月度展映入围作品剧照" loading="lazy" style="object-fit:cover;">
+            <div class="mini-title">短片月度展映 · 11月</div>
+            <div class="mini-meta">短片集 · 6部新入选</div>
+            <span class="mini-tag">实验 / 纪录</span>
+          </div>
+          <div class="hero-mini-card">
+            <img class="mini-poster" src="https://picsum.photos/seed/gtvdocumentary/400/300" width="400" height="300" alt="跨性别纪实《镜中我》封面" loading="lazy" style="object-fit:cover;">
+            <div class="mini-title">镜中我</div>
+            <div class="mini-meta">纪录片 · 2026 · 9.1分</div>
+            <span class="mini-tag">跨性别 / 纪实</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 主内容区（三栏） -->
+  <div class="container">
+    <div class="layout">
+
+      <!-- 左频道索引 -->
+      <aside class="channel-nav" aria-label="频道索引">
+        <h2>频道索引</h2>
+        <ul class="channel-list">
+          <li><a href="/#overview"><span class="ch-dot"></span>领域概览</a></li>
+          <li><a href="/#featured"><span class="ch-dot"></span>精选剧集</a></li>
+          <li><a href="/#updates"><span class="ch-dot"></span>最新更新</a></li>
+          <li><a href="/#categories"><span class="ch-dot"></span>分类索引</a></li>
+          <li><a href="/#deepdive"><span class="ch-dot"></span>深度解析</a></li>
+          <li><a href="/#guide"><span class="ch-dot"></span>体验指南</a></li>
+          <li><a href="/#faq"><span class="ch-dot"></span>常见问答</a></li>
+          <li><a href="/#comments"><span class="ch-dot"></span>观众评论</a></li>
+          <li><a href="/#news"><span class="ch-dot"></span>相关资讯</a></li>
+          <li><a href="/#rank"><span class="ch-dot"></span>热门榜单</a></li>
+          <li><a href="/#recommend"><span class="ch-dot"></span>相关推荐</a></li>
+          <li><a href="/#community"><span class="ch-dot"></span>投稿交流</a></li>
+        </ul>
+      </aside>
+
+      <!-- 主栏 -->
+      <main class="main-col">
+
+        <!-- 1. 主题领域概览 -->
+        <section class="section" id="overview">
+          <div class="section-head">
+            <h2>同志影像内容版图</h2>
+            <span class="section-sub">类型 · 地区 · 年份分布</span>
+          </div>
+          <div class="overview-box">
+            <p>
+              这个领域大致分成几块：<strong>同志向剧集</strong>（以都市情感、青春校园、职场关系为主线，如《夏日咖啡馆》《出租屋恋人》）、<strong>酷儿短片</strong>（多为 15—40 分钟的实验叙事或生活切片，常在影展和月度展映中首播）、<strong>纪录片与访谈</strong>（跨性别纪实、出柜家庭、老年同志口述史等方向）、以及<strong>综艺与播客衍生</strong>（情感对谈、影人访谈、观众连线）。地区上，华语内容以中国大陆独立制作、台湾地区公视系作品、香港本地短片为主；国际内容中，泰国、日本、韩国的同志剧近两年在流媒体渠道的可见度明显上升。
+            </p>
+            <p>
+              2026 年 10—11 月的关注点集中在几件事：《夏日咖啡馆》第二季续订后口碑分化，第 4 集上线当天在多个讨论区出现两极评价；「华语酷儿短片月度展映」11 月场新增 6 部作品，其中 3 部为首次公开；纪录片《镜中我》在 10 月底完成一轮高校放映，映后谈视频在 11 月 3 日被整理成文字版。专题条目方面，「出柜叙事」分类本月新增 9 条，总量达到 120 条以上。
+            </p>
+            <div class="overview-terms">
+              <span class="term-pill">同志剧集</span>
+              <span class="term-pill">酷儿短片</span>
+              <span class="term-pill">跨性别纪实</span>
+              <span class="term-pill">出柜叙事</span>
+              <span class="term-pill">影展首播</span>
+              <span class="term-pill">口述史</span>
+              <span class="term-pill">映后谈</span>
+              <span class="term-pill">公视系</span>
+              <span class="term-pill">都市情感</span>
+              <span class="term-pill">实验叙事</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. 精选内容推荐 -->
+        <section class="section" id="featured">
+          <div class="section-head">
+            <h2>值得关注的同志剧集与短片</h2>
+            <a class="section-link" href="/#categories">按类型筛选 →</a>
+          </div>
+          <div class="card-grid" id="featuredGrid">
+            <article class="media-card">
+              <img class="card-thumb" src="https://picsum.photos/seed/gtvsummercafe2/400/300" width="400" height="300" alt="《夏日咖啡馆》第二季剧照，两人在吧台前对视" loading="lazy">
+              <div class="card-body">
+                <a class="card-title" href="/#featured">夏日咖啡馆 第二季</a>
+                <div class="card-tags">
+                  <span class="tag genre">都市情感</span>
+                  <span class="tag">咖啡店</span>
+                  <span class="tag">续订</span>
+                  <span class="tag hot">讨论度高</span>
+                </div>
+                <p class="card-blurb">第 4 集把主场景从咖啡馆移到夜市，两人关系第一次出现明确分歧。剧本对白密度提升，但配角线被压缩，观众反馈两极。</p>
+                <div class="card-foot"><span>更新至 第4集</span><span class="score">8.6 分</span></div>
+              </div>
+            </article>
+            <article class="media-card">
+              <img class="card-thumb" src="https://picsum.photos/seed/gtvrentlover/400/300" width="400" height="300" alt="《出租屋恋人》两位主角在旧公寓走廊" loading="lazy">
+              <div class="card-body">
+                <a class="card-title" href="/#featured">出租屋恋人</a>
+                <div class="card-tags">
+                  <span class="tag genre">青春校园</span>
+                  <span class="tag">合租</span>
+                  <span class="tag">低成本</span>
+                </div>
+                <p class="card-blurb">2026 年独立制作的 12 集短剧，单集 18 分钟。前六集用合租日常铺细节，第七集开始处理家庭压力，节奏明显加快。</p>
+                <div class="card-foot"><span>全 12 集</span><span class="score">8.2 分</span></div>
+              </div>
+            </article>
+            <article class="media-card">
+              <img class="card-thumb" src="https://picsum.photos/seed/gtvmirrorme/400/300" width="400" height="300" alt="纪录片《镜中我》跨性别主角对镜自拍" loading="lazy">
+              <div class="card-body">
+                <a class="card-title" href="/#featured">镜中我</a>
+                <div class="card-tags">
+                  <span class="tag genre">跨性别纪实</span>
+                  <span class="tag">纪录片</span>
+                  <span class="tag">口述</span>
+                </div>
+                <p class="card-blurb">跟拍三位跨性别者的三年生活。10 月底高校放映后的映后谈中，导演提到素材最初拍了 90 小时，最终剪成 74 分钟。</p>
+                <div class="card-foot"><span>2026 · 74 分钟</span><span class="score">9.1 分</span></div>
+              </div>
+            </article>
+            <article class="media-card">
+              <img class="card-thumb" src="https://picsum.photos/seed/gtvshortnov/400/300" width="400" height="300" alt="11月酷儿短片月度展映主视觉" loading="lazy">
+              <div class="card-body">
+                <a class="card-title" href="/#featured">短片月度展映 · 11月场</a>
+                <div class="card-tags">
+                  <span class="tag genre">短片集</span>
+                  <span class="tag">影展</span>
+                  <span class="tag">首映</span>
+                </div>
+                <p class="card-blurb">6 部入选作品里有 3 部首次公开，题材覆盖听障同志社交、县城青年出柜、跨代际伴侣关系。总时长 96 分钟。</p>
+                <div class="card-foot"><span>11月6日上线</span><span class="score">8.8 分</span></div>
+              </div>
+            </article>
+            <article class="media-card">
+              <img class="card-thumb" src="https://picsum.photos/seed/gtvoldergay/400/300" width="400" height="300" alt="纪录片《六十岁以后》中老年同志口述场景" loading="lazy">
+              <div class="card-body">
+                <a class="card-title" href="/#featured">六十岁以后</a>
+                <div class="card-tags">
+                  <span class="tag genre">老年同志</span>
+                  <span class="tag">口述史</span>
+                  <span class="tag">纪录片</span>
+                </div>
+                <p class="card-blurb">五集短纪录片，每集 25 分钟。第 3 集讲述一位 68 岁男同志在伴侣去世后重新进入社交圈的过程，是本季播放完成率最高的一集。</p>
+                <div class="card-foot"><span>全 5 集</span><span class="score">8.9 分</span></div>
+              </div>
+            </article>
+            <article class="media-card">
+              <img class="card-thumb" src="https://picsum.photos/seed/gtvcomingout/400/300" width="400" height="300" alt="《出柜那天》短剧场景：家庭餐桌" loading="lazy">
+              <div class="card-body">
+                <a class="card-title" href="/#featured">出柜那天</a>
+                <div class="card-tags">
+                  <span class="tag genre">家庭叙事</span>
+                  <span class="tag">短剧</span>
+                  <span class="tag">2026新片</span>
+                </div>
+                <p class="card-blurb">围绕一场家庭晚餐展开的 28 分钟单集短剧。导演用固定机位拍完整场，台词没有配乐衬底，情绪靠沉默和碗筷声推进。</p>
+                <div class="card-foot"><span>2026 · 28 分钟</span><span class="score">8.4 分</span></div>
+              </div>
+            </article>
+          </div>
+          <div class="search-empty" id="searchEmpty">没有找到匹配的条目，换个关键词试试，例如「短片」「出柜」「纪录片」。</div>
+        </section>
+
+        <!-- 3. 最新更新 -->
+        <section class="section" id="updates">
+          <div class="section-head">
+            <h2>11 月更新动态</h2>
+            <span class="section-sub">截至 11 月 8 日</span>
+          </div>
+          <div class="update-list" id="updateList">
+            <div class="update-item">
+              <span class="update-time">11-07</span>
+              <div class="update-content">
+                <a class="update-title" href="/#featured">《夏日咖啡馆》第二季第 4 集上线</a>
+                <p class="update-desc">单集时长 46 分钟，为第二季目前最长一集。片尾彩蛋预告第 5 集将出现新角色。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-time">11-06</span>
+              <div class="update-content">
+                <a class="update-title" href="/#featured">短片月度展映 11 月场开放观看</a>
+                <p class="update-desc">6 部作品总时长 96 分钟，其中《县城夏天》《聋哑社交》为首次公开。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-time">11-05</span>
+              <div class="update-content">
+                <a class="update-title" href="/#categories">「出柜叙事」专题新增 9 条</a>
+                <p class="update-desc">新增内容包含 3 条家庭访谈文字稿、4 条短片条目和 2 条播客对谈索引。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-time">11-04</span>
+              <div class="update-content">
+                <a class="update-title" href="/#featured">《六十岁以后》第 5 集上线</a>
+                <p class="update-desc">本集聚焦一位 71 岁女同志的退休生活，片尾附 12 分钟主创问答。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-time">11-03</span>
+              <div class="update-content">
+                <a class="update-title" href="/#news">《镜中我》映后谈文字版整理发布</a>
+                <p class="update-desc">整理稿约 4800 字，包含导演关于素材取舍的回应和观众现场提问。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-time">11-02</span>
+              <div class="update-content">
+                <a class="update-title" href="/#featured">《出租屋恋人》全集上线</a>
+                <p class="update-desc">12 集一次性放出，单集 18 分钟。制作方公开成本约 16 万元人民币。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-time">10-31</span>
+              <div class="update-content">
+                <a class="update-title" href="/#news">《镜中我》高校放映完成第 6 站</a>
+                <p class="update-desc">10 月 30 日晚在华东地区某高校完成放映，现场观众约 120 人。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-time">10-29</span>
+              <div class="update-content">
+                <a class="update-title" href="/#rank">10 月热度榜结算</a>
+                <p class="update-desc">《夏日咖啡馆》第一季重回前三，《出柜那天》首次进入前五。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-time">10-27</span>
+              <div class="update-content">
+                <a class="update-title" href="/#categories">新增「听障同志社交」标签</a>
+                <p class="update-desc">目前关联 4 条内容，包括 2 部短片和 2 篇访谈整理。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-time">10-24</span>
+              <div class="update-content">
+                <a class="update-title" href="/#guide">观看指南「如何选短片」更新</a>
+                <p class="update-desc">补充了按片长、制作年份和放映渠道筛选的具体步骤。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. 分类入口 -->
+        <section class="section" id="categories">
+          <div class="section-head">
+            <h2>按类型找内容</h2>
+            <span class="section-sub">8 个分类 · 点击进入</span>
+          </div>
+          <div class="cat-grid">
+            <a class="cat-item" href="/#featured">
+              <span class="cat-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M10 9.5 L15 12 L10 14.5 Z" fill="currentColor"/></svg>
+              </span>
+              <div class="cat-name">同志剧集</div>
+              <div class="cat-count">86 条</div>
+            </a>
+            <a class="cat-item" href="/#featured">
+              <span class="cat-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M7 9h10M7 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </span>
+              <div class="cat-name">酷儿短片</div>
+              <div class="cat-count">74 条</div>
+            </a>
+            <a class="cat-item" href="/#featured">
+              <span class="cat-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="10" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M5 20c1.5-3 4-4.5 7-4.5s5.5 1.5 7 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </span>
+              <div class="cat-name">纪录片 / 访谈</div>
+              <div class="cat-count">52 条</div>
+            </a>
+            <a class="cat-item" href="/#categories">
+              <span class="cat-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8 16v-4M12 16V8M16 16v-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </span>
+              <div class="cat-name">出柜叙事</div>
+              <div class="cat-count">120 条</div>
+            </a>
+            <a class="cat-item" href="/#categories">
+              <span class="cat-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/></svg>
+              </span>
+              <div class="cat-name">跨性别纪实</div>
+              <div class="cat-count">31 条</div>
+            </a>
+            <a class="cat-item" href="/#categories">
+              <span class="cat-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 17h16M7 17V9l5-4 5 4v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <div class="cat-name">家庭关系</div>
+              <div class="cat-count">45 条</div>
+            </a>
+            <a class="cat-item" href="/#categories">
+              <span class="cat-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="8" cy="9" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="16" cy="9" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 19c0-2.5 2.2-4 5-4s5 1.5 5 4M11 19c0-2.5 2.2-4 5-4s5 1.5 5 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </span>
+              <div class="cat-name">青春校园</div>
+              <div class="cat-count">38 条</div>
+            </a>
+            <a class="cat-item" href="/#categories">
+              <span class="cat-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </span>
+              <div class="cat-name">实验 / 艺术短片</div>
+              <div class="cat-count">27 条</div>
+            </a>
+          </div>
+        </section>
+
+        <!-- 5. 深度解析 -->
+        <section class="section" id="deepdive">
+          <div class="section-head">
+            <h2>同志题材剧集的判断维度</h2>
+            <span class="section-sub">从选角、剧本到放映渠道</span>
+          </div>
+          <div class="deep-dive">
+            <h3>选角与角色匹配度比题材本身更能决定观感</h3>
+            <p>
+              2026 年播出的同志剧集中，观众争议最集中的部分往往不在题材，而在选角。以《夏日咖啡馆》第二季为例，第 3 集引入的新角色由一位此前以喜剧见长的演员出演，剧本给该角色的设定是沉默寡言的咖啡师。前两集播出后，讨论区出现大量关于「表演痕迹过重」的反馈，主要集中在两场戏：一场是递咖啡时的手部特写，一场是雨夜独白。反对意见认为演员的肢体语言与角色设定不匹配；支持意见则认为第 4 集夜市戏份已经明显好转。这类分歧有一个可核对的结构：<strong>角色设定与演员既往形象的差距越大，前两集的表演接受度越低</strong>，而后续能否扭转，取决于剧本是否给了足够的过渡场景。
+            </p>
+            <p>
+              对照来看，《出租屋恋人》用的是两位几乎没有影视经验的新人，反而在合租日常的松弛感上获得了较多正面评价。制作方在 10 月的一次线上交流中提到，选角阶段试镜了 40 多人，最终选择标准是「能自然完成三分钟无台词日常动作」。这个标准本身不保证演技，但解释了为什么该剧前六集的日常戏完成度高于第七集之后的冲突戏。
+            </p>
+
+            <h3>单集时长与叙事密度存在明显取舍</h3>
+            <p>
+              把 2026 年 10—11 月可看的几部作品按单集时长排列，可以看到一个大致分布：
+            </p>
+            <table class="evidence-table">
+              <thead>
+                <tr><th>作品</th><th>单集时长</th><th>叙事密度表现</th><th>典型反馈</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>《夏日咖啡馆》第二季</td><td>40—46 分钟</td><td>主线推进慢，配角线完整</td><td>第 4 集节奏争议较大</td></tr>
+                <tr><td>《出租屋恋人》</td><td>18 分钟</td><td>日常细节多，冲突处理仓促</td><td>前六集好评集中</td></tr>
+                <tr><td>《出柜那天》</td><td>28 分钟（单集）</td><td>单场景、固定机位，密度高</td><td>沉默段落被认为有效</td></tr>
+                <tr><td>《六十岁以后》</td><td>25 分钟</td><td>口述为主，信息密度稳定</td><td>第 3 集完成率最高</td></tr>
+              </tbody>
+            </table>
+            <p>
+              时长本身不决定质量，但会改变观众对「一集应该完成什么」的预期。40 分钟以上的单集，观众通常期待至少完成一次关系推进；18 分钟的单集如果只做日常铺陈，到第七集突然处理家庭压力，就会产生节奏断裂。这个判断可以核对：把《出租屋恋人》第 6 集和第 7 集的弹幕密度对比，第 7 集前 5 分钟的弹幕量约为第 6 集同期的 2.3 倍，且负面词汇比例明显上升。
+            </p>
+
+            <h3>放映渠道影响条目可见度，也影响评价样本</h3>
+            <p>
+              同一部短片在影展首映和线上公开之后，收到的评价往往不是同一批人。《县城夏天》11 月 6 日在月度展映上线，此前只在 9 月的一次线下放映中出现过。线下放映的反馈以现场提问为主，线上公开后则出现了大量关于画幅比例和方言字幕的讨论。这两种反馈不能直接合并计算，因为它们来自不同的观看条件。
+            </p>
+            <ul>
+              <li><strong>影展首映</strong>：观众基数小，反馈集中在主创交流环节，信息量高但样本少。</li>
+              <li><strong>线上公开</strong>：样本量大，反馈分散在技术细节和情感反应上，容易放大单点问题。</li>
+              <li><strong>高校放映</strong>：介于两者之间，映后谈质量取决于组织方，10 月 30 日《镜中我》那场的提问集中在素材取舍，信息密度高于一般线上评论。</li>
+            </ul>
+            <p>
+              判断一个条目值不值得投入时间，可以先看它出现在哪个渠道、该渠道的反馈是否集中在内容本身。如果一部作品的讨论绝大部分停留在「敢不敢拍」的层面，而很少涉及具体场景和表演，那么它作为观看对象的参考价值需要打折扣。反过来，像《镜中我》这样在映后谈里能具体回应「为什么删掉某段素材」的作品，至少说明主创对内容有可讨论的把握。
+            </p>
+          </div>
+        </section>
+
+        <!-- 6. 体验指南 -->
+        <section class="section" id="guide">
+          <div class="section-head">
+            <h2>从哪部开始看：内容消费顺序</h2>
+            <span class="section-sub">按片长 · 类型 · 观看条件</span>
+          </div>
+          <div class="guide-steps">
+            <div class="guide-step">
+              <div class="step-num">1</div>
+              <h3>先确认自己能接受的单次时长</h3>
+              <p>如果一次只想看 30 分钟以内，优先从短片月度展映或《出柜那天》这类单集作品进入。想追连续剧情，再考虑 12 集以上的剧集。片长不是质量指标，但直接影响观看的完成率。</p>
+            </div>
+            <div class="guide-step">
+              <div class="step-num">2</div>
+              <h3>用「类型＋年份」缩小范围</h3>
+              <p>2026 年的新片里，家庭叙事和跨性别纪实两个方向新增条目最多。按类型筛选后，再看条目页的更新时间和评分来源，评分如果来自单一渠道，参考价值低于多渠道路径。</p>
+            </div>
+            <div class="guide-step">
+              <div class="step-num">3</div>
+              <h3>比较同类条目时看具体场次</h3>
+              <p>两部出柜题材短片放在一起，不要只看题材，要看它们处理关键场景的方式：对话发生在室内还是室外、有没有第三方在场、镜头停留多久。这些细节比剧情简介更能说明作品的取向。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. FAQ -->
+        <section class="section" id="faq">
+          <div class="section-head">
+            <h2>常见问答</h2>
+            <span class="section-sub">围绕条目与类型的真实疑问</span>
+          </div>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>《夏日咖啡馆》第二季第 4 集为什么评价两极？</summary>
+              <div class="faq-answer">
+                第 4 集把主场景从咖啡馆移到夜市，主线关系第一次出现明确分歧。支持的一边认为夜市戏份让角色更立体，反对的一边认为配角线被压缩、节奏突然变慢。两种反馈都指向同一件事：单集时长 46 分钟，但有效推进的只有夜市那场戏。看的时候可以留意第 28 分钟到第 35 分钟之间的对话密度，这是分歧最集中的段落。
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>酷儿短片月度展映 11 月场有哪几部是首次公开？</summary>
+              <div class="faq-answer">
+                11 月场共 6 部，其中《县城夏天》和《聋哑社交》是首次公开。《县城夏天》此前只在 9 月的一次线下放映中出现，这次是线上首播；《聋哑社交》是导演的第二部短片，片长 22 分钟。剩下 4 部中有 2 部曾在其他影展放映过，另外 2 部是往期作品的重映。
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>《镜中我》删掉的素材主要是什么内容？</summary>
+              <div class="faq-answer">
+                导演在 10 月 30 日高校放映的映后谈中提到，原始素材约 90 小时，最终剪成 74 分钟。删减最多的是三位主角的日常通勤片段和两段家庭争执。删减理由是这些内容在成片里会打断三位主角各自的时间线，尤其影响第二位主角从犹豫到行动的转折点。11 月 3 日整理的文字版里有更完整的回应。
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>出柜叙事的专题条目一般包含哪些内容类型？</summary>
+              <div class="faq-answer">
+                目前 120 多条里，大约一半是短片和剧集条目，另一半是访谈文字稿和播客对谈索引。访谈类条目通常标注了受访者年龄、出柜对象和发生年份；剧集类条目则标注了出柜情节出现在第几集。这两类信息不能互相替代，看的时候要分开比较。
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>跨性别纪实和一般同志纪录片在条目上怎么区分？</summary>
+              <div class="faq-answer">
+                主要看条目描述里是否明确以跨性别者的性别认同过程为核心。《镜中我》属于这一类，三位主角的叙事重心都在性别认同与医疗、家庭的关系上。一般同志纪录片更多处理情感关系和社群历史，比如《六十岁以后》聚焦的是老年同志的生活状态，不涉及性别认同转变过程。
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>《出租屋恋人》成本 16 万元，制作上省在哪？</summary>
+              <div class="faq-answer">
+                制作方 11 月 2 日公开的信息显示，主要成本花在场地和后期声音上，演员片酬占比很低，两位主演都是新人。拍摄集中在同一栋旧公寓楼，12 集里超过 8 集的场景没有离开这栋楼。省下来的钱用在后期调色和方言字幕校对，这也是为什么前六集的日常戏看起来完成度比较稳定。
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- 8. 用户评论 -->
+        <section class="section" id="comments">
+          <div class="section-head">
+            <h2>观众评论</h2>
+            <span class="section-sub">12 条 · 来自不同条目</span>
+          </div>
+          <div class="comment-grid">
+            <div class="comment-card">
+              <div class="comment-head"><span class="avatar">阿</span><span class="comment-user">阿茶不加冰</span><span class="comment-date">11-07</span></div>
+              <p class="comment-text">夏日咖啡馆第4集夜市那段，两个人站在烧烤摊前面谁也不说话，持续了快一分钟。我反而觉得这段最好，比前面咖啡馆里的对白戏真实。</p>
+            </div>
+            <div class="comment-card">
+              <div class="comment-head"><span class="avatar">陈</span><span class="comment-user">陈皮话梅</span><span class="comment-date">11-07</span></div>
+              <p class="comment-text">出租屋恋人第七集开始明显赶，家庭压力那条线塞得太急。前面六集慢慢铺的合租细节，到后面全用不上了。</p>
+            </div>
+            <div class="comment-card">
+              <div class="comment-head"><span class="avatar">林</span><span class="comment-user">林间有雾</span><span class="comment-date">11-06</span></div>
+              <p class="comment-text">镜中我看了两遍。第二遍才注意到第一位主角在搬家那场戏里一直在摸口袋，后来映后谈里导演说那是演员自己的习惯动作，被保留下来了。</p>
+            </div>
+            <div class="comment-card">
+              <div class="comment-head"><span class="avatar">六</span><span class="comment-user">六号放映员</span><span class="comment-date">11-06</span></div>
+              <p class="comment-text">短片月度展映11月场，县城夏天那个方言字幕做得一般，有几处明显对不上口型。内容本身挺好的，就是技术完成度有点拖后腿。</p>
+            </div>
+            <div class="comment-card">
+              <div class="comment-head"><span class="avatar">小</span><span class="comment-user">小满不吃香菜</span><span class="comment-date">11-05</span></div>
+              <p class="comment-text">出柜那天固定机位拍完整场，我一开始觉得闷，看到二十分钟之后才进入状态。碗筷声比配乐有用。</p>
+            </div>
+            <div class="comment-card">
+              <div class="comment-head"><span class="avatar">周</span><span class="comment-user">周日下午三点</span><span class="comment-date">11-05</span></div>
+              <p class="comment-text">六十岁以后第三集看哭了。68岁重新开始社交，那种笨拙感拍得很准。后面两集反而平淡一点。</p>
+            </div>
+            <div class="comment-card">
+              <div class="comment-head"><span class="avatar">Y</span><span class="comment-user">Yuki_1990</span><span class="comment-date">11-04</span></div>
+              <p class="comment-text">说实话夏日咖啡馆第二季整体不如第一季，配角戏份砍太多。第4集稍微好点，但也就那样。</p>
+            </div>
+            <div class="comment-card">
+              <div class="comment-head"><span class="avatar">老</span><span class="comment-user">老周看片</span><span class="comment-date">11-04</span></div>
+              <p class="comment-text">出租屋恋人16万做成这样已经不错了，别拿它跟几十万一集的比。前六集我看了两遍。</p>
+            </div>
+            <div class="comment-card">
+              <div class="comment-head"><span class="avatar">M</span><span class="comment-user">Momo在加班</span><span class="comment-date">11-03</span></div>
+              <p class="comment-text">最近没时间追剧，就看了几部短片。聋哑社交那个题材第一次见，拍得有点散，但方向挺好的。</p>
+            </div>
+            <div class="comment-card">
+              <div class="comment-head"><span class="avatar">白</span><span class="comment-user">白桃乌龙少糖</span><span class="comment-date">11-03</span></div>
+              <p class="comment-text">镜中我映后谈整理稿有人看了吗，导演讲删减理由那段挺坦诚的，比正片还值得看。</p>
+            </div>
+            <div class="comment-card">
+              <div class="comment-head"><span class="avatar">跑</span><span class="comment-user">跑调的鲸鱼</span><span class="comment-date">11-02</span></div>
+              <p class="comment-text">出柜叙事专题里那几篇访谈文字稿不错，比很多剧集本身信息量大。就是条目太多，翻起来费劲。</p>
+            </div>
+            <div class="comment-card">
+              <div class="comment-head"><span class="avatar">一</span><span class="comment-user">一只失眠的猫</span><span class="comment-date">11-01</span></div>
+              <p class="comment-text">这周只看了夏日咖啡馆第4集，夜市那场戏的灯光有点太亮了，不像晚上。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. 相关资讯 -->
+        <section class="section" id="news">
+          <div class="section-head">
+            <h2>相关资讯与动态</h2>
+            <span class="section-sub">11 月上旬</span>
+          </div>
+          <div class="news-list" id="newsList">
+            <div class="news-item">
+              <a class="news-title" href="/#news">《夏日咖啡馆》第二季第 5 集预告释出</a>
+              <div class="news-meta">2026-11-08 · 剧集动态</div>
+              <p class="news-summary">预告片长 48 秒，新角色出现在第 32 秒，台词只有一句。制作方未公布该角色由谁出演。</p>
+            </div>
+            <div class="news-item">
+              <a class="news-title" href="/#news">酷儿短片月度展映 12 月场征片截止日定在 11 月 20 日</a>
+              <div class="news-meta">2026-11-07 · 展映公告</div>
+              <p class="news-summary">征片要求片长 40 分钟以内、2025 年 1 月之后完成。12 月场计划入选 8 部，比 11 月多 2 部。</p>
+            </div>
+            <div class="news-item">
+              <a class="news-title" href="/#news">《镜中我》导演确认下一部作品聚焦听障同志社交</a>
+              <div class="news-meta">2026-11-05 · 主创动向</div>
+              <p class="news-summary">新项目仍为纪录片，目前处于前期调研阶段，预计 2027 年春季完成主要拍摄，尚未确定放映渠道。</p>
+            </div>
+            <div class="news-item">
+              <a class="news-title" href="/#news">《出租屋恋人》制作方公布第二季筹备意向</a>
+              <div class="news-meta">2026-11-04 · 剧集动态</div>
+              <p class="news-summary">制作方在线上交流中表示第二季剧本初稿已完成，但成本预计超过第一季的 16 万元，目前仍在寻找合作方。</p>
+            </div>
+            <div class="news-item">
+              <a class="news-title" href="/#news">「出柜叙事」专题新增 9 条，总量突破 120 条</a>
+              <div class="news-meta">2026-11-05 · 专题更新</div>
+              <p class="news-summary">新增内容以家庭访谈文字稿为主，其中 3 条来自 10 月完成的线下访谈，受访者年龄跨度从 19 岁到 54 岁。</p>
+            </div>
+            <div class="news-item">
+              <a class="news-title" href="/#news">《六十岁以后》第 5 集片尾问答时长 12 分钟</a>
+              <div class="news-meta">2026-11-04 · 条目补充</div>
+              <p class="news-summary">问答中主创回应了为什么选择 71 岁女同志作为收尾人物，提到前四集已经覆盖了男同志和伴侣关系。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 10. 相关推荐 -->
+        <section class="section" id="recommend">
+          <div class="section-head">
+            <h2>按方向找条目</h2>
+            <span class="section-sub">具体内容方向</span>
+          </div>
+          <div class="rec-tags">
+            <a class="rec-tag" href="/#featured">县城青年出柜题材</a>
+            <a class="rec-tag" href="/#featured">听障同志社交短片</a>
+            <a class="rec-tag" href="/#featured">老年同志口述史</a>
+            <a class="rec-tag" href="/#featured">单场景固定机位短剧</a>
+            <a class="rec-tag" href="/#featured">跨性别医疗纪实</a>
+            <a class="rec-tag" href="/#featured">低成本合租日常剧</a>
+            <a class="rec-tag" href="/#featured">影展首映实验短片</a>
+            <a class="rec-tag" href="/#featured">家庭晚餐出柜叙事</a>
+          </div>
+        </section>
+
+        <!-- 11. 补充板块：热门榜单 -->
+        <section class="section" id="rank">
+          <div class="section-head">
+            <h2>11 月热度榜</h2>
+            <span class="section-sub">基于条目浏览与讨论量</span>
+          </div>
+          <div class="rank-panel">
+            <div class="rank-item">
+              <span class="rank-no">1</span>
+              <div class="rank-body">
+                <div class="rank-title">夏日咖啡馆 第二季</div>
+                <div class="rank-meta">剧集 · 更新至第 4 集</div>
+              </div>
+              <span class="rank-heat">9.8w</span>
+            </div>
+            <div class="rank-item">
+              <span class="rank-no">2</span>
+              <div class="rank-body">
+                <div class="rank-title">镜中我</div>
+                <div class="rank-meta">纪录片 · 74 分钟</div>
+              </div>
+              <span class="rank-heat">7.2w</span>
+            </div>
+            <div class="rank-item">
+              <span class="rank-no">3</span>
+              <div class="rank-body">
+                <div class="rank-title">短片月度展映 · 11月场</div>
+                <div class="rank-meta">短片集 · 6 部</div>
+              </div>
+              <span class="rank-heat">6.5w</span>
+            </div>
+            <div class="rank-item">
+              <span class="rank-no">4</span>
+              <div class="rank-body">
+                <div class="rank-title">出租屋恋人</div>
+                <div class="rank-meta">剧集 · 全 12 集</div>
+              </div>
+              <span class="rank-heat">5.9w</span>
+            </div>
+            <div class="rank-item">
+              <span class="rank-no">5</span>
+              <div class="rank-body">
+                <div class="rank-title">出柜那天</div>
+                <div class="rank-meta">短剧 · 28 分钟</div>
+              </div>
+              <span class="rank-heat">4.7w</span>
+            </div>
+            <div class="rank-item">
+              <span class="rank-no">6</span>
+              <div class="rank-body">
+                <div class="rank-title">六十岁以后</div>
+                <div class="rank-meta">纪录片 · 全 5 集</div>
+              </div>
+              <span class="rank-heat">4.1w</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 12. 互动交流 -->
+        <section class="section" id="community">
+          <div class="section-head">
+            <h2>投稿与交流</h2>
+            <span class="section-sub">分享你的观看记录</span>
+          </div>
+          <div class="overview-box" style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;">
+            <div style="flex:1;min-width:220px;">
+              <p style="margin-bottom:8px;"><strong>提交条目线索</strong>：如果你看过 2026 年新出的同志短片、剧集或纪录片，可以在交流区补充片名、片长和放映渠道。</p>
+              <p style="margin-bottom:0;"><strong>参与月度讨论</strong>：每月展映上线后，交流区会开一个固定讨论帖，11 月讨论帖已开放，目前有 34 条回复。</p>
+            </div>
+            <a class="btn-primary" href="/#community">进入交流区</a>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- 右侧辅助栏 -->
+      <aside class="side-col" aria-label="辅助信息">
+        <div class="side-panel">
+          <h2>本周热榜</h2>
+          <ul class="hot-list">
+            <li><span class="hot-no">1</span><div><a class="hot-title" href="/#featured">夏日咖啡馆 第二季</a><div class="hot-type">都市情感剧</div></div></li>
+            <li><span class="hot-no">2</span><div><a class="hot-title" href="/#featured">镜中我</a><div class="hot-type">跨性别纪实</div></div></li>
+            <li><span class="hot-no">3</span><div><a class="hot-title" href="/#featured">短片月度展映 · 11月</a><div class="hot-type">酷儿短片</div></div></li>
+            <li><span class="hot-no">4</span><div><a class="hot-title" href="/#featured">出租屋恋人</a><div class="hot-type">青春校园</div></div></li>
+            <li><span class="hot-no">5</span><div><a class="hot-title" href="/#featured">出柜那天</a><div class="hot-type">家庭叙事</div></div></li>
+            <li><span class="hot-no">6</span><div><a class="hot-title" href="/#featured">六十岁以后</a><div class="hot-type">老年同志</div></div></li>
+          </ul>
+        </div>
+        <div class="side-cta">
+          <h2>投稿 / 上传条目</h2>
+          <p>有想补充的短片或剧集？提交片名、片长和放映渠道，审核后进入条目库。</p>
+          <a href="/#community">前往投稿 →</a>
+        </div>
+        <div class="side-panel">
+          <h2>更新节奏</h2>
+          <p class="side-note" style="font-size:12.5px;color:var(--text-2);line-height:1.8;">
+            条目库每周三、周五更新。月度展映在每月第一个周五上线，映后谈文字稿通常隔一周整理发布。11 月已更新 10 条动态，最近一次为 11 月 7 日《夏日咖啡馆》第 4 集。
+          </p>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- 页尾 -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="footer-logo">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 17 L12 5 L19 17" stroke="#c9b6ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="19.5" r="1.8" fill="#f4b8c1"/>
+              </svg>
+            </span>
+            <span class="footer-brand-text">搜同网站gtv</span>
+          </div>
+          <p class="footer-pos">
+            收录 2024—2026 年同志题材剧集、短片与纪录片条目，以华语独立制作和影展首映作品为主，附条目热度、评分来源与观众评论。每月展映上线后同步更新片单和映后谈整理。
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3>内容入口</h3>
+          <a href="/#featured">精选剧集</a>
+          <a href="/#updates">最新更新</a>
+          <a href="/#categories">分类索引</a>
+          <a href="/#rank">热门榜单</a>
+        </div>
+        <div class="footer-col">
+          <h3>阅读与讨论</h3>
+          <a href="/#deepdive">深度解析</a>
+          <a href="/#guide">体验指南</a>
+          <a href="/#faq">常见问答</a>
+          <a href="/#comments">观众评论</a>
+        </div>
+        <div class="footer-col">
+          <h3>参与</h3>
+          <a href="/#community">投稿 / 上传</a>
+          <a href="/#community">月度讨论帖</a>
+          <a href="/#news">相关资讯</a>
+          <a href="/#recommend">相关推荐</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>示例内容 · 条目与评论为演示数据，非真实作品评价</span>
+        <span class="update-note">最近更新：2026 年 11 月 8 日 · 对应《夏日咖啡馆》第二季第 5 集预告</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <button class="to-top" id="toTop" aria-label="回到顶部">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <script>
+    (function() {
+      // 回到顶部
+      var toTop = document.getElementById('toTop');
+      var scrollTimer = null;
+      window.addEventListener('scroll', function() {
+        if (scrollTimer) return;
+        scrollTimer = setTimeout(function() {
+          if (window.scrollY > window.innerHeight * 0.9) {
+            toTop.classList.add('show');
+          } else {
+            toTop.classList.remove('show');
+          }
+          scrollTimer = null;
+        }, 80);
+      }, { passive: true });
+
+      toTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // 移动端抽屉导航
+      var hamburger = document.getElementById('hamburgerBtn');
+      var mobileNav = document.getElementById('mobileNav');
+      var overlay = document.getElementById('drawerOverlay');
+      var navOpen = false;
+
+      function openNav() {
+        navOpen = true;
+        mobileNav.style.display = 'flex';
+        overlay.classList.add('active');
+        hamburger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeNav() {
+        navOpen = false;
+        mobileNav.style.display = 'none';
+        overlay.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      hamburger.addEventListener('click', function() {
+        if (navOpen) { closeNav(); } else { openNav(); }
+      });
+      overlay.addEventListener('click', closeNav);
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && navOpen) { closeNav(); }
+      });
+      mobileNav.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', closeNav);
+      });
+
+      // 搜索过滤
+      var searchInput = document.getElementById('globalSearch');
+      var searchBtn = document.getElementById('searchBtn');
+      var featuredGrid = document.getElementById('featuredGrid');
+      var updateList = document.getElementById('updateList');
+      var newsList = document.getElementById('newsList');
+      var searchEmpty = document.getElementById('searchEmpty');
+
+      function runSearch() {
+        var q = (searchInput.value || '').trim().toLowerCase();
+        var cards = featuredGrid.querySelectorAll('.media-card');
+        var ups = updateList.querySelectorAll('.update-item');
+        var news = newsList.querySelectorAll('.news-item');
+        var anyVisible = false;
+
+        if (!q) {
+          cards.forEach(function(c) { c.classList.remove('hidden'); });
+          ups.forEach(function(u) { u.classList.remove('hidden'); });
+          news.forEach(function(n) { n.classList.remove('hidden'); });
+          featuredGrid.classList.remove('searching');
+          updateList.classList.remove('searching');
+          newsList.classList.remove('searching');
+          searchEmpty.classList.remove('visible');
+          return;
+        }
+
+        cards.forEach(function(c) {
+          var text = c.textContent.toLowerCase();
+          if (text.indexOf(q) !== -1) { c.classList.remove('hidden'); anyVisible = true; }
+          else { c.classList.add('hidden'); }
+        });
+        featuredGrid.classList.add('searching');
+
+        ups.forEach(function(u) {
+          var text = u.textContent.toLowerCase();
+          if (text.indexOf(q) !== -1) { u.classList.remove('hidden'); anyVisible = true; }
+          else { u.classList.add('hidden'); }
+        });
+        updateList.classList.add('searching');
+
+        news.forEach(function(n) {
+          var text = n.textContent.toLowerCase();
+          if (text.indexOf(q) !== -1) { n.classList.remove('hidden'); anyVisible = true; }
+          else { n.classList.add('hidden'); }
+        });
+        newsList.classList.add('searching');
+
+        if (anyVisible) { searchEmpty.classList.remove('visible'); }
+        else { searchEmpty.classList.add('visible'); }
+      }
+
+      if (searchBtn) {
+        searchBtn.addEventListener('click', runSearch);
+      }
+      if (searchInput) {
+        searchInput.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') { e.preventDefault(); runSearch(); }
+        });
+        searchInput.addEventListener('input', function() {
+          if (searchInput.value === '') runSearch();
+        });
+      }
+    })();
+  </script>
+
+  <!-- 结构化数据 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "搜同网站gtv",
+    "description": "聚合同志题材影视剧集、短片、纪录片与综艺访谈，提供条目推荐、深度解析、社区评论与每月更新动态。",
+    "inLanguage": "zh-CN",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "《夏日咖啡馆》第二季第 4 集为什么评价两极？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "第 4 集把主场景从咖啡馆移到夜市，主线关系第一次出现明确分歧。支持的一边认为夜市戏份让角色更立体，反对的一边认为配角线被压缩、节奏突然变慢。两种反馈都指向同一件事：单集时长 46 分钟，但有效推进的只有夜市那场戏。看的时候可以留意第 28 分钟到第 35 分钟之间的对话密度，这是分歧最集中的段落。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "酷儿短片月度展映 11 月场有哪几部是首次公开？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "11 月场共 6 部，其中《县城夏天》和《聋哑社交》是首次公开。《县城夏天》此前只在 9 月的一次线下放映中出现，这次是线上首播；《聋哑社交》是导演的第二部短片，片长 22 分钟。剩下 4 部中有 2 部曾在其他影展放映过，另外 2 部是往期作品的重映。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "《镜中我》删掉的素材主要是什么内容？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "导演在 10 月 30 日高校放映的映后谈中提到，原始素材约 90 小时，最终剪成 74 分钟。删减最多的是三位主角的日常通勤片段和两段家庭争执。删减理由是这些内容在成片里会打断三位主角各自的时间线，尤其影响第二位主角从犹豫到行动的转折点。11 月 3 日整理的文字版里有更完整的回应。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "出柜叙事的专题条目一般包含哪些内容类型？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "目前 120 多条里，大约一半是短片和剧集条目，另一半是访谈文字稿和播客对谈索引。访谈类条目通常标注了受访者年龄、出柜对象和发生年份；剧集类条目则标注了出柜情节出现在第几集。这两类信息不能互相替代，看的时候要分开比较。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "跨性别纪实和一般同志纪录片在条目上怎么区分？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "主要看条目描述里是否明确以跨性别者的性别认同过程为核心。《镜中我》属于这一类，三位主角的叙事重心都在性别认同与医疗、家庭的关系上。一般同志纪录片更多处理情感关系和社群历史，比如《六十岁以后》聚焦的是老年同志的生活状态，不涉及性别认同转变过程。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "《出租屋恋人》成本 16 万元，制作上省在哪？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "制作方 11 月 2 日公开的信息显示，主要成本花在场地和后期声音上，演员片酬占比很低，两位主演都是新人。拍摄集中在同一栋旧公寓楼，12 集里超过 8 集的场景没有离开这栋楼。省下来的钱用在后期调色和方言字幕校对，这也是为什么前六集的日常戏看起来完成度比较稳定。"
+        }
+      }
+    ]
+  }
+  </script>
+
+</body>
+  </html>
