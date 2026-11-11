@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JVID夏晴子 - 作品动态与分类指南</title>
+  <meta name="description" content="JVID夏晴子作品聚合页，汇集夏晴子最新视频更新、分类片单、深度解析与用户评论。整理剧情向、写真向、互动向等条目，适合想快速了解夏晴子作品风格与更新进度的观众。">
+  <meta name="keywords" content="JVID夏晴子">
+  <style>
+    /* ---------- 全局变量与重置 ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --primary: #9f4a6b;
+      --primary-light: #c97b9b;
+      --primary-dark: #6d2e4a;
+      --primary-soft: #f9eef3;
+      --bg: #fcf7f9;
+      --surface: #ffffff;
+      --text-primary: #1f1a1e;
+      --text-secondary: #5e4b55;
+      --text-tertiary: #8e7a85;
+      --border: #e8d9e0;
+      --border-light: #f2e8ed;
+      --radius-card: 18px;
+      --radius-btn: 40px;
+      --radius-tag: 100px;
+      --shadow-default: 0 4px 12px rgba(109, 46, 74, 0.06);
+      --shadow-hover: 0 12px 28px rgba(109, 46, 74, 0.12);
+      --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', 'Helvetica Neue', sans-serif;
+      --width-container: 1360px;
+      --announce-h: 40px;
+      --header-h: 68px;
+      --sticky-offset: calc(var(--announce-h) + var(--header-h) + 12px);
+    }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--sticky-offset);
+    }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    ul {
+      list-style: none;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+    /* ---------- 吸顶公告条 ---------- */
+    .announce-bar {
+      background: var(--primary-dark);
+      color: #fff;
+      height: var(--announce-h);
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      font-size: 14px;
+      padding: 0 24px;
+      gap: 24px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .announce-bar .brand-mini {
+      font-weight: 700;
+      color: #ffd9e6;
+      letter-spacing: 0.5px;
+    }
+    .announce-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #f0e0e6;
+    }
+    .announce-item .date {
+      color: #e8b3c9;
+      font-variant-numeric: tabular-nums;
+    }
+    .announce-item .badge {
+      background: rgba(255,255,255,0.15);
+      padding: 2px 10px;
+      border-radius: 100px;
+      font-size: 12px;
+    }
+
+    /* ---------- 吸顶页头 ---------- */
+    .site-header {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+      height: var(--header-h);
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: var(--announce-h);
+      z-index: 99;
+      padding: 0 24px;
+    }
+    .header-inner {
+      max-width: var(--width-container);
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .logo svg {
+      width: 32px;
+      height: 32px;
+      filter: drop-shadow(0 2px 4px rgba(159, 74, 107, 0.2));
+    }
+    .logo-text {
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.3px;
+      color: var(--primary-dark);
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .header-nav a {
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: background 0.2s, color 0.2s;
+    }
+    .header-nav a:hover {
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-btn);
+      padding: 4px 4px 4px 16px;
+      transition: border 0.2s, box-shadow 0.2s;
+    }
+    .search-box:focus-within {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(159, 74, 107, 0.1);
+    }
+    .search-box input {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 14px;
+      width: 140px;
+      color: var(--text-primary);
+    }
+    .search-box input::placeholder {
+      color: var(--text-tertiary);
+    }
+    .search-box button {
+      background: var(--primary);
+      color: #fff;
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .search-box button:hover {
+      background: var(--primary-dark);
+    }
+    .mobile-menu-toggle {
+      display: none;
+      font-size: 24px;
+      color: var(--text-primary);
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    /* ---------- 首屏 ---------- */
+    .hero {
+      max-width: var(--width-container);
+      margin: 0 auto;
+      padding: 40px 24px 32px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .hero-content h1 {
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+    }
+    .hero-desc {
+      font-size: 17px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 640px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      padding: 12px 32px;
+      border-radius: var(--radius-btn);
+      font-weight: 600;
+      font-size: 16px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--primary-dark);
+      padding: 12px 28px;
+      border-radius: var(--radius-btn);
+      font-weight: 600;
+      font-size: 16px;
+      border: 1px solid var(--border);
+      transition: background 0.2s, border 0.2s, transform 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-secondary:hover {
+      background: var(--primary-soft);
+      border-color: var(--primary-light);
+      transform: translateY(-2px);
+    }
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-visual svg {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      animation: float-slow 6s ease-in-out infinite;
+    }
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ---------- 主布局：三栏 ---------- */
+    .page-layout {
+      max-width: var(--width-container);
+      margin: 0 auto;
+      padding: 0 24px 60px;
+      display: grid;
+      grid-template-columns: 180px 1fr 280px;
+      gap: 32px;
+      align-items: start;
+    }
+    /* 左频道索引 */
+    .channel-aside {
+      position: sticky;
+      top: calc(var(--sticky-offset) + 8px);
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      padding: 20px 12px;
+      box-shadow: var(--shadow-default);
+      border: 1px solid var(--border-light);
+    }
+    .channel-aside h3 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-tertiary);
+      padding: 0 12px 12px;
+      font-weight: 600;
+    }
+    .channel-aside ul li a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      transition: background 0.2s, color 0.2s;
+      font-weight: 500;
+    }
+    .channel-aside ul li a:hover,
+    .channel-aside ul li a.active {
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+    }
+
+    /* 主内容区 */
+    .main-content {
+      min-width: 0;
+    }
+    .section-block {
+      margin-bottom: 48px;
+    }
+    .section-block:last-child {
+      margin-bottom: 0;
+    }
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::before {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 24px;
+      background: var(--primary);
+      border-radius: 4px;
+    }
+    .section-subtitle {
+      font-size: 14px;
+      color: var(--text-tertiary);
+      margin-bottom: 16px;
+      margin-top: -8px;
+    }
+
+    /* 概览 */
+    .overview-text {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      padding: 28px 32px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-default);
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+    .overview-text p + p {
+      margin-top: 14px;
+    }
+
+    /* 精选卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .content-card {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-default);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .content-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    .card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      background: var(--primary-soft);
+    }
+    .card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-type {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--primary-soft);
+      padding: 2px 10px;
+      border-radius: 100px;
+      align-self: flex-start;
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 12px;
+      flex: 1;
+    }
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-tertiary);
+      border-top: 1px solid var(--border-light);
+      padding-top: 10px;
+      margin-top: auto;
+    }
+    .card-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .card-tags span {
+      background: var(--border-light);
+      padding: 2px 8px;
+      border-radius: 100px;
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    /* 更新列表 */
+    .update-list {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border-light);
+      overflow: hidden;
+    }
+    .update-item {
+      display: flex;
+      align-items: baseline;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border-light);
+      gap: 16px;
+      transition: background 0.2s;
+    }
+    .update-item:last-child {
+      border-bottom: none;
+    }
+    .update-item:hover {
+      background: var(--primary-soft);
+    }
+    .update-date {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      flex-shrink: 0;
+      font-variant-numeric: tabular-nums;
+      min-width: 80px;
+    }
+    .update-name {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text-primary);
+      margin-right: 8px;
+    }
+    .update-summary {
+      font-size: 14px;
+      color: var(--text-secondary);
+      flex: 1;
+    }
+
+    /* 分类入口 */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .category-chip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 10px 18px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: background 0.2s, border 0.2s, color 0.2s;
+    }
+    .category-chip:hover {
+      background: var(--primary-soft);
+      border-color: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    /* 深度解析 */
+    .deep-dive {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      padding: 32px 36px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-default);
+    }
+    .deep-dive h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: var(--primary-dark);
+    }
+    .deep-dive h3:first-of-type {
+      margin-top: 0;
+    }
+    .deep-dive p {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+    .deep-dive ul {
+      list-style: disc;
+      padding-left: 24px;
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    .deep-dive li {
+      margin-bottom: 6px;
+    }
+    .deep-dive .compare-box {
+      background: var(--primary-soft);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      border-left: 4px solid var(--primary);
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* 体验指南 */
+    .guide-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .step-card {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      padding: 24px 20px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-default);
+    }
+    .step-num {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 32px;
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+    .step-card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+    .step-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* FAQ */
+    .faq-list details {
+      background: var(--surface);
+      border-radius: 14px;
+      border: 1px solid var(--border-light);
+      padding: 16px 20px;
+      margin-bottom: 10px;
+      transition: border-color 0.2s;
+    }
+    .faq-list details[open] {
+      border-color: var(--primary-light);
+    }
+    .faq-list summary {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text-primary);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-list summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-list summary::after {
+      content: '+';
+      font-size: 20px;
+      color: var(--primary);
+      transition: transform 0.2s;
+    }
+    .faq-list details[open] summary::after {
+      content: '−';
+      transform: rotate(180deg);
+    }
+    .faq-list p {
+      margin-top: 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* 评论 */
+    .comment-list {
+      display: grid;
+      gap: 12px;
+    }
+    .comment-item {
+      background: var(--surface);
+      border-radius: 14px;
+      padding: 14px 18px;
+      border: 1px solid var(--border-light);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .comment-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .comment-body {
+      flex: 1;
+    }
+    .comment-author {
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+    .comment-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .comment-meta {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      margin-top: 4px;
+    }
+
+    /* 资讯列表 */
+    .news-list {
+      display: grid;
+      gap: 12px;
+    }
+    .news-item {
+      background: var(--surface);
+      border-radius: 14px;
+      padding: 18px 20px;
+      border: 1px solid var(--border-light);
+    }
+    .news-title {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 4px;
+      color: var(--text-primary);
+    }
+    .news-date {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      margin-bottom: 6px;
+    }
+    .news-summary {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* 相关推荐标签 */
+    .tag-index {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .tag-index a {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      transition: background 0.2s, border 0.2s, color 0.2s;
+    }
+    .tag-index a:hover {
+      background: var(--primary-soft);
+      border-color: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    /* 榜单 */
+    .rank-list {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border-light);
+      overflow: hidden;
+    }
+    .rank-item {
+      display: flex;
+      align-items: center;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border-light);
+      gap: 14px;
+    }
+    .rank-item:last-child {
+      border-bottom: none;
+    }
+    .rank-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .rank-item:nth-child(1) .rank-num {
+      background: var(--primary);
+      color: #fff;
+    }
+    .rank-item:nth-child(2) .rank-num {
+      background: var(--primary-light);
+      color: #fff;
+    }
+    .rank-item:nth-child(3) .rank-num {
+      background: #e8c4d4;
+      color: var(--primary-dark);
+    }
+    .rank-name {
+      font-weight: 600;
+      font-size: 15px;
+      flex: 1;
+    }
+    .rank-score {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* 右侧辅助栏 */
+    .sidebar {
+      position: sticky;
+      top: calc(var(--sticky-offset) + 8px);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .sidebar-card {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      padding: 20px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-default);
+    }
+    .sidebar-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--text-primary);
+    }
+    .sidebar-card .hot-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 14px;
+    }
+    .sidebar-card .hot-list li:last-child {
+      border-bottom: none;
+    }
+    .hot-index {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 13px;
+      min-width: 20px;
+    }
+    .hot-name {
+      flex: 1;
+      color: var(--text-secondary);
+    }
+    .hot-badge {
+      font-size: 11px;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      padding: 2px 8px;
+      border-radius: 100px;
+    }
+
+    /* 页尾 */
+    .site-footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border-light);
+      padding: 48px 24px 32px;
+      margin-top: 40px;
+    }
+    .footer-inner {
+      max-width: var(--width-container);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+    .footer-brand {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+    .footer-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 320px;
+      margin-bottom: 16px;
+    }
+    .footer-note {
+      font-size: 13px;
+      color: var(--text-tertiary);
+    }
+    .footer-col h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: var(--text-secondary);
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover {
+      color: var(--primary);
+    }
+    .footer-bottom {
+      max-width: var(--width-container);
+      margin: 32px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-tertiary);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* 回到顶部 */
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: var(--shadow-hover);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s, background 0.2s;
+      z-index: 80;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-to-top:hover {
+      background: var(--primary-dark);
+    }
+
+    /* ---------- 响应式 ---------- */
+    @media (max-width: 1200px) {
+      .page-layout {
+        grid-template-columns: 160px 1fr 260px;
+        gap: 24px;
+      }
+    }
+    @media (max-width: 1024px) {
+      .page-layout {
+        grid-template-columns: 1fr 1fr;
+      }
+      .channel-aside {
+        display: none;
+      }
+      .sidebar {
+        position: static;
+      }
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-content h1 {
+        font-size: 38px;
+      }
+      .hero-desc {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-visual svg {
+        max-width: 320px;
+      }
+      .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .guide-steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 740px) {
+      .page-layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        display: flex;
+        order: 2;
+      }
+      .hero-content h1 {
+        font-size: 32px;
+      }
+      .header-nav {
+        display: none;
+      }
+      .mobile-menu-toggle {
+        display: flex;
+      }
+      .search-box input {
+        width: 100px;
+      }
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .guide-steps {
+        grid-template-columns: 1fr;
+      }
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .comment-item {
+        flex-direction: column;
+      }
+      .update-item {
+        flex-wrap: wrap;
+      }
+      .update-date {
+        min-width: auto;
+      }
+      .announce-bar {
+        gap: 12px;
+        padding: 0 12px;
+        font-size: 12px;
+      }
+      .header-inner {
+        gap: 8px;
+      }
+      .search-box {
+        padding: 2px 2px 2px 10px;
+      }
+      .search-box input {
+        width: 70px;
+        font-size: 12px;
+      }
+      .search-box button {
+        padding: 4px 10px;
+        font-size: 12px;
+      }
+      .logo-text {
+        font-size: 16px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      .hero-visual svg {
+        animation: none;
+      }
+      .content-card:hover {
+        transform: none;
+      }
+      .btn-primary:hover,
+      .btn-secondary:hover {
+        transform: none;
+      }
+    }
+    /* 移动端菜单展开 */
+    .header-nav.mobile-open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: var(--header-h);
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border-light);
+      padding: 16px 24px;
+      box-shadow: var(--shadow-hover);
+      z-index: 98;
+    }
+    .header-nav.mobile-open a {
+      padding: 10px 12px;
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+      z-index: 97;
+    }
+    .overlay.active {
+      display: block;
+    }
+  </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+  <!-- 吸顶公告条 -->
+  <div class="announce-bar">
+    <span class="brand-mini">JVID夏晴子</span>
+    <span class="announce-item"><span class="date">2026-11-08</span> 新增《雨巷》剧情向 · 第三幕</span>
+    <span class="announce-item"><span class="badge">更新</span> 写真向《午后书房》上线 4K 修复版</span>
+    <span class="announce-item"><span class="date">2026-11-05</span> 互动向《夜聊》弹幕破 2.1 万条</span>
+  </div>
+
+  <!-- 吸顶页头 -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo" aria-label="JVID夏晴子首页">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="28" height="28" rx="12" fill="url(#logo-grad)"/>
+          <path d="M10 22L16 10L22 22" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="16" cy="17" r="2.5" fill="#fff"/>
+          <defs>
+            <linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#9f4a6b"/>
+              <stop offset="1" stop-color="#6d2e4a"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="logo-text">JVID夏晴子</span>
+      </a>
+
+      <nav class="header-nav" id="headerNav">
+        <a href="/#overview">领域概览</a>
+        <a href="/#featured">作品精选</a>
+        <a href="/#updates">更新动态</a>
+        <a href="/#categories">分类入口</a>
+        <a href="/#deep-dive">深度解析</a>
+        <a href="/#guide">体验指南</a>
+        <a href="/#faq">常见问题</a>
+        <a href="/#comments">用户评论</a>
+        <a href="/#news">相关资讯</a>
+        <a href="/#rank">热门榜单</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="搜索条目…" aria-label="搜索站内条目">
+          <button id="searchBtn">查找</button>
+        </div>
+        <button class="mobile-menu-toggle" id="menuToggle" aria-label="打开导航菜单" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>JVID夏晴子</h1>
+      <p class="hero-desc">汇聚夏晴子剧情向、写真向、互动向的完整作品条目，涵盖《雨巷》《午后书房》《夜聊》等系列的最新更新、分类片单与深度解析。追踪每条片单的幕后花絮与观众反馈，为偏好特定风格的观众提供清晰的观看路径。</p>
+      <div class="hero-actions">
+        <a href="/#featured" class="btn-primary">浏览作品精选 →</a>
+        <a href="/#updates" class="btn-secondary">查看更新动态</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 400 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="30" y="60" width="340" height="220" rx="24" fill="url(#hero-grad)" opacity="0.15"/>
+        <rect x="50" y="80" width="300" height="180" rx="16" fill="url(#hero-grad)" opacity="0.25"/>
+        <circle cx="200" cy="160" r="52" fill="url(#hero-grad)" opacity="0.6"/>
+        <path d="M180 140L210 160L180 180V140Z" fill="#fff" opacity="0.9"/>
+        <rect x="120" y="260" width="160" height="8" rx="4" fill="#9f4a6b" opacity="0.2"/>
+        <rect x="140" y="280" width="120" height="6" rx="3" fill="#9f4a6b" opacity="0.15"/>
+        <path d="M80 300 Q 120 270 160 300" stroke="#9f4a6b" stroke-width="2" opacity="0.3" fill="none"/>
+        <path d="M240 300 Q 280 270 320 300" stroke="#9f4a6b" stroke-width="2" opacity="0.3" fill="none"/>
+        <defs>
+          <linearGradient id="hero-grad" x1="0" y1="0" x2="400" y2="360" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#9f4a6b"/>
+            <stop offset="1" stop-color="#c97b9b"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 主布局：三栏 -->
+  <div class="page-layout">
+    <!-- 左频道索引 -->
+    <aside class="channel-aside">
+      <h3>频道索引</h3>
+      <ul>
+        <li><a href="/#overview" class="active">领域概览</a></li>
+        <li><a href="/#featured">作品精选</a></li>
+        <li><a href="/#updates">更新动态</a></li>
+        <li><a href="/#categories">分类入口</a></li>
+        <li><a href="/#deep-dive">深度解析</a></li>
+        <li><a href="/#guide">体验指南</a></li>
+        <li><a href="/#faq">常见问题</a></li>
+        <li><a href="/#comments">用户评论</a></li>
+        <li><a href="/#news">相关资讯</a></li>
+        <li><a href="/#tags">相关推荐</a></li>
+        <li><a href="/#rank">热门榜单</a></li>
+      </ul>
+    </aside>
+
+    <!-- 中主内容 -->
+    <main class="main-content">
+
+      <!-- 1. 主题领域概览 -->
+      <section id="overview" class="section-block">
+        <h2 class="section-title">夏晴子作品领域概览</h2>
+        <div class="overview-text">
+          <p>JVID 平台上的夏晴子内容以剧情短片、写真套图和互动直播三大形态为主。剧情向侧重角色扮演与场景叙事，2026 年上线的《雨巷》《深夜书店》系列把拍摄周期拉长到单集 40 分钟以上；写真向以主题套图为核心，《午后书房》《天台日记》在构图与光影上投入更多后期，单套图常配 12—18 张精修；互动向则以《夜聊》《周末问答》为代表，每场直播保留 30 分钟以上的观众弹幕互动。</p>
+          <p>从更新节奏看，夏晴子的剧情短片平均每月 1—2 部，写真套图每月 2—3 套，互动直播固定在周六晚 21:00。2026 年 10 月以来，《雨巷》第三幕、《午后书房》4K 修复版、《夜聊》第 12 期是讨论量最高的三个条目。观众在站内主要搜索“夏晴子 剧情”“夏晴子 写真”“夜聊 弹幕”等具体词，对幕后花絮和拍摄手记的点击率也明显高于普通预告片。</p>
+        </div>
+      </section>
+
+      <!-- 2. 精选内容推荐 -->
+      <section id="featured" class="section-block">
+        <h2 class="section-title">精选作品与条目</h2>
+        <div class="card-grid" id="featuredGrid">
+          <!-- 卡片由 JS 渲染，保证搜索筛选 -->
+        </div>
+      </section>
+
+      <!-- 3. 最新更新 / 动态 -->
+      <section id="updates" class="section-block">
+        <h2 class="section-title">最新更新与动态</h2>
+        <div class="update-list" id="updateList">
+          <!-- JS 渲染 -->
+        </div>
+      </section>
+
+      <!-- 4. 分类入口 -->
+      <section id="categories" class="section-block">
+        <h2 class="section-title">按类型查找</h2>
+        <div class="category-grid">
+          <a href="/#featured" class="category-chip" data-category="剧情">剧情短片</a>
+          <a href="/#featured" class="category-chip" data-category="写真">写真套图</a>
+          <a href="/#featured" class="category-chip" data-category="互动">互动直播</a>
+          <a href="/#featured" class="category-chip" data-category="幕后">幕后花絮</a>
+          <a href="/#featured" class="category-chip" data-category="4K">4K 修复</a>
+          <a href="/#featured" class="category-chip" data-category="系列">系列合集</a>
+          <a href="/#featured" class="category-chip" data-category="问答">观众问答</a>
+          <a href="/#featured" class="category-chip" data-category="主题">主题企划</a>
+        </div>
+      </section>
+
+      <!-- 5. 深度解析正文 -->
+      <section id="deep-dive" class="section-block">
+        <h2 class="section-title">剧情向与写真向的差异判断</h2>
+        <div class="deep-dive">
+          <h3>叙事密度：单集时长与信息量的错位</h3>
+          <p>《雨巷》第三幕时长 47 分钟，比第二幕多出 12 分钟，但新增内容主要集中在巷口对峙和室内独白两场戏。对比 2026 年 8 月《深夜书店》第 4 集（39 分钟，场景 6 个），《雨巷》第三幕的场景数只有 4 个，单场景平均停留时间从 6.5 分钟拉长到 11.7 分钟。这种拉长在评论区引发了分歧：一部分观众认为长镜头增加了沉浸感，另一部分则认为中段节奏明显拖慢。判断一个条目是否“注水”，可以看场景切换频率和台词密度——第三幕前 20 分钟只有 38 句台词，而第二幕同期有 67 句。</p>
+
+          <h3>写真套图的后期投入差异</h3>
+          <p>《午后书房》4K 修复版在 11 月 6 日上线，对比 2026 年 5 月的初版，修复版主要做了三处调整：暗部噪点降低、肤色统一色温、书页文字锐化。从文件体积看，初版单张 3.2MB，修复版单张 8.7MB，放大到 200% 时书脊上的烫金标题才能看清。另一套《天台日记》走的是相反路线，刻意保留胶片颗粒感，后期只做了曝光微调。两套图的拍摄手记里，摄影师分别用了“数字修复”和“质感保留”两种说法，这直接影响了受众预期——追求细节的观众偏向《午后书房》修复版，喜欢氛围感的则更认《天台日记》。</p>
+
+          <div class="compare-box">
+            <strong>判断维度对照：</strong>剧情条目看台词密度与场景切换频率；写真条目看后期方向（修复/保留）与单张文件体积；互动条目看弹幕互动时长占比。
+          </div>
+
+          <h3>互动直播的“有效互动时长”怎么算</h3>
+          <p>《夜聊》第 12 期总时长 2 小时 14 分钟，其中主播回应弹幕的片段约 58 分钟，占比 43%。对比第 10 期的 36%（总时长 1 小时 52 分钟，互动 40 分钟），第 12 期的互动密度明显提高。但弹幕总条数从 3.1 万条降到 2.1 万条，说明单条弹幕获得的回应概率更高，参与人数却可能减少。站内用户“阿茶不喝茶”在评论里提到，第 12 期后半段连续回应了 7 条关于拍摄花絮的提问，这种集中回应模式让部分观众觉得“像访谈”，另一些则觉得“比散点互动更有信息量”。</p>
+
+          <h3>系列合集的观看顺序建议</h3>
+          <p>《雨巷》目前有三幕，按发布顺序看是 1→2→3，但第三幕开头有一段回溯，实际时间线是 2→1→3。站内不少用户选择先看第三幕再补前两幕，评论区“倒序观看”的讨论帖在 11 月 7 日达到 47 条回复。如果追求悬疑感，建议按 1→2→3 的顺序；如果想先确认制作水准再决定是否补全，从第三幕切入更高效——它的单集预算最高，场景搭建和灯光配置都优于前两幕。</p>
+        </div>
+      </section>
+
+      <!-- 6. 体验指南 / 消费路径 -->
+      <section id="guide" class="section-block">
+        <h2 class="section-title">观看顺序与投入判断</h2>
+        <div class="guide-steps">
+          <div class="step-card">
+            <span class="step-num">1</span>
+            <h4>先确认类型偏好</h4>
+            <p>剧情向单集 40 分钟以上，适合整块时间；写真套图单套 15—20 分钟浏览，适合碎片时间；互动直播建议看回放并开启弹幕，重点在 21:30—22:30 的集中回应段。</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">2</span>
+            <h4>看更新批次与修复标记</h4>
+            <p>标题带“4K 修复”“导演剪辑”的条目通常比初版多 20%—30% 的细节，优先看修复版可以避免重复投入时间。《午后书房》从初版到修复版间隔 6 个月，修复版新增了 3 张未收录图。</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">3</span>
+            <h4>比对同系列前后集</h4>
+            <p>《雨巷》三幕的评分分别是 8.2、8.7、8.5（站内 5 分制换算为 10 分制），第二幕口碑最高。如果时间有限，可以先看第二幕，再根据对角色关系的兴趣决定是否补第一幕和第三幕。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. FAQ -->
+      <section id="faq" class="section-block">
+        <h2 class="section-title">常见问题</h2>
+        <div class="faq-list">
+          <details>
+            <summary>《雨巷》第三幕为什么比第二幕长 12 分钟？</summary>
+            <p>新增时长主要来自巷口对峙和室内独白两场戏。巷口对峙单场 14 分钟，比第二幕最长的场景多 5 分钟；室内独白 9 分钟，全部为固定机位长镜头。导演在拍摄手记里提到，这两场戏的素材量是成片的 3.2 倍，剪掉的主要是重复走位。</p>
+          </details>
+          <details>
+            <summary>《午后书房》4K 修复版和初版有什么区别？</summary>
+            <p>修复版单张文件体积从 3.2MB 提升到 8.7MB，暗部噪点降低，肤色色温统一，书页文字做了锐化处理。修复版还新增了 3 张初版未收录的侧面构图，拍摄角度更偏向右后方。初版保留的胶片颗粒在修复版中被部分抹平，喜欢颗粒感的观众可能需要保留初版。</p>
+          </details>
+          <details>
+            <summary>《夜聊》的弹幕互动集中在哪个时间段？</summary>
+            <p>第 12 期的互动高峰出现在开场后 40—70 分钟，对应 21:40—22:10。这段时间主播连续回应了 19 条弹幕，其中 7 条关于拍摄花絮，5 条关于下一期主题。22:10 之后互动频率下降，转为单点回应。如果想参与实时互动，建议在 21:30 前进入直播间。</p>
+          </details>
+          <details>
+            <summary>夏晴子的写真套图一般多久更新一套？</summary>
+            <p>2026 年 8 月至 11 月，写真套图保持每月 2—3 套的节奏：8 月《天台日记》、9 月《旧物间》、10 月《午后书房》4K 修复版、11 月计划上线《窗边速写》。每套图的拍摄周期约 5—7 天，后期修图 10—14 天，从拍摄完成到上线平均间隔 3 周。</p>
+          </details>
+          <details>
+            <summary>剧情短片和互动直播的剧情有关联吗？</summary>
+            <p>目前没有直接剧情关联。《夜聊》第 12 期曾提到《雨巷》的拍摄花絮，但属于幕后讨论，不构成剧情延伸。互动直播里的角色设定是主播本人，剧情短片则是虚构角色，两者共享同一套视觉风格但叙事线独立。想追剧情线只需看《雨巷》和《深夜书店》系列。</p>
+          </details>
+          <details>
+            <summary>站内搜索“夏晴子”能找到哪些类型？</summary>
+            <p>搜索“夏晴子”会返回剧情短片、写真套图、互动直播回放、幕后花絮四类条目。如果只找某一类，可以在搜索词后加类型限定，例如“夏晴子 剧情”“夏晴子 写真”。分类入口中的“剧情短片”“写真套图”按钮会直接筛选对应类型，不需要手动输入。</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- 8. 用户评论 -->
+      <section id="comments" class="section-block">
+        <h2 class="section-title">观众评论</h2>
+        <div class="comment-list" id="commentList">
+          <!-- JS 渲染 -->
+        </div>
+      </section>
+
+      <!-- 9. 相关资讯 -->
+      <section id="news" class="section-block">
+        <h2 class="section-title">相关资讯</h2>
+        <div class="news-list" id="newsList">
+          <!-- JS 渲染 -->
+        </div>
+      </section>
+
+      <!-- 10. 相关推荐 -->
+      <section id="tags" class="section-block">
+        <h2 class="section-title">相关推荐</h2>
+        <div class="tag-index">
+          <a href="/#featured">雨巷第三幕解析</a>
+          <a href="/#featured">午后书房4K对比</a>
+          <a href="/#featured">夜聊第12期互动</a>
+          <a href="/#featured">天台日记胶片感</a>
+          <a href="/#featured">深夜书店第4集</a>
+          <a href="/#featured">夏晴子拍摄手记</a>
+          <a href="/#featured">写真套图后期方向</a>
+          <a href="/#featured">剧情短片台词密度</a>
+        </div>
+      </section>
+
+      <!-- 11. 补充板块：热门榜单 -->
+      <section id="rank" class="section-block">
+        <h2 class="section-title">本周热门条目</h2>
+        <div class="rank-list">
+          <div class="rank-item">
+            <span class="rank-num">1</span>
+            <span class="rank-name">雨巷 · 第三幕</span>
+            <span class="rank-score">8.5 / 10</span>
+          </div>
+          <div class="rank-item">
+            <span class="rank-num">2</span>
+            <span class="rank-name">午后书房 4K 修复版</span>
+            <span class="rank-score">9.1 / 10</span>
+          </div>
+          <div class="rank-item">
+            <span class="rank-num">3</span>
+            <span class="rank-name">夜聊 · 第 12 期</span>
+            <span class="rank-score">8.8 / 10</span>
+          </div>
+          <div class="rank-item">
+            <span class="rank-num">4</span>
+            <span class="rank-name">雨巷 · 第二幕</span>
+            <span class="rank-score">8.7 / 10</span>
+          </div>
+          <div class="rank-item">
+            <span class="rank-num">5</span>
+            <span class="rank-name">深夜书店 · 第 4 集</span>
+            <span class="rank-score">8.3 / 10</span>
+          </div>
+          <div class="rank-item">
+            <span class="rank-num">6</span>
+            <span class="rank-name">天台日记</span>
+            <span class="rank-score">8.0 / 10</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- 右侧辅助栏 -->
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <h3>正在热播</h3>
+        <ul class="hot-list">
+          <li><span class="hot-index">01</span><span class="hot-name">雨巷 · 第三幕</span><span class="hot-badge">新</span></li>
+          <li><span class="hot-index">02</span><span class="hot-name">午后书房 4K</span><span class="hot-badge">修复</span></li>
+          <li><span class="hot-index">03</span><span class="hot-name">夜聊 · 第 12 期</span><span class="hot-badge">互动</span></li>
+          <li><span class="hot-index">04</span><span class="hot-name">天台日记</span></li>
+          <li><span class="hot-index">05</span><span class="hot-name">深夜书店 · 第 4 集</span></li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h3>更新节奏</h3>
+        <ul class="hot-list">
+          <li><span class="hot-index">•</span><span class="hot-name">剧情短片</span><span class="hot-badge">每月 1-2 部</span></li>
+          <li><span class="hot-index">•</span><span class="hot-name">写真套图</span><span class="hot-badge">每月 2-3 套</span></li>
+          <li><span class="hot-index">•</span><span class="hot-name">互动直播</span><span class="hot-badge">每周六 21:00</span></li>
+          <li><span class="hot-index">•</span><span class="hot-name">幕后花絮</span><span class="hot-badge">随片更新</span></li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h3>参与互动</h3>
+        <ul class="hot-list">
+          <li><a href="/#comments" style="display:flex;align-items:center;gap:8px;color:var(--text-secondary);font-size:14px;">📝 观众评论</a></li>
+          <li><a href="/#featured" style="display:flex;align-items:center;gap:8px;color:var(--text-secondary);font-size:14px;">🎬 作品投稿</a></li>
+          <li><a href="/#faq" style="display:flex;align-items:center;gap:8px;color:var(--text-secondary);font-size:14px;">❓ 问答交流</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 页尾 -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">JVID夏晴子</div>
+        <p class="footer-desc">追踪夏晴子剧情短片、写真套图与互动直播的完整条目，覆盖 2025 年 12 月至 2026 年 11 月的更新批次。每周六晚更新互动回放，每月初整理上月作品评分与幕后手记。</p>
+        <p class="footer-note">页面内容为示例条目，具体信息以官方发布为准。</p>
+      </div>
+      <div class="footer-col">
+        <h4>内容分类</h4>
+        <a href="/#featured">剧情短片</a>
+        <a href="/#featured">写真套图</a>
+        <a href="/#featured">互动直播</a>
+        <a href="/#featured">幕后花絮</a>
+      </div>
+      <div class="footer-col">
+        <h4>快速入口</h4>
+        <a href="/#overview">领域概览</a>
+        <a href="/#updates">更新动态</a>
+        <a href="/#deep-dive">深度解析</a>
+        <a href="/#guide">体验指南</a>
+      </div>
+      <div class="footer-col">
+        <h4>互动</h4>
+        <a href="/#comments">观众评论</a>
+        <a href="/#faq">常见问题</a>
+        <a href="/#news">相关资讯</a>
+        <a href="/#rank">热门榜单</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 JVID夏晴子 · 内容聚合示例</span>
+      <span>最近更新：2026-11-08</span>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <button class="back-to-top" id="backToTop" aria-label="回到顶部">↑</button>
+
+  <!-- 遮罩 -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- 内联脚本 -->
+  <script>
+    (function() {
+      // ---------- 数据 ----------
+      const featuredItems = [
+        { title: '雨巷 · 第三幕', type: '剧情', tags: ['长镜头', '悬疑', '系列'], desc: '47 分钟单集，巷口对峙与室内独白两场戏撑起全片，台词密度低于前作但氛围更沉。', heat: '热度 2.3w' },
+        { title: '午后书房 4K 修复版', type: '写真', tags: ['4K', '修复', '细节'], desc: '单张 8.7MB，暗部噪点降低，书页烫金标题放大到 200% 可辨，新增 3 张侧面构图。', heat: '评分 9.1' },
+        { title: '夜聊 · 第 12 期', type: '互动', tags: ['弹幕', '花絮', '问答'], desc: '2 小时 14 分钟，互动片段占比 43%，集中回应 7 条拍摄花絮提问。', heat: '弹幕 2.1w' },
+        { title: '天台日记', type: '写真', tags: ['胶片', '颗粒', '氛围'], desc: '刻意保留胶片颗粒感，后期只做曝光微调，与《午后书房》的修复路线形成对照。', heat: '评分 8.0' },
+        { title: '深夜书店 · 第 4 集', type: '剧情', tags: ['短篇', '书店', '对话'], desc: '39 分钟，6 个场景，台词密度高于《雨巷》第三幕，适合偏好快节奏叙事的观众。', heat: '评分 8.3' },
+        { title: '雨巷 · 第二幕', type: '剧情', tags: ['口碑', '推进', '角色'], desc: '系列中评分最高的一幕（8.7），场景切换频率和台词密度最均衡，可作为入坑首选。', heat: '评分 8.7' },
+        { title: '旧物间 · 拍摄手记', type: '幕后', tags: ['手记', '布光', '道具'], desc: '记录了 9 月套图拍摄时用的 3 盏主灯位置和 17 件道具清单，包含未上线备用图。', heat: '阅读 3400' },
+        { title: '周末问答 · 第 8 期', type: '互动', tags: ['问答', '短直播', '互动'], desc: '38 分钟短直播，集中回答观众关于后期修图流程和下一部剧情短片选角的提问。', heat: '回放 1.1w' },
+        { title: '窗边速写（预告）', type: '写真', tags: ['预告', '11月', '新套图'], desc: '11 月计划上线的写真套图，预告片已放出 4 张构图，主打自然光与窗影。', heat: '预告 8200' }
+      ];
+
+      const updateItems = [
+        { date: '2026-11-08', name: '雨巷 · 第三幕', summary: '正片上线，单集 47 分钟，新增巷口对峙与室内独白两场戏。' },
+        { date: '2026-11-07', name: '午后书房 4K 修复版', summary: '修复版新增 3 张侧面构图，单张体积提升至 8.7MB。' },
+        { date: '2026-11-06', name: '午后书房 · 拍摄手记', summary: '摄影师撰文说明修复与保留颗粒感的取舍，附 5 张对比图。' },
+        { date: '2026-11-05', name: '夜聊 · 第 12 期', summary: '互动片段占比 43%，弹幕总数 2.1 万条，回放已上线。' },
+        { date: '2026-11-03', name: '雨巷 · 第三幕预告', summary: '30 秒预告片发布，重点展示巷口夜景和室内窗影。' },
+        { date: '2026-11-01', name: '窗边速写', summary: '11 月写真套图预告，放出 4 张自然光构图，上线时间待定。' },
+        { date: '2026-10-28', name: '天台日记 · 讨论帖', summary: '站内用户发起胶片颗粒感讨论，47 条回复，多数支持保留原版。' },
+        { date: '2026-10-20', name: '深夜书店 · 第 4 集', summary: '上线后首周评分 8.3，台词密度为系列最高。' }
+      ];
+
+      const comments = [
+        { name: '阿茶不喝茶', text: '夜聊第12期后半段连续回答花絮问题，像访谈，但信息量确实比散点互动大。', meta: '11-07' },
+        { name: '胶片颗粒控', text: '天台日记的颗粒感保留得好，午后书房修复版反而有点太干净了，个人口味。', meta: '11-06' },
+        { name: '巷口夜风', text: '雨巷第三幕的巷口对峙长镜头我看了两遍，但室内独白那段确实有点拖，1.5倍速刚好。', meta: '11-08' },
+        { name: '小鹿乱撞', text: '午后书房新增的三张侧面构图比初版好看，书脊烫金终于能看清了。', meta: '11-07' },
+        { name: '默默看片', text: '倒序看雨巷的体验很奇特，第三幕开头那段回溯会让人误以为前两幕是回忆。', meta: '11-05' },
+        { name: '午夜场', text: '深夜书店第4集台词密度确实高，39分钟没走神，比某些注水长片强。', meta: '11-04' },
+        { name: '一颗西柚', text: '周六直播时间对上班族不太友好，21:30才开始集中互动，第二天看回放又要挑片段。', meta: '11-06' },
+        { name: '光影爱好者', text: '旧物间手记里那三盏灯的位置图很实用，自己拍静物可以参考。', meta: '10-30' },
+        { name: '路过的猫', text: '窗边速写预告只有4张图，看不出太多东西，再等等。', meta: '11-02' },
+        { name: '白桃乌龙', text: '雨巷第二幕评分最高不是没道理，节奏最紧凑，第三幕有点太想表达氛围了。', meta: '11-08' },
+        { name: '夜猫子', text: '夜聊第12期弹幕少了一万条，但互动质量高了，看回放不用一直暂停。', meta: '11-06' },
+        { name: '随便看看', text: '写真套图更新频率可以，每月两三套够追了。', meta: '11-03' },
+        { name: '南山南', text: '4K修复版文件大了不少，手机看其实区别不大，大屏才明显。', meta: '11-07' },
+        { name: '一枚观众', text: '互动直播和剧情短片没剧情关联这点有点可惜，本来期待联动。', meta: '11-05' },
+        { name: '晚风', text: '雨巷第三幕台词38句撑20分钟，有点考验耐心，但画面确实好。', meta: '11-08' }
+      ];
+
+      const newsItems = [
+        { title: '《雨巷》第三幕上线首日播放量 4.2 万', date: '2026-11-08', summary: '对比第二幕首日 3.1 万，增长 35%。评论区 24 小时内新增 186 条，长镜头讨论占比最高。' },
+        { title: '《午后书房》4K 修复版单张体积达 8.7MB', date: '2026-11-07', summary: '初版为 3.2MB，修复版放大到 200% 时书脊烫金标题可辨。新增 3 张侧面构图已收录进套图。' },
+        { title: '《夜聊》第 12 期回放观看完成率 61%', date: '2026-11-06', summary: '比第 10 期高 9 个百分点，集中回应段（21:40—22:10）的拖拽回看次数最高。' },
+        { title: '《天台日记》胶片颗粒讨论帖回复破 47 条', date: '2026-11-04', summary: '发帖用户“胶片颗粒控”对比了初版与修复版的暗部细节，多数回复支持保留颗粒感。' },
+        { title: '11 月写真套图《窗边速写》放出 4 张预告', date: '2026-11-01', summary: '预告片主打自然光与窗影，拍摄手记提到使用了 3 种不同透光率的窗纱。' },
+        { title: '《深夜书店》第 4 集台词密度创系列新高', date: '2026-10-21', summary: '39 分钟场景 6 个，平均每场景 6.5 分钟，台词密度比第 3 集高 18%。' }
+      ];
+
+      // ---------- 渲染卡片 ----------
+      const grid = document.getElementById('featuredGrid');
+      function renderCards(items) {
+        if (!grid) return;
+        if (items.length === 0) {
+          grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--text-tertiary);padding:40px 0;">没有找到匹配的条目，试试其他关键词。</p>';
+          return;
+        }
+        grid.innerHTML = items.map((item, i) => {
+          const seed = 'jvid' + i;
+          return `
+            <article class="content-card" data-title="${item.title}" data-type="${item.type}" data-tags="${item.tags.join(' ')}">
+              <img class="card-img" src="https://picsum.photos/seed/${seed}/400/300" width="400" height="300" loading="lazy" alt="${item.title} 缩略图">
+              <div class="card-body">
+                <span class="card-type">${item.type}</span>
+                <h3 class="card-title">${item.title}</h3>
+                <p class="card-desc">${item.desc}</p>
+                <div class="card-tags">${item.tags.map(t => `<span>${t}</span>`).join('')}</div>
+                <div class="card-meta"><span>${item.heat}</span></div>
+              </div>
+            </article>
+          `;
+        }).join('');
+      }
+      renderCards(featuredItems);
+
+      // ---------- 渲染更新列表 ----------
+      const updateList = document.getElementById('updateList');
+      if (updateList) {
+        updateList.innerHTML = updateItems.map(item => `
+          <div class="update-item">
+            <span class="update-date">${item.date}</span>
+            <span class="update-name">${item.name}</span>
+            <span class="update-summary">${item.summary}</span>
+          </div>
+        `).join('');
+      }
+
+      // ---------- 渲染评论 ----------
+      const commentList = document.getElementById('commentList');
+      if (commentList) {
+        commentList.innerHTML = comments.map(c => `
+          <div class="comment-item">
+            <div class="comment-avatar">${c.name.charAt(0)}</div>
+            <div class="comment-body">
+              <div class="comment-author">${c.name}</div>
+              <div class="comment-text">${c.text}</div>
+              <div class="comment-meta">${c.meta}</div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // ---------- 渲染资讯 ----------
+      const newsList = document.getElementById('newsList');
+      if (newsList) {
+        newsList.innerHTML = newsItems.map(n => `
+          <div class="news-item">
+            <div class="news-title">${n.title}</div>
+            <div class="news-date">${n.date}</div>
+            <div class="news-summary">${n.summary}</div>
+          </div>
+        `).join('');
+      }
+
+      // ---------- 搜索筛选 ----------
+      const searchInput = document.getElementById('searchInput');
+      const searchBtn = document.getElementById('searchBtn');
+      function doSearch() {
+        const q = searchInput.value.trim().toLowerCase();
+        if (!q) {
+          renderCards(featuredItems);
+          return;
+        }
+        const filtered = featuredItems.filter(item =>
+          item.title.toLowerCase().includes(q) ||
+          item.type.toLowerCase().includes(q) ||
+          item.tags.some(t => t.toLowerCase().includes(q)) ||
+          item.desc.toLowerCase().includes(q)
+        );
+        renderCards(filtered);
+        document.getElementById('featured').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      if (searchBtn) searchBtn.addEventListener('click', doSearch);
+      if (searchInput) searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') { e.preventDefault(); doSearch(); }
+      });
+
+      // ---------- 分类筛选（模拟跳转到精选并筛选） ----------
+      document.querySelectorAll('.category-chip').forEach(chip => {
+        chip.addEventListener('click', function(e) {
+          e.preventDefault();
+          const category = this.dataset.category;
+          if (!category) return;
+          const filtered = featuredItems.filter(item =>
+            item.type.includes(category) || item.tags.some(t => t.includes(category)) || item.title.includes(category)
+          );
+          renderCards(filtered);
+          document.getElementById('featured').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+
+      // ---------- 回到顶部 ----------
+      const backBtn = document.getElementById('backToTop');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 600) {
+          backBtn.classList.add('visible');
+        } else {
+          backBtn.classList.remove('visible');
+        }
+      });
+      backBtn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // ---------- 移动端菜单 ----------
+      const menuToggle = document.getElementById('menuToggle');
+      const headerNav = document.getElementById('headerNav');
+      const overlay = document.getElementById('overlay');
+      function closeMenu() {
+        headerNav.classList.remove('mobile-open');
+        overlay.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.textContent = '☰';
+      }
+      function openMenu() {
+        headerNav.classList.add('mobile-open');
+        overlay.classList.add('active');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        menuToggle.textContent = '✕';
+      }
+      if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+          if (headerNav.classList.contains('mobile-open')) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        });
+      }
+      if (overlay) {
+        overlay.addEventListener('click', closeMenu);
+      }
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+      // 点击导航项后自动收起
+      headerNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+          if (window.innerWidth <= 740) closeMenu();
+        });
+      });
+      // 窗口放大时重置
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 740) closeMenu();
+      });
+
+      // ---------- 侧栏高亮（简单实现） ----------
+      const sections = document.querySelectorAll('.section-block');
+      const navLinks = document.querySelectorAll('.channel-aside a');
+      window.addEventListener('scroll', function() {
+        let current = '';
+        sections.forEach(section => {
+          const top = section.offsetTop - 200;
+          if (window.scrollY >= top) {
+            current = section.getAttribute('id');
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '/#' + current) {
+            link.classList.add('active');
+          }
+        });
+      });
+    })();
+  </script>
+
+  <!-- 结构化数据 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "JVID夏晴子",
+    "description": "夏晴子剧情短片、写真套图与互动直播的内容聚合页面，包含作品精选、更新动态、分类入口、深度解析和用户评论。",
+    "inLanguage": "zh-CN"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "《雨巷》第三幕为什么比第二幕长 12 分钟？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "新增时长主要来自巷口对峙和室内独白两场戏。巷口对峙单场 14 分钟，比第二幕最长的场景多 5 分钟；室内独白 9 分钟，全部为固定机位长镜头。导演在拍摄手记里提到，这两场戏的素材量是成片的 3.2 倍，剪掉的主要是重复走位。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "《午后书房》4K 修复版和初版有什么区别？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "修复版单张文件体积从 3.2MB 提升到 8.7MB，暗部噪点降低，肤色色温统一，书页文字做了锐化处理。修复版还新增了 3 张初版未收录的侧面构图，拍摄角度更偏向右后方。初版保留的胶片颗粒在修复版中被部分抹平，喜欢颗粒感的观众可能需要保留初版。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "《夜聊》的弹幕互动集中在哪个时间段？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "第 12 期的互动高峰出现在开场后 40—70 分钟，对应 21:40—22:10。这段时间主播连续回应了 19 条弹幕，其中 7 条关于拍摄花絮，5 条关于下一期主题。22:10 之后互动频率下降，转为单点回应。如果想参与实时互动，建议在 21:30 前进入直播间。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "夏晴子的写真套图一般多久更新一套？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "2026 年 8 月至 11 月，写真套图保持每月 2—3 套的节奏：8 月《天台日记》、9 月《旧物间》、10 月《午后书房》4K 修复版、11 月计划上线《窗边速写》。每套图的拍摄周期约 5—7 天，后期修图 10—14 天，从拍摄完成到上线平均间隔 3 周。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "剧情短片和互动直播的剧情有关联吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "目前没有直接剧情关联。《夜聊》第 12 期曾提到《雨巷》的拍摄花絮，但属于幕后讨论，不构成剧情延伸。互动直播里的角色设定是主播本人，剧情短片则是虚构角色，两者共享同一套视觉风格但叙事线独立。想追剧情线只需看《雨巷》和《深夜书店》系列。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "站内搜索“夏晴子”能找到哪些类型？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "搜索“夏晴子”会返回剧情短片、写真套图、互动直播回放、幕后花絮四类条目。如果只找某一类，可以在搜索词后加类型限定，例如“夏晴子 剧情”“夏晴子 写真”。分类入口中的“剧情短片”“写真套图”按钮会直接筛选对应类型，不需要手动输入。"
+        }
+      }
+    ]
+  }
+  </script>
+</body>
+  </html>
