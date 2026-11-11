@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欧美大胆美女图片 - 人像摄影与风格图集聚合</title>
+  <meta name="description" content="欧美大胆美女图片聚合站，提供摄影图集、创作者动态与人像风格索引，涵盖时尚写真、艺术人像、街头抓拍等类型，适合摄影爱好者与视觉内容收藏者浏览。">
+  <meta name="keywords" content="欧美大胆美女图片">
+  <style>
+    :root {
+      --primary: #9d4b6e;
+      --primary-light: #c87a9a;
+      --primary-dark: #6e2f4a;
+      --bg: #faf7f5;
+      --panel: #ffffff;
+      --text-primary: #1e1a1c;
+      --text-secondary: #5e555a;
+      --text-tertiary: #8e8388;
+      --divider: #e8e0e3;
+      --card-radius: 12px;
+      --button-radius: 24px;
+      --tag-radius: 6px;
+      --shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      --shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.08);
+      --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      --font-display: 'Georgia', 'Times New Roman', serif;
+      --announcement-height: 36px;
+      --header-height: 68px;
+      --total-sticky: calc(var(--announcement-height) + var(--header-height));
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-padding-top: var(--total-sticky);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    /* 吸顶公告条 */
+    .announcement-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--announcement-height);
+      background: #1f1a1c;
+      color: #f0e8eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      letter-spacing: 0.3px;
+      padding: 0 16px;
+      gap: 24px;
+      overflow: hidden;
+    }
+
+    .announcement-bar .brand-mini {
+      font-weight: 600;
+      color: var(--primary-light);
+      white-space: nowrap;
+    }
+
+    .announcement-items {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      white-space: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .announcement-items::-webkit-scrollbar {
+      display: none;
+    }
+
+    .announcement-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+    }
+
+    .announcement-item .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      flex-shrink: 0;
+    }
+
+    /* 吸顶页头 */
+    .site-header {
+      position: sticky;
+      top: var(--announcement-height);
+      z-index: 99;
+      height: var(--header-height);
+      background: rgba(250, 247, 245, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--divider);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .header-inner {
+      max-width: 1360px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .logo svg {
+      width: 34px;
+      height: 34px;
+    }
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 6px;
+      flex: 1;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .main-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .main-nav a {
+      padding: 6px 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      border-radius: var(--button-radius);
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    .main-nav a:hover,
+    .main-nav a:focus-visible {
+      background: var(--primary-light);
+      color: #fff;
+      outline: none;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: var(--panel);
+      border: 1px solid var(--divider);
+      border-radius: var(--button-radius);
+      padding: 4px 12px;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .search-box input {
+      border: none;
+      background: transparent;
+      font-size: 13px;
+      padding: 6px 0;
+      width: 150px;
+      outline: none;
+      color: var(--text-primary);
+    }
+
+    .search-box input::placeholder {
+      color: var(--text-tertiary);
+    }
+
+    .search-box button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 16px;
+      padding: 2px;
+      line-height: 1;
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-primary);
+      cursor: pointer;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+
+    /* 容器 */
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* 首屏 */
+    .hero {
+      padding: 56px 0 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: var(--primary-dark);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 24px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: var(--button-radius);
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.2s, box-shadow 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background: var(--primary-dark);
+      box-shadow: var(--shadow-hover);
+      outline: none;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 24px;
+      border: 1px solid var(--divider);
+      background: var(--panel);
+      color: var(--text-primary);
+      border-radius: var(--button-radius);
+      font-size: 14px;
+      font-weight: 500;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-outline:hover,
+    .btn-outline:focus-visible {
+      border-color: var(--primary);
+      box-shadow: var(--shadow);
+      outline: none;
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-visual svg {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+    }
+
+    /* 主布局三栏 */
+    .portal-layout {
+      display: grid;
+      grid-template-columns: 180px 1fr 260px;
+      gap: 32px;
+      padding: 16px 0 64px;
+      align-items: start;
+    }
+
+    /* 左频道索引 */
+    .channel-sidebar {
+      position: sticky;
+      top: calc(var(--total-sticky) + 16px);
+    }
+
+    .channel-sidebar h2 {
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .channel-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .channel-list a {
+      display: block;
+      padding: 7px 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      border-radius: 8px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .channel-list a:hover,
+    .channel-list a:focus-visible {
+      background: var(--panel);
+      color: var(--primary-dark);
+      outline: none;
+    }
+
+    .channel-list a.active {
+      background: var(--primary-light);
+      color: #fff;
+      font-weight: 500;
+    }
+
+    /* 主内容 */
+    .main-content {
+      min-width: 0;
+    }
+
+    /* 板块通用 */
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 16px;
+    }
+
+    .section-header h2 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      letter-spacing: -0.3px;
+    }
+
+    .section-header .more-link {
+      font-size: 13px;
+      color: var(--primary);
+      white-space: nowrap;
+      transition: color 0.15s;
+    }
+
+    .section-header .more-link:hover {
+      color: var(--primary-dark);
+    }
+
+    /* 概览 */
+    .overview-text {
+      background: var(--panel);
+      border-radius: var(--card-radius);
+      padding: 24px 28px;
+      box-shadow: var(--shadow);
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .overview-text p + p {
+      margin-top: 12px;
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: var(--panel);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feature-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .card-thumb {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: var(--divider);
+    }
+
+    .card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .feature-card:hover .card-thumb img {
+      transform: scale(1.03);
+    }
+
+    .card-type-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: var(--tag-radius);
+      backdrop-filter: blur(4px);
+    }
+
+    .card-body {
+      padding: 14px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .card-body h3 {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text-primary);
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      background: #f2ecef;
+      color: var(--text-secondary);
+      border-radius: var(--tag-radius);
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-tertiary);
+      padding-top: 6px;
+      border-top: 1px solid var(--divider);
+    }
+
+    /* 最新更新列表 */
+    .update-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      background: var(--panel);
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .update-item {
+      display: flex;
+      gap: 16px;
+      padding: 14px 20px;
+      align-items: baseline;
+      border-bottom: 1px solid var(--divider);
+      transition: background 0.15s;
+    }
+
+    .update-item:last-child {
+      border-bottom: none;
+    }
+
+    .update-item:hover {
+      background: #fcf9fa;
+    }
+
+    .update-date {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      white-space: nowrap;
+      min-width: 44px;
+    }
+
+    .update-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .update-summary {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      margin-left: auto;
+      text-align: right;
+      max-width: 260px;
+    }
+
+    /* 分类入口 */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .category-item {
+      background: var(--panel);
+      border-radius: var(--card-radius);
+      padding: 18px 16px;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .category-item:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .category-item .cat-icon {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
+    .category-item h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .category-item p {
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    /* 深度解析 */
+    .deep-dive {
+      background: var(--panel);
+      border-radius: var(--card-radius);
+      padding: 28px 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .deep-dive h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin: 24px 0 10px;
+    }
+
+    .deep-dive h3:first-of-type {
+      margin-top: 0;
+    }
+
+    .deep-dive p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .deep-dive ul {
+      margin: 8px 0 16px 20px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .deep-dive li {
+      margin-bottom: 4px;
+    }
+
+    .deep-dive .highlight-box {
+      background: #fdf5f8;
+      border-left: 3px solid var(--primary);
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* 体验指南 */
+    .guide-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      background: var(--panel);
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .guide-step {
+      display: flex;
+      gap: 16px;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--divider);
+      align-items: flex-start;
+    }
+
+    .guide-step:last-child {
+      border-bottom: none;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      background: var(--primary-light);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-content h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      font-size: 14px;
+      color: var(--text-tertiary);
+      line-height: 1.6;
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      background: var(--panel);
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-item summary {
+      padding: 16px 24px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.15s;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: '+';
+      font-size: 18px;
+      color: var(--text-tertiary);
+      transition: transform 0.2s;
+    }
+
+    .faq-item[open] summary::after {
+      content: '−';
+    }
+
+    .faq-item summary:hover {
+      background: #fcf9fa;
+    }
+
+    .faq-answer {
+      padding: 0 24px 18px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* 评论 */
+    .comments-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .comment-card {
+      background: var(--panel);
+      border-radius: var(--card-radius);
+      padding: 14px 18px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .comment-user {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    .comment-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .comment-text {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .comment-meta {
+      font-size: 11px;
+      color: var(--text-tertiary);
+    }
+
+    /* 相关资讯 */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      background: var(--panel);
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .news-item {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .news-item:last-child {
+      border-bottom: none;
+    }
+
+    .news-item h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .news-item h3 a:hover {
+      color: var(--primary);
+    }
+
+    .news-meta {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      margin-bottom: 4px;
+    }
+
+    .news-summary {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* 相关推荐标签 */
+    .tag-index {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag-index a {
+      display: inline-block;
+      padding: 8px 16px;
+      background: var(--panel);
+      border: 1px solid var(--divider);
+      border-radius: var(--button-radius);
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+
+    .tag-index a:hover,
+    .tag-index a:focus-visible {
+      border-color: var(--primary);
+      color: var(--primary-dark);
+      box-shadow: var(--shadow);
+      outline: none;
+    }
+
+    /* 右侧辅助栏 */
+    .aux-sidebar {
+      position: sticky;
+      top: calc(var(--total-sticky) + 16px);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .aux-panel {
+      background: var(--panel);
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow);
+      padding: 18px 20px;
+    }
+
+    .aux-panel h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .hot-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hot-list li {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      font-size: 13.5px;
+    }
+
+    .hot-rank {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--primary-light);
+      min-width: 18px;
+    }
+
+    .hot-list a:hover {
+      color: var(--primary);
+    }
+
+    .hot-meta {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      margin-left: auto;
+      white-space: nowrap;
+    }
+
+    .timeline-list {
+      list-style: none;
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .timeline-list::before {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 6px;
+      bottom: 6px;
+      width: 1px;
+      background: var(--divider);
+    }
+
+    .timeline-list li {
+      position: relative;
+      padding-bottom: 14px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .timeline-list li::before {
+      content: '';
+      position: absolute;
+      left: -15px;
+      top: 7px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary-light);
+    }
+
+    .timeline-date {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* 页脚 */
+    .site-footer {
+      background: #1f1a1c;
+      color: #d4c8cd;
+      padding: 48px 0 32px;
+      margin-top: 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 32px;
+    }
+
+    .footer-brand h3 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #a99da2;
+      max-width: 320px;
+    }
+
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 13px;
+      color: #a99da2;
+      padding: 3px 0;
+      transition: color 0.15s;
+    }
+
+    .footer-col a:hover {
+      color: var(--primary-light);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #3a3235;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #7d7176;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* 回到顶部 */
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: var(--shadow-hover);
+      z-index: 50;
+      transition: background 0.2s;
+    }
+
+    .back-to-top:hover {
+      background: var(--primary-dark);
+    }
+
+    .back-to-top.visible {
+      display: flex;
+    }
+
+    /* 遮罩 */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 200;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* 移动端抽屉 */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100%;
+      background: var(--panel);
+      z-index: 201;
+      padding: 24px 20px;
+      overflow-y: auto;
+      transition: left 0.25s ease;
+      box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-drawer.open {
+      left: 0;
+    }
+
+    .mobile-drawer .close-btn {
+      background: none;
+      border: none;
+      font-size: 26px;
+      cursor: pointer;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .mobile-drawer nav a {
+      display: block;
+      padding: 10px 0;
+      font-size: 15px;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .mobile-drawer nav a:hover {
+      color: var(--primary);
+    }
+
+    /* 无结果提示 */
+    .no-result {
+      text-align: center;
+      padding: 32px 16px;
+      color: var(--text-tertiary);
+      font-size: 14px;
+      background: var(--panel);
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow);
+      display: none;
+    }
+
+    /* 响应式 */
+    @media (max-width: 1024px) {
+      .portal-layout {
+        grid-template-columns: 1fr 260px;
+      }
+
+      .channel-sidebar {
+        display: none;
+      }
+
+      .main-nav {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .hero-visual svg {
+        max-width: 360px;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .comments-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 740px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .portal-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .aux-sidebar {
+        position: static;
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .update-item {
+        flex-wrap: wrap;
+        gap: 4px 12px;
+      }
+
+      .update-summary {
+        margin-left: 0;
+        text-align: left;
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .hero {
+        padding: 36px 0 24px;
+      }
+
+      .search-box input {
+        width: 100px;
+      }
+
+      .announcement-items {
+        gap: 16px;
+      }
+
+      .announcement-bar {
+        font-size: 11.5px;
+        gap: 12px;
+      }
+
+      .site-header {
+        padding: 0 16px;
+      }
+
+      .logo-text {
+        font-size: 16px;
+      }
+
+      .section-header h2 {
+        font-size: 19px;
+      }
+
+      .deep-dive {
+        padding: 20px 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+  <!-- 吸顶公告条 -->
+  <div class="announcement-bar">
+    <span class="brand-mini">欧美大胆美女图片</span>
+    <div class="announcement-items">
+      <span class="announcement-item"><span class="dot"></span>11月7日 · 新增「巴黎街头霓虹」图集 28 张</span>
+      <span class="announcement-item"><span class="dot"></span>11月6日 · 摄影师 Elena Voss 作品专题上线</span>
+      <span class="announcement-item"><span class="dot"></span>11月5日 · 本周精选人像更新 42 组</span>
+    </div>
+  </div>
+
+  <!-- 吸顶页头 -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo" aria-label="返回首页">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" stroke="#6e2f4a" stroke-width="2.5" fill="none"/>
+          <ellipse cx="20" cy="16" rx="7" ry="9" stroke="#c87a9a" stroke-width="2" fill="none"/>
+          <path d="M13 28 Q20 20 27 28" stroke="#c87a9a" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="20" cy="13" r="2" fill="#9d4b6e"/>
+        </svg>
+        <span class="logo-text">欧美大胆美女图片</span>
+      </a>
+
+      <nav class="main-nav" aria-label="主导航">
+        <a href="/#featured">精选图集</a>
+        <a href="/#latest">最新更新</a>
+        <a href="/#categories">分类索引</a>
+        <a href="/#deep-dive">风格解析</a>
+        <a href="/#guide">浏览指南</a>
+        <a href="/#comments">读者评论</a>
+        <a href="/#news">摄影动态</a>
+      </nav>
+
+      <div class="search-box">
+        <input type="search" id="searchInput" placeholder="搜索图集或摄影师…" aria-label="搜索内容">
+        <button type="button" id="searchBtn" aria-label="搜索">🔍</button>
+      </div>
+
+      <button class="hamburger" id="hamburgerBtn" aria-label="打开菜单" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <!-- 移动端抽屉 -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="移动导航">
+    <button class="close-btn" id="closeDrawerBtn" aria-label="关闭菜单">×</button>
+    <nav>
+      <a href="/#featured">精选图集</a>
+      <a href="/#latest">最新更新</a>
+      <a href="/#categories">分类索引</a>
+      <a href="/#deep-dive">风格解析</a>
+      <a href="/#guide">浏览指南</a>
+      <a href="/#faq">常见问题</a>
+      <a href="/#comments">读者评论</a>
+      <a href="/#news">摄影动态</a>
+      <a href="/#related">相关推荐</a>
+    </nav>
+  </aside>
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <h1>欧美大胆美女图片</h1>
+          <p class="hero-desc">
+            汇聚欧洲与北美摄影师的人像作品，涵盖时尚大片、街头抓拍、艺术人体与复古胶片。收录巴黎、纽约、米兰等地的拍摄专题，按风格与场景整理，方便查找参考。
+          </p>
+          <div class="hero-actions">
+            <a href="/#featured" class="btn-primary">浏览精选图集</a>
+            <a href="/#guide" class="btn-outline">了解浏览指南</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <svg viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="heroGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#f2e6ec"/>
+                <stop offset="100%" stop-color="#e8d0db"/>
+              </linearGradient>
+              <linearGradient id="accentGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#9d4b6e"/>
+                <stop offset="100%" stop-color="#6e2f4a"/>
+              </linearGradient>
+            </defs>
+            <rect width="480" height="360" rx="20" fill="url(#heroGrad)"/>
+            <circle cx="240" cy="160" r="80" stroke="#c87a9a" stroke-width="1.5" fill="none" opacity="0.5"/>
+            <circle cx="240" cy="160" r="60" stroke="#c87a9a" stroke-width="1" fill="none" opacity="0.3"/>
+            <ellipse cx="240" cy="150" rx="38" ry="52" stroke="url(#accentGrad)" stroke-width="2.5" fill="none"/>
+            <path d="M202 210 Q240 170 278 210" stroke="url(#accentGrad)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <circle cx="240" cy="136" r="6" fill="#9d4b6e"/>
+            <rect x="80" y="280" width="60" height="4" rx="2" fill="#c87a9a" opacity="0.6"/>
+            <rect x="80" y="292" width="40" height="4" rx="2" fill="#c87a9a" opacity="0.4"/>
+            <rect x="340" y="280" width="60" height="4" rx="2" fill="#c87a9a" opacity="0.6"/>
+            <rect x="360" y="292" width="40" height="4" rx="2" fill="#c87a9a" opacity="0.4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 三栏门户布局 -->
+  <div class="container">
+    <div class="portal-layout">
+
+      <!-- 左侧频道索引 -->
+      <aside class="channel-sidebar" aria-label="频道索引">
+        <h2>频道</h2>
+        <ul class="channel-list">
+          <li><a href="/#featured" class="active">精选图集</a></li>
+          <li><a href="/#latest">最新更新</a></li>
+          <li><a href="/#categories">分类索引</a></li>
+          <li><a href="/#deep-dive">风格解析</a></li>
+          <li><a href="/#guide">浏览指南</a></li>
+          <li><a href="/#faq">常见问题</a></li>
+          <li><a href="/#comments">读者评论</a></li>
+          <li><a href="/#news">摄影动态</a></li>
+          <li><a href="/#related">相关推荐</a></li>
+          <li><a href="/#hot">热门榜单</a></li>
+        </ul>
+      </aside>
+
+      <!-- 主内容 -->
+      <main class="main-content">
+
+        <!-- 领域概览 -->
+        <section class="section" id="overview">
+          <div class="section-header">
+            <h2>欧美人像摄影现状</h2>
+          </div>
+          <div class="overview-text">
+            <p>欧美大胆美女图片这个领域，目前主要活跃在几个方向上。时尚编辑类人像占据主流，以《Vogue》意大利版、《Numéro》法国版为代表的杂志大片，强调造型与光影的实验性；街头抓拍类则集中在纽约SoHo、伦敦Shoreditch、巴黎玛黑区，摄影师用长焦捕捉自然状态下的穿搭与神态。艺术人体摄影在柏林和巴塞罗那有稳定的创作群体，偏向胶片质感与自然光。</p>
+            <p>2026年秋季的更新中，值得留意的是摄影师Elena Voss的“Neon Paris”系列——她连续三周在巴黎十一区拍摄夜间霓虹下的人像，用柯达Portra 800迫冲到1600，颗粒感和色彩偏移成为辨识度。另一位值得关注的是纽约摄影师Marcus Reid，他的“Brownstone Light”项目集中在布鲁克林褐石建筑的门廊光影里，10月更新的第4辑收录了12位模特的自然光肖像。米兰的Studio Vento则在尝试用中画幅数码后背模拟90年代意大利版《Vogue》的暖调。这些具体项目构成了当下可追踪的创作线索。</p>
+          </div>
+        </section>
+
+        <!-- 精选内容推荐 -->
+        <section class="section" id="featured">
+          <div class="section-header">
+            <h2>本周精选图集</h2>
+            <a href="/#latest" class="more-link">查看全部 →</a>
+          </div>
+          <div class="card-grid" id="cardGrid">
+
+            <article class="feature-card" data-search="巴黎霓虹夜拍 Elena Voss 夜间人像 柯达Portra">
+              <div class="card-thumb">
+                <img src="https://picsum.photos/seed/neonparis1/400/300" alt="巴黎霓虹夜拍图集封面：暗调街头人像" width="400" height="300" loading="lazy">
+                <span class="card-type-tag">夜拍人像</span>
+              </div>
+              <div class="card-body">
+                <h3>Neon Paris：十一区霓虹夜拍</h3>
+                <div class="card-tags">
+                  <span class="tag">Elena Voss</span>
+                  <span class="tag">柯达Portra 800</span>
+                  <span class="tag">巴黎</span>
+                </div>
+                <p class="card-desc">连续三周在巴黎十一区拍摄，迫冲1600带来的颗粒与偏色成为系列标志，28张中有一半在 rue Oberkampf 完成。</p>
+                <div class="card-meta">
+                  <span>更新 11月7日</span>
+                  <span>热度 9.4</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="feature-card" data-search="布鲁克林褐石 门廊光影 Marcus Reid 自然光">
+              <div class="card-thumb">
+                <img src="https://picsum.photos/seed/brownstone2/400/300" alt="布鲁克林褐石门廊自然光肖像封面" width="400" height="300" loading="lazy">
+                <span class="card-type-tag">自然光肖像</span>
+              </div>
+              <div class="card-body">
+                <h3>Brownstone Light 第4辑</h3>
+                <div class="card-tags">
+                  <span class="tag">Marcus Reid</span>
+                  <span class="tag">布鲁克林</span>
+                  <span class="tag">中画幅</span>
+                </div>
+                <p class="card-desc">12位模特在褐石建筑门廊的下午光线中拍摄，用哈苏X2D搭配80mm镜头，保留了砖墙的暖色反射。</p>
+                <div class="card-meta">
+                  <span>更新 11月5日</span>
+                  <span>热度 8.9</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="feature-card" data-search="米兰 Studio Vento 暖调 中画幅 90年代">
+              <div class="card-thumb">
+                <img src="https://picsum.photos/seed/milanowarm3/400/300" alt="米兰Studio Vento暖调人像封面" width="400" height="300" loading="lazy">
+                <span class="card-type-tag">编辑大片</span>
+              </div>
+              <div class="card-body">
+                <h3>Studio Vento 秋季暖调专题</h3>
+                <div class="card-tags">
+                  <span class="tag">米兰</span>
+                  <span class="tag">数码后背</span>
+                  <span class="tag">复古暖调</span>
+                </div>
+                <p class="card-desc">用飞思IQ4 150MP模拟90年代意大利版《Vogue》的暖黄基底，棚拍18组，造型参考1994年秋冬刊。</p>
+                <div class="card-meta">
+                  <span>更新 11月3日</span>
+                  <span>热度 8.6</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="feature-card" data-search="伦敦东区 街头抓拍 长焦 穿搭">
+              <div class="card-thumb">
+                <img src="https://picsum.photos/seed/shoreditch4/400/300" alt="伦敦Shoreditch街头抓拍人像封面" width="400" height="300" loading="lazy">
+                <span class="card-type-tag">街头抓拍</span>
+              </div>
+              <div class="card-body">
+                <h3>Shoreditch 街头穿搭 10月辑</h3>
+                <div class="card-tags">
+                  <span class="tag">伦敦</span>
+                  <span class="tag">长焦抓拍</span>
+                  <span class="tag">秋季穿搭</span>
+                </div>
+                <p class="card-desc">用70-200mm在Brick Lane周边捕捉的34组自然行走状态，重点在风衣与皮衣的层次搭配。</p>
+                <div class="card-meta">
+                  <span>更新 11月1日</span>
+                  <span>热度 8.2</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="feature-card" data-search="柏林 胶片 艺术人体 自然光">
+              <div class="card-thumb">
+                <img src="https://picsum.photos/seed/berlinfilm5/400/300" alt="柏林胶片艺术人体摄影封面" width="400" height="300" loading="lazy">
+                <span class="card-type-tag">艺术人体</span>
+              </div>
+              <div class="card-body">
+                <h3>Kreuzberg 自然光人体</h3>
+                <div class="card-tags">
+                  <span class="tag">柏林</span>
+                  <span class="tag">Ilford HP5</span>
+                  <span class="tag">自然光</span>
+                </div>
+                <p class="card-desc">摄影师Lena Hartmann在自家 Kreuzberg 公寓用北向窗户光拍摄，黑白胶片，强调皮肤质感与阴影过渡。</p>
+                <div class="card-meta">
+                  <span>更新 10月28日</span>
+                  <span>热度 8.0</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="feature-card" data-search="纽约SoHo 时尚编辑 色彩 造型">
+              <div class="card-thumb">
+                <img src="https://picsum.photos/seed/sohocolor6/400/300" alt="纽约SoHo时尚编辑人像封面" width="400" height="300" loading="lazy">
+                <span class="card-type-tag">编辑人像</span>
+              </div>
+              <div class="card-body">
+                <h3>SoHo Color Block 专题</h3>
+                <div class="card-tags">
+                  <span class="tag">纽约</span>
+                  <span class="tag">色块造型</span>
+                  <span class="tag">Profoto</span>
+                </div>
+                <p class="card-desc">用Profoto B10在SoHo街头做压光，服装以高饱和色块为主，14组里最出彩的是玫红与钴蓝的撞色。</p>
+                <div class="card-meta">
+                  <span>更新 10月25日</span>
+                  <span>热度 7.8</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+          <div class="no-result" id="noResult">没有找到匹配的图集，试试其他关键词。</div>
+        </section>
+
+        <!-- 最新更新 -->
+        <section class="section" id="latest">
+          <div class="section-header">
+            <h2>最新图集更新</h2>
+          </div>
+          <ul class="update-list">
+            <li class="update-item">
+              <span class="update-date">11月7日</span>
+              <span class="update-title">「Neon Paris」新增10张夜间街拍</span>
+              <span class="update-summary">拍摄于 rue Oberkampf，模特穿着亮片外套在霓虹灯下反射</span>
+            </li>
+            <li class="update-item">
+              <span class="update-date">11月6日</span>
+              <span class="update-title">Elena Voss 作品专题页上线</span>
+              <span class="update-summary">收录2023-2026年三个系列共86张，附拍摄参数说明</span>
+            </li>
+            <li class="update-item">
+              <span class="update-date">11月5日</span>
+              <span class="update-title">Brownstone Light 第4辑发布</span>
+              <span class="update-summary">12位模特自然光肖像，拍摄于布鲁克林Pacific Street</span>
+            </li>
+            <li class="update-item">
+              <span class="update-date">11月4日</span>
+              <span class="update-title">米兰秋季暖调棚拍新增8组</span>
+              <span class="update-summary">Studio Vento使用飞思IQ4，造型参考1994年秋冬刊</span>
+            </li>
+            <li class="update-item">
+              <span class="update-date">11月3日</span>
+              <span class="update-title">Shoreditch 街头抓拍补充12组</span>
+              <span class="update-summary">重点更新风衣穿搭，拍摄时间集中在下午4-6点</span>
+            </li>
+            <li class="update-item">
+              <span class="update-date">11月2日</span>
+              <span class="update-title">Kreuzberg 黑白人体新增6张</span>
+              <span class="update-summary">Ilford HP5拍摄，北向窗户光，未使用反光板</span>
+            </li>
+            <li class="update-item">
+              <span class="update-date">10月31日</span>
+              <span class="update-title">SoHo Color Block 补发幕后花絮</span>
+              <span class="update-summary">含布光位置图与Profoto B10功率设置</span>
+            </li>
+            <li class="update-item">
+              <span class="update-date">10月29日</span>
+              <span class="update-title">巴黎玛黑区街拍合集更新</span>
+              <span class="update-summary">摄影师Julien Morel的22张日常穿搭记录</span>
+            </li>
+            <li class="update-item">
+              <span class="update-date">10月27日</span>
+              <span class="update-title">巴塞罗那胶片人像新增14组</span>
+              <span class="update-summary">用Contax T2在哥特区拍摄，全部自然光</span>
+            </li>
+            <li class="update-item">
+              <span class="update-date">10月24日</span>
+              <span class="update-title">纽约下东区夜间肖像专题上线</span>
+              <span class="update-summary">摄影师Ana Torres，高ISO数码拍摄，强调环境光</span>
+            </li>
+          </ul>
+        </section>
+
+        <!-- 分类入口 -->
+        <section class="section" id="categories">
+          <div class="section-header">
+            <h2>按类型浏览</h2>
+          </div>
+          <div class="category-grid">
+            <a href="/#featured" class="category-item">
+              <span class="cat-icon">📸</span>
+              <h3>时尚编辑大片</h3>
+              <p>杂志风格、造型实验</p>
+            </a>
+            <a href="/#featured" class="category-item">
+              <span class="cat-icon">🚶</span>
+              <h3>街头抓拍</h3>
+              <p>城市日常、自然状态</p>
+            </a>
+            <a href="/#featured" class="category-item">
+              <span class="cat-icon">🎞️</span>
+              <h3>胶片人像</h3>
+              <p>颗粒质感、暖调偏移</p>
+            </a>
+            <a href="/#featured" class="category-item">
+              <span class="cat-icon">🌙</span>
+              <h3>夜间霓虹</h3>
+              <p>低光环境、色彩反射</p>
+            </a>
+            <a href="/#featured" class="category-item">
+              <span class="cat-icon">🪟</span>
+              <h3>自然光肖像</h3>
+              <p>窗户光、门廊光影</p>
+            </a>
+            <a href="/#featured" class="category-item">
+              <span class="cat-icon">🖤</span>
+              <h3>黑白人体</h3>
+              <p>阴影过渡、皮肤质感</p>
+            </a>
+            <a href="/#featured" class="category-item">
+              <span class="cat-icon">🏙️</span>
+              <h3>城市环境人像</h3>
+              <p>建筑与人物结合</p>
+            </a>
+            <a href="/#featured" class="category-item">
+              <span class="cat-icon">📷</span>
+              <h3>中画幅数码</h3>
+              <p>高像素、细节表现</p>
+            </a>
+          </div>
+        </section>
+
+        <!-- 深度解析 -->
+        <section class="section" id="deep-dive">
+          <div class="section-header">
+            <h2>风格差异与判断维度</h2>
+          </div>
+          <div class="deep-dive">
+            <h3>编辑大片与街头抓拍的核心分歧</h3>
+            <p>时尚编辑类人像和街头抓拍在拍摄逻辑上有本质区别。编辑大片通常有完整的造型方案、布光计划和后期方向，模特知道镜头位置，姿态经过设计。街头抓拍则依赖摄影师在自然状态下的反应速度，被摄者往往不知道照片被拍。判断一组图属于哪类，看三个指标：是否使用人造光源补光、模特的视线是否与镜头发生明确互动、服装是否呈现同一色系或主题。以11月3日更新的Shoreditch街头辑为例，34张里只有2张使用了反光板，模特视线大多偏离镜头，服装跨度从军绿工装到酒红皮衣——这些特征指向街头抓拍而非编辑大片。</p>
+
+            <h3>胶片质感的可核对特征</h3>
+            <p>“胶片感”在数码后期里经常被滥用。要判断一张图是否真的用胶片拍摄，可以看几个具体痕迹：高光溢出是否有平缓的过渡（数码高光更容易直接切白）、阴影区域的颗粒是否呈现随机分布而非均匀噪点、色彩在暗部是否出现偏移（比如Portra 800迫冲后阴影偏青绿）。Elena Voss的Neon Paris系列里，路灯高光周围有一圈柔和的橙红色晕，阴影颗粒呈不规则团块状，这两点与数码模拟的均匀颗粒有明显区别。另一个可核对的点是拍摄参数——她公开的EXIF显示Portra 800按1600曝光，这是迫冲一档的操作，数码文件不会带这个信息。</p>
+
+            <h3>自然光肖像的时间窗口</h3>
+            <p>自然光人像对拍摄时间有硬性要求。北向窗户光在上午10点到下午2点之间色温最稳定，约5200K-5400K，阴影边缘柔和。Marcus Reid的Brownstone Light系列集中在下午3点半到5点拍摄，褐石建筑的门廊在这个时段会反射暖色砖墙光到模特脸上，形成偏橙的补光效果。这个时间窗口在10月下旬到11月初会缩短——纽约日落从6点40分提前到4点50分左右，拍摄窗口从90分钟压缩到60分钟以内。翻看他第4辑的12张照片，光线方向基本一致，说明拍摄集中在同一时段的连续几天内完成。</p>
+
+            <h3>判断一组图是否值得参考的四个要素</h3>
+            <ul>
+              <li><strong>拍摄参数公开程度：</strong>是否给出相机、镜头、光圈、ISO。Elena Voss在专题页附了全部参数，Marcus Reid只给了相机型号。前者对想复现的读者更有用。</li>
+              <li><strong>拍摄地点可定位：</strong>具体到街道或街区，而非“欧洲某地”。Shoreditch辑标注了Brick Lane周边，Kreuzberg人体标注了自家公寓北窗。</li>
+              <li><strong>造型与光线的逻辑一致性：</strong>暖调造型配暖光、冷调造型配冷光。Studio Vento的秋季暖调专题里，服装以焦糖色、砖红为主，与后期暖调方向一致，不是随机搭配。</li>
+              <li><strong>更新连贯性：</strong>同一摄影师在同一系列里持续发布，说明有稳定的拍摄计划。Brownstone Light从第1辑到第4辑间隔约六周，节奏稳定。</li>
+            </ul>
+
+            <div class="highlight-box">
+              一组图如果只给成片、不给任何参数和地点信息，作为参考的价值会打折扣。相反，哪怕画面不完美，但标注了50mm f/1.8、下午4点、北向窗户，对想实践的人更有用。
+            </div>
+
+            <h3>米兰暖调与巴黎夜拍的色彩策略对比</h3>
+            <p>Studio Vento的暖调处理和Elena Voss的夜拍偏色，代表了两种不同的色彩控制思路。前者在数码流程里主动往90年代印刷品的方向调——降低蓝色通道饱和度、高光加黄、阴影保留细节但整体压暗。后者的偏色来自胶片本身的化学特性，Portra 800迫冲后蓝色层感光度相对下降，导致暗部偏青绿、亮部偏橙。两种结果看起来都“暖”，但来源不同：一个是后期选择，一个是胶片物理属性。判断方法：看白色物体是否也偏色。Studio Vento画面里的白衬衫呈奶油色，是全局调色；Voss画面里的白色路牌在亮部仍接近中性白，偏色集中在暗部。</p>
+          </div>
+        </section>
+
+        <!-- 体验指南 -->
+        <section class="section" id="guide">
+          <div class="section-header">
+            <h2>浏览与参考路径</h2>
+          </div>
+          <div class="guide-steps">
+            <div class="guide-step">
+              <span class="step-num">1</span>
+              <div class="step-content">
+                <h3>先确定目的：找参考还是找灵感</h3>
+                <p>想复现拍摄效果，优先看标注了完整参数和拍摄地点的系列，比如Neon Paris和Brownstone Light。纯粹找视觉灵感，可以按色彩或场景浏览，不必纠结技术细节。</p>
+              </div>
+            </div>
+            <div class="guide-step">
+              <span class="step-num">2</span>
+              <div class="step-content">
+                <h3>按摄影师追踪比按类型浏览更有效</h3>
+                <p>同一摄影师在不同系列里会保持用光和后期习惯。Elena Voss的夜拍偏色、Lena Hartmann的黑白颗粒、Marcus Reid的门廊暖光，各自稳定。先锁定两三个喜欢的摄影师，再看他们的完整项目。</p>
+              </div>
+            </div>
+            <div class="guide-step">
+              <span class="step-num">3</span>
+              <div class="step-content">
+                <h3>用拍摄参数筛选可参考的图集</h3>
+                <p>如果目标是学习技术，跳过只给成片的系列。优先看公开了焦距、光圈、ISO和光线条件的项目。50mm f/1.8在下午4点的北窗光，比f/1.2全开更有复现可能。</p>
+              </div>
+            </div>
+            <div class="guide-step">
+              <span class="step-num">4</span>
+              <div class="step-content">
+                <h3>比较同类项目时看时间跨度</h3>
+                <p>一个系列如果跨了三个月以上还在更新，说明摄影师在持续投入，不是一次性拍摄。Brownstone Light从9月到11月出了4辑，每辑12人左右，这种节奏比单次发布30张更值得跟踪。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section" id="faq">
+          <div class="section-header">
+            <h2>常见问题</h2>
+          </div>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>欧美编辑类人像和时尚杂志大片有什么区别？</summary>
+              <div class="faq-answer">编辑类人像（editorial portrait）通常指为杂志内页拍摄的人像，不一定上封面，造型和场景更自由。时尚杂志大片（fashion story）有明确的服装主题和叙事，通常8-12页成组。区别在用途：前者侧重人物状态，后者侧重服装展示。</div>
+            </details>
+            <details class="faq-item">
+              <summary>Portra 800 迫冲到1600后偏色是什么方向？</summary>
+              <div class="faq-answer">Portra 800按1600曝光、显影时间延长约30%后，阴影区域会偏青绿，高光偏橙红，整体对比度上升、颗粒变粗。Elena Voss的Neon Paris系列就是利用这个偏色来匹配霓虹灯环境。</div>
+            </details>
+            <details class="faq-item">
+              <summary>北向窗户光在什么时间段色温最稳定？</summary>
+              <div class="faq-answer">上午10点到下午2点之间，北向窗户光色温约5200K-5400K，变化幅度小。下午3点后色温逐渐下降，光线变暖，阴影边缘也会变硬。拍黑白人体时影响不大，拍彩色肤色需要留意。</div>
+            </details>
+            <details class="faq-item">
+              <summary>如何判断一张街头抓拍是否使用了长焦镜头？</summary>
+              <div class="faq-answer">看背景压缩程度和人物与环境的比例。70-200mm拍摄时背景元素显得更近、更大，人物与背景的距离感被压缩。广角抓拍则保留更多环境信息，人物在画面中占比更小。Shoreditch辑的背景建筑与人物比例接近长焦效果。</div>
+            </details>
+            <details class="faq-item">
+              <summary>米兰暖调和巴黎夜拍的色彩偏暖是一回事吗？</summary>
+              <div class="faq-answer">不是。米兰Studio Vento的暖是后期全局调色，白色物体也偏奶油色。巴黎Neon Paris的暖来自胶片迫冲后的化学偏色，亮部接近中性白，暗部偏青绿。看白色参照物就能区分。</div>
+            </details>
+            <details class="faq-item">
+              <summary>中画幅数码后背拍人像比全画幅好在哪里？</summary>
+              <div class="faq-answer">飞思IQ4 150MP这类中画幅后背的优势在细节和宽容度。皮肤纹理的过渡更细腻，高光保留更多层次。Studio Vento的暖调专题里，砖墙的纹理和皮肤阴影的衔接更平滑。代价是对焦速度慢、文件体积大。</div>
+            </details>
+          </div>
+        </section>
+
+        <!-- 用户评论 -->
+        <section class="section" id="comments">
+          <div class="section-header">
+            <h2>读者评论</h2>
+          </div>
+          <div class="comments-grid">
+            <div class="comment-card">
+              <div class="comment-user"><span class="comment-avatar">林</span>林中鹿</div>
+              <p class="comment-text">Neon Paris的颗粒感太好了，Portra 800迫冲的效果确实不是数码模拟能比的。不过28张里有一半构图太像了，模特站姿几乎没变。</p>
+              <span class="comment-meta">11月7日</span>
+            </div>
+            <div class="comment-card">
+              <div class="comment-user"><span class="comment-avatar">K</span>Kai_photo</div>
+              <p class="comment-text">Brownstone Light第4辑的12张里，第7张那个门廊阴影的过渡绝了。哈苏X2D的宽容度确实够用。</p>
+              <span class="comment-meta">11月6日</span>
+            </div>
+            <div class="comment-card">
+              <div class="comment-user"><span class="comment-avatar">阿</span>阿黛尔不姓阿</div>
+              <p class="comment-text">Studio Vento的暖调看多了有点腻，每张都像1994年的意大利版。不是说不好，就是缺少变化。</p>
+              <span class="comment-meta">11月5日</span>
+            </div>
+            <div class="comment-card">
+              <div class="comment-user"><span class="comment-avatar">M</span>Mia在米兰</div>
+              <p class="comment-text">Shoreditch那组风衣穿搭很实用，我按图里的层次搭了一身，效果不错。就是有几张对焦偏了，长焦抓拍确实难。</p>
+              <span class="comment-meta">11月4日</span>
+            </div>
+            <div class="comment-card">
+              <div class="comment-user"><span class="comment-avatar">胶</span>胶片老张</div>
+              <p class="comment-text">Lena Hartmann的Kreuzberg人体不错，北窗光用得很克制。Ilford HP5的颗粒在暗部很自然。不过6张有点少，不够看。</p>
+              <span class="comment-meta">11月3日</span>
+            </div>
+            <div class="comment-card">
+              <div class="comment-user"><span class="comment-avatar">S</span>Sunny_NY</div>
+              <p class="comment-text">SoHo那组色块太强烈了，玫红配钴蓝看得眼睛疼。个人不太吃这种风格，但布光位置图挺有用。</p>
+              <span class="comment-meta">11月2日</span>
+            </div>
+            <div class="comment-card">
+              <div class="comment-user"><span class="comment-avatar">小</span>小满</div>
+              <p class="comment-text">哪位知道巴黎玛黑区街拍那组用的什么镜头？看着像是35mm但背景又有点压缩，不像。</p>
+              <span class="comment-meta">11月1日</span>
+            </div>
+            <div class="comment-card">
+              <div class="comment-user"><span class="comment-avatar">J</span>Jules_LDN</div>
+              <p class="comment-text">伦敦这组抓拍里第12张那个穿酒红皮衣的背影很好。不过整体看下来，下午4点的光线还是偏硬了，阴影有点重。</p>
+              <span class="comment-meta">10月30日</span>
+            </div>
+            <div class="comment-card">
+              <div class="comment-user"><span class="comment-avatar">安</span>安特卫普的雨</div>
+              <p class="comment-text">最近在找编辑类人像的参考，这里比Pinterest好翻，至少标了摄影师和日期。</p>
+              <span class="comment-meta">10月29日</span>
+            </div>
+            <div class="comment-card">
+              <div class="comment-user"><span class="comment-avatar">大</span>大猫</div>
+              <p class="comment-text">巴塞罗那那组Contax T2拍的哥特区，有几张构图太随意了，像是游客照。胶片是好胶片，内容差点意思。</p>
+              <span class="comment-meta">10月28日</span>
+            </div>
+            <div class="comment-card">
+              <div class="comment-user"><span class="comment-avatar">R</span>Rui_</div>
+              <p class="comment-text">Ana Torres下东区夜间肖像，高ISO的噪点控制得不错。环境光用得聪明，没有硬加灯。</p>
+              <span class="comment-meta">10月26日</span>
+            </div>
+            <div class="comment-card">
+              <div class="comment-user"><span class="comment-avatar">北</span>北纬40度</div>
+              <p class="comment-text">整体质量在往上走。希望多来点黑白人体，彩色的看多了疲劳。</p>
+              <span class="comment-meta">10月25日</span>
+            </div>
+            <div class="comment-card">
+              <div class="comment-user"><span class="comment-avatar">E</span>Echo_Chen</div>
+              <p class="comment-text">有没有人注意到Neon Paris第9张，背景那个霓虹灯管是“TABAC”标志，巴黎十一区那家老烟店。挺有生活气的细节。</p>
+              <span class="comment-meta">10月24日</span>
+            </div>
+            <div class="comment-card">
+              <div class="comment-user"><span class="comment-avatar">半</span>半糖去冰</div>
+              <p class="comment-text">不太懂拍摄参数，单纯觉得米兰那组颜色好看，像老电影。想存图做壁纸。</p>
+              <span class="comment-meta">10月23日</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 相关资讯 -->
+        <section class="section" id="news">
+          <div class="section-header">
+            <h2>摄影动态</h2>
+          </div>
+          <div class="news-list">
+            <div class="news-item">
+              <h3><a href="/#news">Elena Voss 宣布 Neon Paris 将扩展至里昂</a></h3>
+              <div class="news-meta">11月7日</div>
+              <p class="news-summary">拍摄计划从11月中旬开始，持续到12月初，仍使用Portra 800迫冲，但地点换到里昂半岛区。</p>
+            </div>
+            <div class="news-item">
+              <h3><a href="/#news">Marcus Reid 与布鲁克林历史协会合作褐石建筑档案项目</a></h3>
+              <div class="news-meta">11月5日</div>
+              <p class="news-summary">Brownstone Light系列的部分肖像将被纳入建筑档案，作为居住空间的视觉记录，预计2027年春季展出。</p>
+            </div>
+            <div class="news-item">
+              <h3><a href="/#news">Studio Vento 公开1994年秋冬刊参考素材</a></h3>
+              <div class="news-meta">11月3日</div>
+              <p class="news-summary">在官网发布了当年意大利版《Vogue》的扫描页和色卡，供对照暖调方向。</p>
+            </div>
+            <div class="news-item">
+              <h3><a href="/#news">Shoreditch 街头拍摄因施工调整路线</a></h3>
+              <div class="news-meta">11月1日</div>
+              <p class="news-summary">Brick Lane 北段11月起进行路面改造，摄影师转至 Redchurch Street 和 Calvert Avenue 一带。</p>
+            </div>
+            <div class="news-item">
+              <h3><a href="/#news">Lena Hartmann 黑白人体系列将出版限量摄影集</a></h3>
+              <div class="news-meta">10月28日</div>
+              <p class="news-summary">收录2024-2026年共60张，由柏林出版社Hartmann & Sohn发行，首印500册，编号签名。</p>
+            </div>
+            <div class="news-item">
+              <h3><a href="/#news">Contax T2 二手价格本月上涨12%</a></h3>
+              <div class="news-meta">10月25日</div>
+              <p class="news-summary">受胶片便携机需求推动，日本拍卖市场成交均价从820美元升至920美元，成色好的突破1000美元。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 相关推荐 -->
+        <section class="section" id="related">
+          <div class="section-header">
+            <h2>相关方向与条目</h2>
+          </div>
+          <div class="tag-index">
+            <a href="/#featured">Neon Paris 系列</a>
+            <a href="/#featured">Brownstone Light 第4辑</a>
+            <a href="/#featured">Studio Vento 暖调棚拍</a>
+            <a href="/#featured">Shoreditch 秋季街拍</a>
+            <a href="/#featured">Kreuzberg 黑白人体</a>
+            <a href="/#featured">SoHo 色块人像</a>
+            <a href="/#featured">Portra 800 迫冲参考</a>
+            <a href="/#featured">北向窗户光布光</a>
+          </div>
+        </section>
+
+        <!-- 补充板块：热门榜单 -->
+        <section class="section" id="hot">
+          <div class="section-header">
+            <h2>本周热度榜</h2>
+          </div>
+          <div class="aux-panel" style="position: static;">
+            <ol class="hot-list">
+              <li><span class="hot-rank">1</span><a href="/#featured">Neon Paris：十一区霓虹夜拍</a><span class="hot-meta">9.4</span></li>
+              <li><span class="hot-rank">2</span><a href="/#featured">Brownstone Light 第4辑</a><span class="hot-meta">8.9</span></li>
+              <li><span class="hot-rank">3</span><a href="/#featured">Studio Vento 秋季暖调专题</a><span class="hot-meta">8.6</span></li>
+              <li><span class="hot-rank">4</span><a href="/#featured">Shoreditch 街头穿搭 10月辑</a><span class="hot-meta">8.2</span></li>
+              <li><span class="hot-rank">5</span><a href="/#featured">Kreuzberg 自然光人体</a><span class="hot-meta">8.0</span></li>
+              <li><span class="hot-rank">6</span><a href="/#featured">SoHo Color Block 专题</a><span class="hot-meta">7.8</span></li>
+            </ol>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- 右侧辅助栏 -->
+      <aside class="aux-sidebar" aria-label="辅助信息">
+        <div class="aux-panel">
+          <h3>热门图集</h3>
+          <ol class="hot-list">
+            <li><span class="hot-rank">1</span><a href="/#featured">Neon Paris</a><span class="hot-meta">9.4</span></li>
+            <li><span class="hot-rank">2</span><a href="/#featured">Brownstone Light</a><span class="hot-meta">8.9</span></li>
+            <li><span class="hot-rank">3</span><a href="/#featured">Studio Vento 暖调</a><span class="hot-meta">8.6</span></li>
+            <li><span class="hot-rank">4</span><a href="/#featured">Shoreditch 街拍</a><span class="hot-meta">8.2</span></li>
+            <li><span class="hot-rank">5</span><a href="/#featured">Kreuzberg 黑白</a><span class="hot-meta">8.0</span></li>
+          </ol>
+        </div>
+
+        <div class="aux-panel">
+          <h3>更新节奏</h3>
+          <ul class="timeline-list">
+            <li><span class="timeline-date">11月7日</span>Neon Paris 新增10张</li>
+            <li><span class="timeline-date">11月5日</span>Brownstone Light 第4辑</li>
+            <li><span class="timeline-date">11月3日</span>Studio Vento 暖调专题</li>
+            <li><span class="timeline-date">11月1日</span>Shoreditch 街拍补图</li>
+            <li><span class="timeline-date">10月28日</span>Kreuzberg 人体新增</li>
+          </ul>
+        </div>
+
+        <div class="aux-panel">
+          <h3>参与互动</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:10px;">有好的图集或摄影师推荐？欢迎投稿分享。</p>
+          <a href="/#comments" class="btn-primary" style="font-size:13px;padding:8px 18px;display:inline-block;">投稿入口 →</a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>欧美大胆美女图片</h3>
+          <p>收录2023至2026年欧洲与北美的人像摄影项目，按摄影师与系列整理。内容以编辑大片、街头抓拍、胶片人体和自然光肖像为主，每周更新两到三次。</p>
+        </div>
+        <div class="footer-col">
+          <h4>浏览</h4>
+          <a href="/#featured">精选图集</a>
+          <a href="/#latest">最新更新</a>
+          <a href="/#categories">分类索引</a>
+          <a href="/#hot">热门榜单</a>
+        </div>
+        <div class="footer-col">
+          <h4>参考</h4>
+          <a href="/#deep-dive">风格解析</a>
+          <a href="/#guide">浏览指南</a>
+          <a href="/#faq">常见问题</a>
+          <a href="/#news">摄影动态</a>
+        </div>
+        <div class="footer-col">
+          <h4>互动</h4>
+          <a href="/#comments">读者评论</a>
+          <a href="/#related">相关推荐</a>
+          <a href="/#comments">投稿入口</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 欧美大胆美女图片 · 内容示例站点</span>
+        <span>更新于 2026年11月8日</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <button class="back-to-top" id="backToTop" aria-label="回到顶部">↑</button>
+
+  <!-- 结构化数据 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "欧美大胆美女图片",
+    "description": "聚合欧美地区人像摄影图集与创作者动态，涵盖时尚编辑、街头抓拍、胶片人体与自然光肖像。",
+    "keywords": "欧美大胆美女图片"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "欧美编辑类人像和时尚杂志大片有什么区别？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "编辑类人像通常指为杂志内页拍摄的人像，造型和场景更自由。时尚杂志大片有明确的服装主题和叙事，通常8-12页成组。区别在用途：前者侧重人物状态，后者侧重服装展示。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Portra 800 迫冲到1600后偏色是什么方向？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Portra 800按1600曝光、显影时间延长约30%后，阴影区域偏青绿，高光偏橙红，整体对比度上升、颗粒变粗。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "北向窗户光在什么时间段色温最稳定？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "上午10点到下午2点之间，北向窗户光色温约5200K-5400K，变化幅度小。下午3点后色温逐渐下降，光线变暖。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "如何判断一张街头抓拍是否使用了长焦镜头？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "看背景压缩程度和人物与环境的比例。70-200mm拍摄时背景元素显得更近、更大，人物与背景的距离感被压缩。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "米兰暖调和巴黎夜拍的色彩偏暖是一回事吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "不是。米兰的暖是后期全局调色，白色物体也偏奶油色。巴黎的暖来自胶片迫冲后的化学偏色，亮部接近中性白，暗部偏青绿。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "中画幅数码后背拍人像比全画幅好在哪里？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "飞思IQ4 150MP这类中画幅后背的优势在细节和宽容度。皮肤纹理过渡更细腻，高光保留更多层次，代价是对焦速度慢、文件体积大。"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script>
+    (function() {
+      // 搜索筛选
+      const searchInput = document.getElementById('searchInput');
+      const searchBtn = document.getElementById('searchBtn');
+      const cardGrid = document.getElementById('cardGrid');
+      const noResult = document.getElementById('noResult');
+      const featureCards = cardGrid ? cardGrid.querySelectorAll('.feature-card') : [];
+
+      function performSearch() {
+        const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+        if (!cardGrid) return;
+        let visibleCount = 0;
+        featureCards.forEach(card => {
+          const searchData = (card.getAttribute('data-search') || '').toLowerCase();
+          const text = card.textContent.toLowerCase();
+          const match = query === '' || searchData.includes(query) || text.includes(query);
+          card.style.display = match ? '' : 'none';
+          if (match) visibleCount++;
+        });
+        if (noResult) {
+          noResult.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+      }
+
+      if (searchBtn) {
+        searchBtn.addEventListener('click', performSearch);
+      }
+      if (searchInput) {
+        searchInput.addEventListener('input', performSearch);
+      }
+
+      // 移动端抽屉
+      const hamburger = document.getElementById('hamburgerBtn');
+      const mobileDrawer = document.getElementById('mobileDrawer');
+      const overlay = document.getElementById('overlay');
+      const closeBtn = document.getElementById('closeDrawerBtn');
+
+      function openDrawer() {
+        if (mobileDrawer) mobileDrawer.classList.add('open');
+        if (overlay) overlay.classList.add('active');
+        if (hamburger) hamburger.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeDrawer() {
+        if (mobileDrawer) mobileDrawer.classList.remove('open');
+        if (overlay) overlay.classList.remove('active');
+        if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+      }
+
+      if (hamburger) {
+        hamburger.addEventListener('click', openDrawer);
+      }
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeDrawer);
+      }
+      if (overlay) {
+        overlay.addEventListener('click', closeDrawer);
+      }
+
+      // 点击抽屉导航后关闭
+      if (mobileDrawer) {
+        mobileDrawer.querySelectorAll('nav a').forEach(link => {
+          link.addEventListener('click', closeDrawer);
+        });
+      }
+
+      // Esc 关闭
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeDrawer();
+        }
+      });
+
+      // 回到顶部
+      const backToTop = document.getElementById('backToTop');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > window.innerHeight) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
+      backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // 侧栏当前高亮
+      const channelLinks = document.querySelectorAll('.channel-list a');
+      const sections = document.querySelectorAll('.main-content .section');
+      function updateActiveChannel() {
+        let currentId = '';
+        sections.forEach(section => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= 120) {
+            currentId = section.id;
+          }
+        });
+        channelLinks.forEach(link => {
+          link.classList.remove('active');
+          const href = link.getAttribute('href');
+          if (href === '/#' + currentId) {
+            link.classList.add('active');
+          }
+        });
+      }
+      window.addEventListener('scroll', updateActiveChannel);
+      updateActiveChannel();
+    })();
+  </script>
+
+</body>
+  </html>
