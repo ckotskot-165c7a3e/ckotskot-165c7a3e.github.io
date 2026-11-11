@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>周妍希 无圣光 写真 - 写真作品图集与动态</title>
+  <meta name="description" content="周妍希 无圣光 写真聚合了周妍希的无圣光写真图集、拍摄花絮、套图目录与更新动态，包含校园风、复古胶片、夏日泳装等系列，适合写真爱好者浏览与收藏。">
+  <meta name="keywords" content="周妍希 无圣光 写真">
+  <style>
+    /* ---------- 全局变量与重置 ---------- */
+    :root {
+      --primary: #b85c6e;
+      --primary-light: #e8b4c0;
+      --primary-dark: #8d3a4b;
+      --bg: #fdf8f9;
+      --panel: #ffffff;
+      --text-primary: #2d1e22;
+      --text-secondary: #6e545a;
+      --text-muted: #a38e93;
+      --border: #f0e2e6;
+      --radius-card: 16px;
+      --radius-btn: 24px;
+      --radius-tag: 12px;
+      --shadow-default: 0 4px 12px rgba(0, 0, 0, 0.04);
+      --shadow-hover: 0 8px 24px rgba(184, 92, 110, 0.12);
+      --font: system-ui, -apple-system, 'PingFang SC', 'Helvetica Neue', 'Microsoft YaHei', sans-serif;
+      --header-height: 64px;
+      --announce-height: 44px;
+      --sticky-offset: calc(var(--announce-height) + var(--header-height));
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-padding-top: var(--sticky-offset);
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding-top: var(--sticky-offset);
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    ul {
+      list-style: none;
+    }
+    button {
+      cursor: pointer;
+      font-family: inherit;
+      border: none;
+      background: none;
+    }
+    /* ---------- 吸顶公告条 + 页头 ---------- */
+    .announce-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--announce-height);
+      background: var(--primary-dark);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      font-size: 0.85rem;
+      z-index: 1001;
+      padding: 0 16px;
+      white-space: nowrap;
+      overflow-x: auto;
+    }
+    .announce-bar .brand-mark {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--primary-light);
+      margin-right: 8px;
+    }
+    .announce-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .announce-item .date {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.8rem;
+    }
+    .announce-item .tag {
+      background: var(--primary);
+      padding: 2px 8px;
+      border-radius: var(--radius-tag);
+      font-size: 0.75rem;
+    }
+
+    .site-header {
+      position: fixed;
+      top: var(--announce-height);
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 24px;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .logo-svg {
+      width: 32px;
+      height: 32px;
+    }
+    .brand-text {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--primary-dark);
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    .main-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      flex: 1;
+    }
+    .main-nav a {
+      padding: 8px 14px;
+      border-radius: var(--radius-btn);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+    }
+    .main-nav a:hover {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .btn-outline {
+      padding: 6px 16px;
+      border-radius: var(--radius-btn);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      font-size: 0.85rem;
+      background: transparent;
+      transition: background 0.2s;
+    }
+    .btn-outline:hover {
+      background: var(--primary-light);
+    }
+    .btn-solid {
+      padding: 6px 16px;
+      border-radius: var(--radius-btn);
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.85rem;
+      transition: background 0.2s;
+    }
+    .btn-solid:hover {
+      background: var(--primary-dark);
+    }
+    .hamburger {
+      display: none;
+      font-size: 1.6rem;
+      color: var(--primary-dark);
+      background: none;
+      border: none;
+      padding: 4px 8px;
+    }
+    .mobile-nav-overlay {
+      display: none;
+    }
+
+    /* ---------- 容器 ---------- */
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ---------- 首屏 ---------- */
+    .hero {
+      padding: 48px 0 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-text {
+      flex: 1 1 55%;
+    }
+    .hero-text h1 {
+      font-size: 2.6rem;
+      line-height: 1.2;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .hero-visual {
+      flex: 0 0 340px;
+      height: 280px;
+      position: relative;
+    }
+    .hero-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ---------- 主布局（三栏） ---------- */
+    .main-layout {
+      display: grid;
+      grid-template-columns: 180px 1fr 280px;
+      gap: 28px;
+      padding: 40px 0 60px;
+    }
+
+    /* ---------- 左频道索引 ---------- */
+    .channel-sidebar {
+      position: sticky;
+      top: calc(var(--sticky-offset) + 20px);
+      align-self: start;
+    }
+    .channel-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .channel-list li {
+      margin-bottom: 4px;
+    }
+    .channel-list a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      transition: background 0.2s, color 0.2s;
+    }
+    .channel-list a:hover {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    /* ---------- 中主内容区 ---------- */
+    .main-content {
+      min-width: 0;
+    }
+    .section {
+      margin-bottom: 48px;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .section-header h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      letter-spacing: -0.3px;
+    }
+    .section-header .more-link {
+      font-size: 0.85rem;
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: var(--radius-btn);
+      transition: background 0.2s;
+    }
+    .section-header .more-link:hover {
+      background: var(--primary-light);
+    }
+
+    /* 概览段落 */
+    .overview-text {
+      font-size: 0.98rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      padding: 24px 28px;
+      box-shadow: var(--shadow-default);
+    }
+    .overview-text p + p {
+      margin-top: 14px;
+    }
+
+    /* 精选卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-default);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+    .card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      background: var(--primary-light);
+    }
+    .card-body {
+      padding: 14px 16px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-type {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .card-title {
+      font-weight: 700;
+      font-size: 0.98rem;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .card-tags span {
+      background: var(--bg);
+      padding: 2px 8px;
+      border-radius: var(--radius-tag);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* 最新动态列表 */
+    .update-list {
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      padding: 4px 0;
+      box-shadow: var(--shadow-default);
+    }
+    .update-item {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+    .update-item:last-child {
+      border-bottom: none;
+    }
+    .update-item .date {
+      flex-shrink: 0;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      width: 80px;
+    }
+    .update-item .name {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .update-item .summary {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    /* 分类入口 */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .category-item {
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      padding: 18px 12px;
+      text-align: center;
+      box-shadow: var(--shadow-default);
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--primary-dark);
+    }
+    .category-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    .category-item small {
+      display: block;
+      font-weight: 400;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* 深度解析 */
+    .deep-dive {
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      padding: 28px 32px;
+      box-shadow: var(--shadow-default);
+    }
+    .deep-dive h3 {
+      font-size: 1.15rem;
+      color: var(--primary-dark);
+      margin-top: 24px;
+      margin-bottom: 10px;
+    }
+    .deep-dive h3:first-child {
+      margin-top: 0;
+    }
+    .deep-dive p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+    .deep-dive ul {
+      margin: 8px 0 16px 20px;
+      list-style: disc;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+    .deep-dive table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.88rem;
+    }
+    .deep-dive th,
+    .deep-dive td {
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      text-align: left;
+      color: var(--text-secondary);
+    }
+    .deep-dive th {
+      background: var(--bg);
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* 体验指南 */
+    .guide-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+    }
+    .step-card {
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      padding: 20px;
+      box-shadow: var(--shadow-default);
+    }
+    .step-num {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+    .step-card h4 {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+    .step-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* FAQ 折叠 */
+    .faq-list details {
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-default);
+      margin-bottom: 10px;
+      padding: 0 20px;
+    }
+    .faq-list summary {
+      padding: 16px 0;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-primary);
+    }
+    .faq-list summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-list summary::after {
+      content: '+';
+      font-size: 1.3rem;
+      color: var(--primary);
+      transition: transform 0.2s;
+    }
+    .faq-list details[open] summary::after {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      padding: 0 0 18px 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* 评论 */
+    .comment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .comment-item {
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-default);
+    }
+    .comment-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .comment-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+    .comment-name {
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .comment-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* 资讯列表 */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .news-item {
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-default);
+    }
+    .news-item h4 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: var(--primary-dark);
+    }
+    .news-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .news-summary {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* 相关推荐标签 */
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .tag-cloud a {
+      background: var(--panel);
+      border-radius: var(--radius-btn);
+      padding: 8px 18px;
+      font-size: 0.85rem;
+      box-shadow: var(--shadow-default);
+      transition: background 0.2s, box-shadow 0.2s;
+      color: var(--text-secondary);
+    }
+    .tag-cloud a:hover {
+      background: var(--primary-light);
+      box-shadow: var(--shadow-hover);
+      color: var(--primary-dark);
+    }
+
+    /* 补充板块：榜单 */
+    .rank-list {
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      padding: 4px 0;
+      box-shadow: var(--shadow-default);
+    }
+    .rank-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    .rank-item:last-child {
+      border-bottom: none;
+    }
+    .rank-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+    .rank-name {
+      font-weight: 600;
+      flex: 1;
+    }
+    .rank-stat {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    /* ---------- 右辅助栏 ---------- */
+    .sidebar {
+      position: sticky;
+      top: calc(var(--sticky-offset) + 20px);
+      align-self: start;
+    }
+    .sidebar-card {
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-default);
+      margin-bottom: 20px;
+    }
+    .sidebar-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+    .sidebar-list li {
+      padding: 6px 0;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-list li:last-child {
+      border-bottom: none;
+    }
+    .sidebar-list .date {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-left: 8px;
+    }
+
+    /* ---------- 页尾 ---------- */
+    .site-footer {
+      background: var(--panel);
+      border-top: 1px solid var(--border);
+      padding: 40px 0 24px;
+      margin-top: 20px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 28px;
+    }
+    .footer-brand .brand-text {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .footer-brand p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 320px;
+    }
+    .footer-col h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      padding: 4px 0;
+    }
+    .footer-col a:hover {
+      color: var(--primary);
+    }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ---------- 回到顶部 ---------- */
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow-hover);
+      z-index: 900;
+      border: none;
+      transition: background 0.2s;
+    }
+    .back-to-top:hover {
+      background: var(--primary-dark);
+    }
+    .back-to-top.show {
+      display: flex;
+    }
+
+    /* ---------- 响应式 ---------- */
+    @media (max-width: 1024px) {
+      .main-layout {
+        grid-template-columns: 1fr 260px;
+      }
+      .channel-sidebar {
+        display: none;
+      }
+      .hero-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+      .hero-desc {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-visual {
+        flex: 0 0 240px;
+        height: 200px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .main-nav {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+      .header-actions {
+        margin-left: auto;
+      }
+      .mobile-nav-overlay {
+        display: none;
+        position: fixed;
+        inset: var(--sticky-offset) 0 0 0;
+        background: rgba(0,0,0,0.4);
+        z-index: 999;
+      }
+      .mobile-nav-overlay.active {
+        display: block;
+      }
+      .mobile-nav-panel {
+        background: var(--panel);
+        width: 260px;
+        height: 100%;
+        padding: 20px 16px;
+        overflow-y: auto;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+      }
+      .mobile-nav-panel a {
+        display: block;
+        padding: 10px 12px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+      }
+      .mobile-nav-panel a:hover {
+        background: var(--primary-light);
+      }
+    }
+    @media (max-width: 740px) {
+      .main-layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+      }
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .announce-bar {
+        font-size: 0.75rem;
+        gap: 12px;
+        justify-content: flex-start;
+        padding-left: 12px;
+      }
+      .site-header {
+        padding: 0 12px;
+        gap: 12px;
+      }
+      .brand-text {
+        font-size: 1rem;
+      }
+      .btn-outline, .btn-solid {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+      }
+      .hero-text h1 {
+        font-size: 1.6rem;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+  <!-- 吸顶公告条 -->
+  <div class="announce-bar">
+    <span class="brand-mark">周妍希 无圣光 写真</span>
+    <span class="announce-item"><span class="date">2026-11-08</span><span class="tag">新作</span>「冬日光影」套图上线</span>
+    <span class="announce-item"><span class="date">2026-11-07</span><span class="tag">花絮</span>「复古胶片」拍摄侧记</span>
+    <span class="announce-item"><span class="date">2026-11-05</span><span class="tag">榜单</span>十月最受欢迎写真TOP10</span>
+  </div>
+
+  <!-- 吸顶页头 -->
+  <header class="site-header">
+    <div class="logo-area">
+      <svg class="logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="18" stroke="#b85c6e" stroke-width="2.5" fill="#fdf8f9"/>
+        <circle cx="20" cy="14" r="5" fill="#b85c6e" opacity="0.7"/>
+        <path d="M10 30 Q20 22 30 30" stroke="#b85c6e" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <circle cx="14" cy="12" r="1.5" fill="#e8b4c0"/>
+        <circle cx="26" cy="12" r="1.5" fill="#e8b4c0"/>
+      </svg>
+      <span class="brand-text">周妍希 无圣光 写真</span>
+    </div>
+    <nav class="main-nav" aria-label="主导航">
+      <a href="/#overview">概览</a>
+      <a href="/#featured">精选</a>
+      <a href="/#updates">动态</a>
+      <a href="/#categories">分类</a>
+      <a href="/#deep-dive">深度</a>
+      <a href="/#guide">指南</a>
+      <a href="/#faq">问答</a>
+      <a href="/#comments">评论</a>
+      <a href="/#news">资讯</a>
+      <a href="/#rank">榜单</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn-outline" onclick="alert('投稿入口为示例功能')">投稿</button>
+      <button class="btn-solid" onclick="alert('登录功能为示例')">登录</button>
+    </div>
+    <button class="hamburger" aria-label="打开菜单" onclick="toggleMobileNav()">☰</button>
+  </header>
+
+  <!-- 移动端导航遮罩 -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileNav()">
+    <div class="mobile-nav-panel" onclick="event.stopPropagation()">
+      <a href="/#overview" onclick="closeMobileNav()">概览</a>
+      <a href="/#featured" onclick="closeMobileNav()">精选</a>
+      <a href="/#updates" onclick="closeMobileNav()">动态</a>
+      <a href="/#categories" onclick="closeMobileNav()">分类</a>
+      <a href="/#deep-dive" onclick="closeMobileNav()">深度解析</a>
+      <a href="/#guide" onclick="closeMobileNav()">体验指南</a>
+      <a href="/#faq" onclick="closeMobileNav()">常见问题</a>
+      <a href="/#comments" onclick="closeMobileNav()">评论</a>
+      <a href="/#news" onclick="closeMobileNav()">资讯</a>
+      <a href="/#recommend">相关推荐</a>
+      <a href="/#rank" onclick="closeMobileNav()">热门榜单</a>
+    </div>
+  </div>
+
+  <!-- 首屏 -->
+  <section class="hero container">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>周妍希 无圣光 写真</h1>
+        <p class="hero-desc">汇聚周妍希的无圣光写真套图、拍摄花絮与系列目录，涵盖校园风、复古胶片、夏日泳装、冬日暖阳等方向，提供作品类型、更新进度与观看顺序参考。</p>
+        <div class="hero-actions">
+          <a href="/#featured" class="btn-solid" style="padding:10px 24px;font-size:0.95rem;">浏览精选套图</a>
+          <a href="/#updates" class="btn-outline" style="padding:10px 24px;font-size:0.95rem;">查看最新更新</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <svg class="hero-svg" viewBox="0 0 340 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="340" height="280" rx="20" fill="#fdf8f9"/>
+          <rect x="24" y="24" width="130" height="100" rx="12" fill="#e8b4c0" opacity="0.5"/>
+          <rect x="170" y="24" width="146" height="60" rx="12" fill="#b85c6e" opacity="0.25"/>
+          <rect x="170" y="96" width="146" height="90" rx="12" fill="#e8b4c0" opacity="0.3"/>
+          <rect x="24" y="140" width="130" height="116" rx="12" fill="#b85c6e" opacity="0.15"/>
+          <circle cx="240" cy="220" r="36" fill="#e8b4c0" opacity="0.6"/>
+          <circle cx="240" cy="220" r="18" fill="#b85c6e" opacity="0.4"/>
+          <path d="M60 200 L90 170 L120 200" stroke="#b85c6e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 主布局 -->
+  <div class="main-layout container">
+
+    <!-- 左频道索引 -->
+    <aside class="channel-sidebar">
+      <h3 class="channel-title">频道索引</h3>
+      <ul class="channel-list">
+        <li><a href="/#overview">领域概览</a></li>
+        <li><a href="/#featured">精选套图</a></li>
+        <li><a href="/#updates">更新动态</a></li>
+        <li><a href="/#categories">分类入口</a></li>
+        <li><a href="/#deep-dive">深度解析</a></li>
+        <li><a href="/#guide">观看指南</a></li>
+        <li><a href="/#faq">常见问答</a></li>
+        <li><a href="/#comments">用户评论</a></li>
+        <li><a href="/#news">相关资讯</a></li>
+        <li><a href="/#recommend">相关推荐</a></li>
+        <li><a href="/#rank">热门榜单</a></li>
+      </ul>
+    </aside>
+
+    <!-- 中主内容 -->
+    <main class="main-content">
+
+      <!-- 1. 领域概览 -->
+      <section class="section" id="overview">
+        <div class="section-header">
+          <h2>无圣光写真领域概览</h2>
+        </div>
+        <div class="overview-text">
+          <p>无圣光写真指拍摄过程中不使用强烈闪光灯直射、依靠自然光或持续光源完成的人像作品。周妍希的无圣光写真覆盖多个方向：校园制服系列强调窗边漫射光下的肌肤质感，复古胶片系列使用柯达Portra 400配合测光表控制曝光，夏日泳装系列在下午四点后的侧逆光中拍摄，冬日暖阳系列则利用低角度阳光制造轮廓光。</p>
+          <p>2026年10月至11月，周妍希陆续释出四组无圣光套图，其中「冬日光影」于11月8日上线，包含42张成片与3段拍摄花絮；「复古胶片」在11月7日发布侧记，记录了使用哈苏503CW搭配80mm镜头的中画幅拍摄过程。关注点集中在光线处理方式、服装搭配与场景选择三个层面。校园系列在图书馆靠窗位置完成，ISO控制在400以内；泳装系列在日落前90分钟拍摄，白平衡设为5600K。这些参数本身成为爱好者讨论的依据。</p>
+        </div>
+      </section>
+
+      <!-- 2. 精选内容推荐 -->
+      <section class="section" id="featured">
+        <div class="section-header">
+          <h2>精选无圣光写真套图</h2>
+          <a href="/#updates" class="more-link">更多更新 →</a>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <img class="card-img" src="https://picsum.photos/seed/zyx-winter1/400/300" width="400" height="300" loading="lazy" alt="周妍希冬日光影套图窗边侧脸">
+            <div class="card-body">
+              <span class="card-type">冬日暖阳</span>
+              <h3 class="card-title">「冬日光影」窗边系列</h3>
+              <p class="card-desc">42张成片，下午三点半的斜阳透过百叶窗形成条纹光，肤色过渡自然。含3段花絮展示测光过程。</p>
+              <div class="card-tags"><span>窗边光</span><span>百叶窗</span><span>自然肤色</span></div>
+              <div class="card-meta"><span>11月8日更新</span><span>热度 9.2</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <img class="card-img" src="https://picsum.photos/seed/zyx-film2/400/300" width="400" height="300" loading="lazy" alt="周妍希复古胶片套图室内暖调">
+            <div class="card-body">
+              <span class="card-type">复古胶片</span>
+              <h3 class="card-title">「柯达Portra 400」室内卷</h3>
+              <p class="card-desc">哈苏503CW拍摄，光圈f/2.8，室内持续光源加反光板补光。颗粒细腻，暗部带轻微青调。</p>
+              <div class="card-tags"><span>中画幅</span><span>Portra400</span><span>室内暖调</span></div>
+              <div class="card-meta"><span>11月7日更新</span><span>热度 8.8</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <img class="card-img" src="https://picsum.photos/seed/zyx-school3/400/300" width="400" height="300" loading="lazy" alt="周妍希校园制服图书馆窗边">
+            <div class="card-body">
+              <span class="card-type">校园制服</span>
+              <h3 class="card-title">「图书馆午后」制服系列</h3>
+              <p class="card-desc">在图书馆靠窗位拍摄，利用书架间隙的漫射光，ISO 320，白平衡自动。包含18张横构图。</p>
+              <div class="card-tags"><span>漫射光</span><span>图书馆</span><span>横构图</span></div>
+              <div class="card-meta"><span>11月3日更新</span><span>热度 8.5</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <img class="card-img" src="https://picsum.photos/seed/zyx-swim4/400/300" width="400" height="300" loading="lazy" alt="周妍希夏日泳装黄昏侧逆光">
+            <div class="card-body">
+              <span class="card-type">夏日泳装</span>
+              <h3 class="card-title">「日落前90分钟」泳装套图</h3>
+              <p class="card-desc">下午五点开始拍摄，侧逆光勾勒轮廓，水面反光板补暗部。28张成片，白平衡5600K。</p>
+              <div class="card-tags"><span>侧逆光</span><span>黄昏</span><span>水面补光</span></div>
+              <div class="card-meta"><span>10月29日更新</span><span>热度 9.0</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <img class="card-img" src="https://picsum.photos/seed/zyx-street5/400/300" width="400" height="300" loading="lazy" alt="周妍希街拍无圣光日常">
+            <div class="card-body">
+              <span class="card-type">街拍日常</span>
+              <h3 class="card-title">「阴天漫反射」街拍集</h3>
+              <p class="card-desc">阴天环境下利用云层做柔光箱，肤色均匀无硬阴影。24张，焦段35mm和50mm各半。</p>
+              <div class="card-tags"><span>阴天</span><span>漫反射</span><span>35mm</span></div>
+              <div class="card-meta"><span>10月25日更新</span><span>热度 7.9</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <img class="card-img" src="https://picsum.photos/seed/zyx-cafe6/400/300" width="400" height="300" loading="lazy" alt="周妍希咖啡馆窗边自然光">
+            <div class="card-body">
+              <span class="card-type">室内自然光</span>
+              <h3 class="card-title">「咖啡馆靠窗位」系列</h3>
+              <p class="card-desc">利用落地窗侧光，背景虚化到f/1.8，咖啡杯与人物形成前后景关系。16张，含2张黑白。</p>
+              <div class="card-tags"><span>落地窗</span><span>f1.8</span><span>黑白</span></div>
+              <div class="card-meta"><span>10月20日更新</span><span>热度 8.1</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 3. 最新更新 / 动态 -->
+      <section class="section" id="updates">
+        <div class="section-header">
+          <h2>近期更新与拍摄动态</h2>
+        </div>
+        <div class="update-list">
+          <div class="update-item"><span class="date">11月8日</span><span class="name">「冬日光影」</span><span class="summary">套图正式上线，42张成片加3段花絮，窗边百叶窗光影为主视觉。</span></div>
+          <div class="update-item"><span class="date">11月7日</span><span class="name">「复古胶片」侧记</span><span class="summary">发布哈苏503CW拍摄日志，记录室内持续光源的布光位置图。</span></div>
+          <div class="update-item"><span class="date">11月5日</span><span class="name">十月写真榜单</span><span class="summary">「日落前90分钟」泳装套图以9.0热度位居第一，校园制服系列第二。</span></div>
+          <div class="update-item"><span class="date">11月3日</span><span class="name">「图书馆午后」</span><span class="summary">校园制服系列新增18张横构图，拍摄于市立图书馆三楼靠窗区。</span></div>
+          <div class="update-item"><span class="date">10月31日</span><span class="name">拍摄花絮短视频</span><span class="summary">上传泳装系列侧拍记录，时长4分12秒，含白平衡调试过程。</span></div>
+          <div class="update-item"><span class="date">10月29日</span><span class="name">「日落前90分钟」</span><span class="summary">28张泳装成片释出，标注拍摄参数：ISO 200，f/2.8，1/500s。</span></div>
+          <div class="update-item"><span class="date">10月25日</span><span class="name">「阴天漫反射」</span><span class="summary">街拍日常系列上线24张，全部在阴天室外完成，无人工补光。</span></div>
+          <div class="update-item"><span class="date">10月20日</span><span class="name">「咖啡馆靠窗位」</span><span class="summary">室内自然光系列发布16张，含2张黑白转换，使用35mm定焦。</span></div>
+          <div class="update-item"><span class="date">10月15日</span><span class="name">投稿通道开启</span><span class="summary">开放粉丝投稿，征集无圣光拍摄作品，首期入选名单11月10日公布。</span></div>
+          <div class="update-item"><span class="date">10月12日</span><span class="name">器材问答</span><span class="summary">回应关于测光表型号的提问，推荐Sekonic L-358配合灰卡使用。</span></div>
+        </div>
+      </section>
+
+      <!-- 4. 分类入口 -->
+      <section class="section" id="categories">
+        <div class="section-header">
+          <h2>按拍摄类型浏览</h2>
+        </div>
+        <div class="category-grid">
+          <a href="/#featured" class="category-item">校园制服<small>图书馆/教室场景</small></a>
+          <a href="/#featured" class="category-item">复古胶片<small>中画幅/颗粒质感</small></a>
+          <a href="/#featured" class="category-item">夏日泳装<small>黄昏侧逆光</small></a>
+          <a href="/#featured" class="category-item">冬日暖阳<small>低角度轮廓光</small></a>
+          <a href="/#featured" class="category-item">街拍日常<small>阴天漫反射</small></a>
+          <a href="/#featured" class="category-item">室内自然光<small>窗边/咖啡馆</small></a>
+          <a href="/#featured" class="category-item">黑白特辑<small>灰度过渡</small></a>
+          <a href="/#featured" class="category-item">拍摄花絮<small>布光过程记录</small></a>
+        </div>
+      </section>
+
+      <!-- 5. 深度解析 -->
+      <section class="section" id="deep-dive">
+        <div class="section-header">
+          <h2>无圣光写真的光线处理与判断</h2>
+        </div>
+        <div class="deep-dive">
+          <h3>窗边光与百叶窗条纹：可复现的参数</h3>
+          <p>「冬日光影」系列在下午三点半到四点半之间完成，太阳高度角约25度，光线穿过百叶窗形成间隔约6厘米的条纹。周妍希站在距窗户1.2米的位置，面部朝向与窗面呈45度角。相机设置为光圈f/2.0，快门1/250s，ISO 200，白平衡手动设定为5200K。这套参数可以复现的前提是：窗户朝南偏西15度，百叶窗叶片角度约30度。如果叶片全开，条纹消失，光比降低约1.5档。</p>
+          <p>判断一组窗边光写真是否到位，看三个点：鼻梁高光是否过曝、眼窝阴影是否保留细节、下颌线是否与脖子分离。前两项靠测光表入射式读数控制在+0.3EV以内，后一项靠反光板补一个柔光在胸口高度。</p>
+
+          <h3>胶片与数码在无圣光条件下的差异清单</h3>
+          <p>「复古胶片」系列用哈苏503CW搭配Portra 400，室内持续光源加白色反光板。与数码后背相比，Portra 400在阴影处有更明显的青绿色偏移，肤色高光过渡更平缓。数码拍摄的「图书馆午后」系列在Lightroom中需要把高光拉回-30左右才能接近胶片观感。两者的具体差异可以列成对照：</p>
+          <table>
+            <thead><tr><th>对比项</th><th>Portra 400（胶片）</th><th>数码后背（同场景）</th></tr></thead>
+            <tbody>
+              <tr><td>动态范围</td><td>约13档，高光耐受强</td><td>约14档，暗部可恢复更多</td></tr>
+              <tr><td>肤色过渡</td><td>高光平缓，阴影偏青</td><td>过渡锐利，需后期柔化</td></tr>
+              <tr><td>颗粒/噪点</td><td>ISO 400下颗粒均匀</td><td>ISO 400下暗部有彩噪</td></tr>
+              <tr><td>白平衡</td><td>固定5500K，后期可微调</td><td>自动白平衡偏差约200K</td></tr>
+            </tbody>
+          </table>
+
+          <h3>泳装黄昏侧逆光的时机窗口</h3>
+          <p>「日落前90分钟」泳装套图在下午五点开始，当地日落时间为六点半。侧逆光角度约120度，人物面部需要反光板补光。实测数据：不加反光板时面部与背景光比达到1:8，加一块1.2米银色反光板后光比降至1:3。白平衡设定5600K，实际色温约5200K，照片偏暖但可以接受。窗口期只有约25分钟，太阳高度角低于10度后光线变平，轮廓光消失。</p>
+          <p>如果错过这个窗口，可以用持续光源模拟：一盏200W LED灯放在人物侧后方45度，加柔光箱，色温调至5000K，可以还原八成效果。但LED的显色指数需要大于95，否则肤色会发灰。</p>
+        </div>
+      </section>
+
+      <!-- 6. 体验指南 -->
+      <section class="section" id="guide">
+        <div class="section-header">
+          <h2>观看顺序与判断依据</h2>
+        </div>
+        <div class="guide-steps">
+          <div class="step-card">
+            <span class="step-num">1</span>
+            <h4>先看拍摄参数</h4>
+            <p>每套图附有ISO、光圈、白平衡和光源类型。参数越具体，参考价值越高。只写“自然光”而无具体数值的，优先度放后。</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">2</span>
+            <h4>再对比光线方向</h4>
+            <p>侧光、逆光、漫射光对肤色呈现影响不同。窗边光看阴影边缘是否柔和，侧逆光看轮廓是否分离，漫反射看整体是否平。</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">3</span>
+            <h4>看花絮验证过程</h4>
+            <p>有花絮的套图可以核对布光位置和反光板角度。花絮时长超过3分钟且包含测光表读数的，可信度更高。</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">4</span>
+            <h4>比较同类场景</h4>
+            <p>同样在咖啡馆拍摄，比较不同套图的光比控制和背景虚化程度。f/1.8与f/2.8的背景分离差异明显，按需求选择。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. FAQ -->
+      <section class="section" id="faq">
+        <div class="section-header">
+          <h2>常见问题</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>无圣光写真和普通闪光灯写真在观感上有什么区别？</summary>
+            <div class="faq-answer">最直接的差别在阴影边缘。闪光灯直射会产生硬阴影，鼻翼和下颌的过渡生硬；无圣光依靠窗光或持续光源，阴影边缘有5到10厘米的渐变区。肤色高光也不一样，闪光灯容易在额头和鼻尖形成过曝点，自然光的高光过渡更平缓。周妍希的「图书馆午后」系列可以对照观察。</div>
+          </details>
+          <details>
+            <summary>「冬日光影」套图里的百叶窗条纹是怎么拍出来的？</summary>
+            <div class="faq-answer">下午三点半到四点半，太阳高度角约25度，光线穿过叶片角度30度的百叶窗，在地面和人物身上形成间隔约6厘米的条纹。相机置于距离窗户1.2米处，光圈f/2.0，ISO 200，白平衡5200K。叶片全开或全闭都会失去条纹效果。</div>
+          </details>
+          <details>
+            <summary>Portra 400胶片在室内无圣光环境下需要迫冲吗？</summary>
+            <div class="faq-answer">不需要。Portra 400在ISO 400下的宽容度足够应对室内持续光源，前提是快门速度不低于1/60s。周妍希「复古胶片」系列实测快门1/125s、光圈f/2.8，正常冲洗即可。如果室内照度低于EV 6，才考虑迫冲到800。</div>
+          </details>
+          <details>
+            <summary>泳装套图的黄昏侧逆光窗口期有多长？</summary>
+            <div class="faq-answer">从太阳高度角15度降到5度，大约25到30分钟。以10月29日拍摄为例，下午五点开始，五点半光线变平。侧逆光角度在120度左右时轮廓光最明显，低于90度后效果减弱。错过窗口可以用200W LED加柔光箱模拟，显色指数需大于95。</div>
+          </details>
+          <details>
+            <summary>怎么判断一组无圣光写真是否值得参考？</summary>
+            <div class="faq-answer">看三个可核对项：是否标注ISO、光圈、白平衡具体数值；是否有花絮展示反光板或测光表位置；同场景下是否有多组不同光比的对比图。三项缺一项，参考价值打折扣。三项全缺的，只能当欣赏用。</div>
+          </details>
+          <details>
+            <summary>阴天街拍为什么反而适合无圣光？</summary>
+            <div class="faq-answer">云层相当于一个直径几公里的柔光箱，光线均匀漫射，没有直射阳光的硬阴影。肤色过渡自然，眼窝和下颌的阴影保留细节。周妍希「阴天漫反射」系列在10月25日拍摄，全天阴天，ISO 400，f/2.8，1/250s，后期只做了轻微对比度调整。</div>
+          </details>
+        </div>
+      </section>
+
+      <!-- 8. 用户评论 -->
+      <section class="section" id="comments">
+        <div class="section-header">
+          <h2>观众评论</h2>
+        </div>
+        <div class="comment-list">
+          <div class="comment-item"><div class="comment-header"><div class="comment-avatar">林</div><span class="comment-name">林小满</span></div><div class="comment-text">「冬日光影」的百叶窗条纹绝了，鼻梁高光一点没爆，这个控制力服气。</div></div>
+          <div class="comment-item"><div class="comment-header"><div class="comment-avatar">陈</div><span class="comment-name">陈默</span></div><div class="comment-text">Portra 400那组颗粒感刚好，不过暗部青调有点重，个人不太习惯。</div></div>
+          <div class="comment-item"><div class="comment-header"><div class="comment-avatar">阿</div><span class="comment-name">阿汤</span></div><div class="comment-text">泳装那套的侧逆光轮廓确实漂亮，但反光板补得有点平了，面部立体感弱了一点。</div></div>
+          <div class="comment-item"><div class="comment-header"><div class="comment-avatar">周</div><span class="comment-name">周周不是粥</span></div><div class="comment-text">图书馆那组横构图很舒服，书架虚化得刚好，不抢人。</div></div>
+          <div class="comment-item"><div class="comment-header"><div class="comment-avatar">大</div><span class="comment-name">大脸猫</span></div><div class="comment-text">花絮里那个测光表读数我暂停看了，入射式+0.3EV，跟我猜的一样。</div></div>
+          <div class="comment-item"><div class="comment-header"><div class="comment-avatar">M</div><span class="comment-name">Mia</span></div><div class="comment-text">胶片那套的布光位置图太实用了，直接照搬试了一次，效果七七八八。</div></div>
+          <div class="comment-item"><div class="comment-header"><div class="comment-avatar">老</div><span class="comment-name">老白</span></div><div class="comment-text">咖啡馆那组16张有点少，看不过瘾。</div></div>
+          <div class="comment-item"><div class="comment-header"><div class="comment-avatar">小</div><span class="comment-name">小鹿乱撞</span></div><div class="comment-text">阴天街拍那组反而最自然，肤质看着最舒服，硬光看多了眼睛累。</div></div>
+          <div class="comment-item"><div class="comment-header"><div class="comment-avatar">K</div><span class="comment-name">K先生</span></div><div class="comment-text">说真的，白平衡5600K出来的泳装调子偏黄，个人喜欢冷一点的。</div></div>
+          <div class="comment-item"><div class="comment-header"><div class="comment-avatar">柠</div><span class="comment-name">柠檬不酸</span></div><div class="comment-text">投稿通道开了？我手里有几张阴天拍的，不知道能不能入眼。</div></div>
+          <div class="comment-item"><div class="comment-header"><div class="comment-avatar">B</div><span class="comment-name">B哥</span></div><div class="comment-text">哈苏503CW加80mm，这套设备现在二手也不便宜。</div></div>
+          <div class="comment-item"><div class="comment-header"><div class="comment-avatar">静</div><span class="comment-name">静水流深</span></div><div class="comment-text">黑白那两张藏得深，找了半天才看到，灰度层次不错。</div></div>
+          <div class="comment-item"><div class="comment-header"><div class="comment-avatar">十</div><span class="comment-name">十三</span></div><div class="comment-text">百叶窗那个参数我记下了，周末就试，f/2.0 ISO 200 5200K。</div></div>
+          <div class="comment-item"><div class="comment-header"><div class="comment-avatar">T</div><span class="comment-name">Tina</span></div><div class="comment-text">更新频率挺稳的，一周至少一组，比某些拖更的强多了。</div></div>
+          <div class="comment-item"><div class="comment-header"><div class="comment-avatar">光</div><span class="comment-name">光影手</span></div><div class="comment-text">侧逆光时间窗确实短，上次我晚了十分钟，轮廓光就没了，血的教训。</div></div>
+        </div>
+      </section>
+
+      <!-- 9. 相关资讯 -->
+      <section class="section" id="news">
+        <div class="section-header">
+          <h2>近期资讯</h2>
+        </div>
+        <div class="news-list">
+          <div class="news-item">
+            <h4>「冬日光影」套图11月8日上线，含42张成片</h4>
+            <div class="news-meta">2026-11-08 · 作品动态</div>
+            <p class="news-summary">本次套图在下午三点半至四点半完成，使用百叶窗制造条纹光，拍摄花絮同步释出3段，总时长约12分钟。</p>
+          </div>
+          <div class="news-item">
+            <h4>哈苏503CW搭配Portra 400拍摄侧记发布</h4>
+            <div class="news-meta">2026-11-07 · 拍摄记录</div>
+            <p class="news-summary">侧记包含布光位置图和测光表读数，室内持续光源色温5200K，反光板置于人物胸前1.5米处。</p>
+          </div>
+          <div class="news-item">
+            <h4>十月写真热度榜：泳装套图居首</h4>
+            <div class="news-meta">2026-11-05 · 榜单数据</div>
+            <p class="news-summary">「日落前90分钟」以9.0热度排名第一，校园制服系列8.5居次，胶片系列8.8排第三，统计周期为10月1日至31日。</p>
+          </div>
+          <div class="news-item">
+            <h4>粉丝投稿通道11月10日公布首期入选名单</h4>
+            <div class="news-meta">2026-11-03 · 互动活动</div>
+            <p class="news-summary">投稿主题限定为无圣光自然光人像，每人限投3张，评选标准包括光线控制和构图完整度，入选者将获得器材清洁套装。</p>
+          </div>
+          <div class="news-item">
+            <h4>「图书馆午后」新增18张横构图</h4>
+            <div class="news-meta">2026-11-03 · 作品更新</div>
+            <p class="news-summary">拍摄地点为市立图书馆三楼靠窗区，下午两点至三点自然光，书架虚化采用f/2.5光圈，新增图片含5张特写。</p>
+          </div>
+          <div class="news-item">
+            <h4>Sekonic L-358测光表使用问答更新</h4>
+            <div class="news-meta">2026-10-12 · 器材问答</div>
+            <p class="news-summary">回应粉丝关于测光模式的疑问，建议使用入射式测光配合灰卡，在窗边光环境下将读数控制在+0.3EV以内。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. 相关推荐 -->
+      <section class="section" id="recommend">
+        <div class="section-header">
+          <h2>相关推荐</h2>
+        </div>
+        <div class="tag-cloud">
+          <a href="/#featured">百叶窗条纹光拍摄</a>
+          <a href="/#featured">Portra 400室内曝光</a>
+          <a href="/#featured">黄昏侧逆光泳装</a>
+          <a href="/#featured">图书馆漫射光人像</a>
+          <a href="/#featured">阴天街拍白平衡</a>
+          <a href="/#featured">咖啡馆f/1.8虚化</a>
+          <a href="/#featured">哈苏503CW参数</a>
+          <a href="/#featured">黑白灰度过渡</a>
+        </div>
+      </section>
+
+      <!-- 11. 补充板块：热门榜单 -->
+      <section class="section" id="rank">
+        <div class="section-header">
+          <h2>十月无圣光写真热度榜</h2>
+        </div>
+        <div class="rank-list">
+          <div class="rank-item"><span class="rank-num">1</span><span class="rank-name">「日落前90分钟」泳装套图</span><span class="rank-stat">热度 9.0 · 28张</span></div>
+          <div class="rank-item"><span class="rank-num">2</span><span class="rank-name">「复古胶片」Portra 400</span><span class="rank-stat">热度 8.8 · 32张</span></div>
+          <div class="rank-item"><span class="rank-num">3</span><span class="rank-name">「图书馆午后」校园制服</span><span class="rank-stat">热度 8.5 · 18张</span></div>
+          <div class="rank-item"><span class="rank-num">4</span><span class="rank-name">「咖啡馆靠窗位」室内光</span><span class="rank-stat">热度 8.1 · 16张</span></div>
+          <div class="rank-item"><span class="rank-num">5</span><span class="rank-name">「阴天漫反射」街拍</span><span class="rank-stat">热度 7.9 · 24张</span></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- 右辅助栏 -->
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <h3>最新条目</h3>
+        <ul class="sidebar-list">
+          <li>「冬日光影」窗边系列 <span class="date">11-08</span></li>
+          <li>「复古胶片」室内卷 <span class="date">11-07</span></li>
+          <li>「图书馆午后」制服 <span class="date">11-03</span></li>
+          <li>「日落前90分钟」泳装 <span class="date">10-29</span></li>
+          <li>「阴天漫反射」街拍 <span class="date">10-25</span></li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h3>热门标签</h3>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span style="background:var(--bg);padding:4px 10px;border-radius:12px;font-size:0.78rem;color:var(--text-secondary);">百叶窗光</span>
+          <span style="background:var(--bg);padding:4px 10px;border-radius:12px;font-size:0.78rem;color:var(--text-secondary);">Portra400</span>
+          <span style="background:var(--bg);padding:4px 10px;border-radius:12px;font-size:0.78rem;color:var(--text-secondary);">侧逆光</span>
+          <span style="background:var(--bg);padding:4px 10px;border-radius:12px;font-size:0.78rem;color:var(--text-secondary);">漫反射</span>
+          <span style="background:var(--bg);padding:4px 10px;border-radius:12px;font-size:0.78rem;color:var(--text-secondary);">哈苏503CW</span>
+          <span style="background:var(--bg);padding:4px 10px;border-radius:12px;font-size:0.78rem;color:var(--text-secondary);">白平衡5200K</span>
+        </div>
+      </div>
+      <div class="sidebar-card">
+        <h3>投稿入口</h3>
+        <p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.6;margin-bottom:10px;">面向无圣光自然光人像，每人限投3张，11月10日公布首期入选名单。</p>
+        <button class="btn-solid" style="width:100%;padding:8px 0;" onclick="alert('投稿功能为示例')">立即投稿</button>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- 页尾 -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="brand-text">周妍希 无圣光 写真</span>
+          <p>收录2026年10月至11月周妍希无圣光写真套图与花絮，覆盖校园、胶片、泳装、街拍等类型。每周更新2至3组，含拍摄参数与布光记录。</p>
+        </div>
+        <div class="footer-col">
+          <h4>作品分类</h4>
+          <a href="/#featured">校园制服</a>
+          <a href="/#featured">复古胶片</a>
+          <a href="/#featured">夏日泳装</a>
+          <a href="/#featured">冬日暖阳</a>
+        </div>
+        <div class="footer-col">
+          <h4>互动</h4>
+          <a href="/#comments">观众评论</a>
+          <a href="/#news">投稿活动</a>
+          <a href="/#rank">热度榜单</a>
+        </div>
+        <div class="footer-col">
+          <h4>帮助</h4>
+          <a href="/#faq">常见问题</a>
+          <a href="/#guide">观看指南</a>
+          <a href="/#deep-dive">深度解析</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 周妍希 无圣光 写真 · 内容聚合示例页面</span>
+        <span>更新时间：2026年11月8日 · 数据为示例展示</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <button class="back-to-top" id="backToTop" aria-label="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <!-- 内联脚本 -->
+  <script>
+    // 移动端导航
+    function toggleMobileNav() {
+      const overlay = document.getElementById('mobileNavOverlay');
+      overlay.classList.toggle('active');
+    }
+    function closeMobileNav() {
+      document.getElementById('mobileNavOverlay').classList.remove('active');
+    }
+    // Esc 关闭菜单
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeMobileNav();
+      }
+    });
+    // 回到顶部显示
+    window.addEventListener('scroll', function() {
+      const btn = document.getElementById('backToTop');
+      if (window.scrollY > window.innerHeight) {
+        btn.classList.add('show');
+      } else {
+        btn.classList.remove('show');
+      }
+    });
+  </script>
+
+  <!-- 结构化数据 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "周妍希 无圣光 写真",
+    "description": "周妍希无圣光写真图集与动态聚合，包含套图目录、拍摄花絮、分类浏览与用户评论。",
+    "url": ""
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "无圣光写真和普通闪光灯写真在观感上有什么区别？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "最直接的差别在阴影边缘。闪光灯直射会产生硬阴影，鼻翼和下颌的过渡生硬；无圣光依靠窗光或持续光源，阴影边缘有5到10厘米的渐变区。肤色高光也不一样，闪光灯容易在额头和鼻尖形成过曝点，自然光的高光过渡更平缓。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "「冬日光影」套图里的百叶窗条纹是怎么拍出来的？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "下午三点半到四点半，太阳高度角约25度，光线穿过叶片角度30度的百叶窗，在地面和人物身上形成间隔约6厘米的条纹。相机置于距离窗户1.2米处，光圈f/2.0，ISO 200，白平衡5200K。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Portra 400胶片在室内无圣光环境下需要迫冲吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "不需要。Portra 400在ISO 400下的宽容度足够应对室内持续光源，前提是快门速度不低于1/60s。实测快门1/125s、光圈f/2.8，正常冲洗即可。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "泳装套图的黄昏侧逆光窗口期有多长？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "从太阳高度角15度降到5度，大约25到30分钟。侧逆光角度在120度左右时轮廓光最明显，低于90度后效果减弱。错过窗口可以用200W LED加柔光箱模拟。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "怎么判断一组无圣光写真是否值得参考？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "看三个可核对项：是否标注ISO、光圈、白平衡具体数值；是否有花絮展示反光板或测光表位置；同场景下是否有多组不同光比的对比图。三项缺一项，参考价值打折扣。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "阴天街拍为什么反而适合无圣光？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "云层相当于一个直径几公里的柔光箱，光线均匀漫射，没有直射阳光的硬阴影。肤色过渡自然，眼窝和下颌的阴影保留细节。阴天拍摄时ISO 400，f/2.8，1/250s，后期只需轻微调整对比度。"
+        }
+      }
+    ]
+  }
+  </script>
+
+</body>
+            </html>
